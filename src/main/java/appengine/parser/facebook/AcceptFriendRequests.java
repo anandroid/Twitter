@@ -84,9 +84,8 @@ public class AcceptFriendRequests {
 
     private static Page openFriendsPageAndInject(WebClient webClient) {
 
-
         try {
-            HtmlPage friendRequestsPage = webClient.getPage("https://m.parser.facebook.com/friends/requests/?split=1&fcref=ft");
+            HtmlPage friendRequestsPage = webClient.getPage("https://m.facebook.com/friends/requests/?split=1&fcref=ft");
             // friendRequestsPage.executeJavaScript(InviteFriends.get_initial_Script());
             ScriptResult scriptResult = friendRequestsPage.executeJavaScript(InviteFriends.invite_friends_script);
             Page newpage = scriptResult.getNewPage();
@@ -105,7 +104,7 @@ public class AcceptFriendRequests {
         HtmlPage loggedin_page = null;
 
         try {
-            final HtmlPage loggedout_page = webClient.getPage("http://www.parser.facebook.com");
+            final HtmlPage loggedout_page = webClient.getPage("http://www.facebook.com");
             final HtmlForm form = (HtmlForm) loggedout_page.getElementById("login_form");
             final HtmlSubmitInput button = (HtmlSubmitInput) form.getInputsByValue("Log In").get(0);
             final HtmlEmailInput textField = form.getInputByName("email");

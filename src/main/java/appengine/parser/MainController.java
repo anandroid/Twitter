@@ -5,6 +5,7 @@ package appengine.parser;
  */
 
 
+import appengine.parser.facebook.AcceptFriendRequests;
 import appengine.parser.facebook.DetailedPost;
 import appengine.parser.facebook.Facebook;
 import appengine.parser.utils.Constants;
@@ -57,6 +58,13 @@ public class MainController {
         }
         return "{\"success\"}";
     }
+
+    @GetMapping("/acceptfriendrequests")
+    public String acceptFriendRequests() {
+        AcceptFriendRequests.acceptFriendRequestsParallelly();
+        return "{\"success\"}";
+    }
+
 
 
 }
