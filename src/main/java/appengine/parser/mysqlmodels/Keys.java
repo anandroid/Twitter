@@ -4,7 +4,17 @@
 package appengine.parser.mysqlmodels;
 
 
+import appengine.parser.mysqlmodels.tables.Fromfbpage;
+import appengine.parser.mysqlmodels.tables.FromfbpageTofbpage;
+import appengine.parser.mysqlmodels.tables.Promotefbpage;
+import appengine.parser.mysqlmodels.tables.records.FromfbpageRecord;
+import appengine.parser.mysqlmodels.tables.records.FromfbpageTofbpageRecord;
+import appengine.parser.mysqlmodels.tables.records.PromotefbpageRecord;
+
 import javax.annotation.Generated;
+
+import org.jooq.UniqueKey;
+import org.jooq.impl.AbstractKeys;
 
 
 /**
@@ -30,6 +40,9 @@ public class Keys {
     // UNIQUE and PRIMARY KEY definitions
     // -------------------------------------------------------------------------
 
+    public static final UniqueKey<FromfbpageRecord> KEY_FROMFBPAGE_PRIMARY = UniqueKeys0.KEY_FROMFBPAGE_PRIMARY;
+    public static final UniqueKey<FromfbpageTofbpageRecord> KEY_FROMFBPAGE_TOFBPAGE_PRIMARY = UniqueKeys0.KEY_FROMFBPAGE_TOFBPAGE_PRIMARY;
+    public static final UniqueKey<PromotefbpageRecord> KEY_PROMOTEFBPAGE_PRIMARY = UniqueKeys0.KEY_PROMOTEFBPAGE_PRIMARY;
 
     // -------------------------------------------------------------------------
     // FOREIGN KEY definitions
@@ -39,4 +52,10 @@ public class Keys {
     // -------------------------------------------------------------------------
     // [#1459] distribute members to avoid static initialisers > 64kb
     // -------------------------------------------------------------------------
+
+    private static class UniqueKeys0 extends AbstractKeys {
+        public static final UniqueKey<FromfbpageRecord> KEY_FROMFBPAGE_PRIMARY = createUniqueKey(Fromfbpage.FROMFBPAGE, "KEY_fromfbpage_PRIMARY", Fromfbpage.FROMFBPAGE.FROM_PAGE_ID);
+        public static final UniqueKey<FromfbpageTofbpageRecord> KEY_FROMFBPAGE_TOFBPAGE_PRIMARY = createUniqueKey(FromfbpageTofbpage.FROMFBPAGE_TOFBPAGE, "KEY_fromfbpage_tofbpage_PRIMARY", FromfbpageTofbpage.FROMFBPAGE_TOFBPAGE.FROM_PAGE_ID, FromfbpageTofbpage.FROMFBPAGE_TOFBPAGE.TO_PAGE_ID);
+        public static final UniqueKey<PromotefbpageRecord> KEY_PROMOTEFBPAGE_PRIMARY = createUniqueKey(Promotefbpage.PROMOTEFBPAGE, "KEY_promotefbpage_PRIMARY", Promotefbpage.PROMOTEFBPAGE.FB_PAGE_ID);
+    }
 }

@@ -4,7 +4,9 @@
 package appengine.parser.mysqlmodels;
 
 
+import appengine.parser.mysqlmodels.tables.Fromfbpage;
 import appengine.parser.mysqlmodels.tables.FromfbpageTofbpage;
+import appengine.parser.mysqlmodels.tables.Promotefbpage;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -30,7 +32,7 @@ import org.jooq.impl.SchemaImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Parser extends SchemaImpl {
 
-    private static final long serialVersionUID = -1583881344;
+    private static final long serialVersionUID = 607606734;
 
     /**
      * The reference instance of <code>parser</code>
@@ -38,9 +40,19 @@ public class Parser extends SchemaImpl {
     public static final Parser PARSER = new Parser();
 
     /**
+     * The table <code>parser.fromfbpage</code>.
+     */
+    public final Fromfbpage FROMFBPAGE = appengine.parser.mysqlmodels.tables.Fromfbpage.FROMFBPAGE;
+
+    /**
      * The table <code>parser.fromfbpage_tofbpage</code>.
      */
     public final FromfbpageTofbpage FROMFBPAGE_TOFBPAGE = appengine.parser.mysqlmodels.tables.FromfbpageTofbpage.FROMFBPAGE_TOFBPAGE;
+
+    /**
+     * The table <code>parser.promotefbpage</code>.
+     */
+    public final Promotefbpage PROMOTEFBPAGE = appengine.parser.mysqlmodels.tables.Promotefbpage.PROMOTEFBPAGE;
 
     /**
      * No further instances allowed
@@ -67,6 +79,8 @@ public class Parser extends SchemaImpl {
 
     private final List<Table<?>> getTables0() {
         return Arrays.<Table<?>>asList(
-            FromfbpageTofbpage.FROMFBPAGE_TOFBPAGE);
+            Fromfbpage.FROMFBPAGE,
+            FromfbpageTofbpage.FROMFBPAGE_TOFBPAGE,
+            Promotefbpage.PROMOTEFBPAGE);
     }
 }

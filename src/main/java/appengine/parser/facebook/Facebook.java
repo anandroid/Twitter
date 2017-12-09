@@ -1,7 +1,8 @@
 package appengine.parser.facebook;
 
 import appengine.parser.objects.AccessToken;
-import appengine.parser.utils.Constants;
+import appengine.parser.utils.ConstantsData;
+import appengine.parser.utils.DataBaseConnector;
 import appengine.parser.utils.Log;
 import com.restfb.DefaultFacebookClient;
 import com.restfb.FacebookClient;
@@ -10,13 +11,17 @@ import com.restfb.Version;
 import com.restfb.types.FacebookType;
 import com.restfb.types.Post;
 import okhttp3.*;
+import org.jooq.DSLContext;
+import org.jooq.Record1;
 
-
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import static appengine.parser.mysqlmodels.Tables.FROMFBPAGE;
+import static appengine.parser.mysqlmodels.Tables.PROMOTEFBPAGE;
 import static java.lang.System.currentTimeMillis;
 
 /**
@@ -25,14 +30,24 @@ import static java.lang.System.currentTimeMillis;
 public class Facebook {
 
 
-    public static ArrayList<DetailedPost> getPostsOfPage(String page_id) {
+    public static ArrayList<DetailedPost> getPostsOfPage(String pageId) {
 
-        String access_token = Constants.default_access_token;
 
+        DSLContext dslContext = DataBaseConnector.getDSLContext();
+        Record1<Timestamp> timestampResult = dslContext.select(FROMFBPAGE.UPDATED_TIME).from(FROMFBPAGE).
+                where(FROMFBPAGE.FROM_PAGE_ID.eq(pageId)).fetchOne();
+        long updatedTime = currentTimeMillis() - 1000L * 60L * 60L * 1L * 1L;
+        if (timestampResult != null) {
+            updatedTime = timestampResult.value1().getTime();
+        }
+
+
+        String access_token = ConstantsData.default_access_token;
         FacebookClient facebookClient = new DefaultFacebookClient(access_token, Version.LATEST);
-        Date twodaysAgo = new Date(currentTimeMillis() - 1000L * 60L * 60L * 48L * 1L); // 1day- 1000L * 60L * 60L * 24L * 1L
-        com.restfb.Connection<Post> myFeed = facebookClient.fetchConnection(page_id + "/feed", com.restfb.types.Post.class, Parameter.with("limit", 10),
-                Parameter.with("since", twodaysAgo));
+        Date dateAgo = new Date(updatedTime); // 1day- 1000L * 60L * 60L * 24L * 1L
+        com.restfb.Connection<Post> myFeed = facebookClient.fetchConnection(pageId + "/feed", com.restfb.types.Post.class, Parameter.with("limit", 100),
+                Parameter.with("since", dateAgo));
+
 
         ArrayList<DetailedPost> fbPosts = new ArrayList<DetailedPost>();
         for (List<Post> myFeedConnectionPage : myFeed)
@@ -41,18 +56,31 @@ public class Facebook {
                 fbPosts.add(detailedPost);
             }
 
+
+        dslContext.insertInto(FROMFBPAGE, FROMFBPAGE.FROM_PAGE_ID, FROMFBPAGE.UPDATED_TIME)
+                .values(pageId, new Timestamp(currentTimeMillis())).onDuplicateKeyUpdate()
+                .set(FROMFBPAGE.UPDATED_TIME, new Timestamp(currentTimeMillis())).execute();
+
         return fbPosts;
     }
 
-    public static ArrayList<Post> getPermaLinksOfPage(String page_id) {
+    public static ArrayList<Post> getPermaLinksOfPage(String pageId) {
 
-        String access_token = Constants.default_access_token;
+        DSLContext dslContext = DataBaseConnector.getDSLContext();
+        Record1<Timestamp> timestampResult = dslContext.select(PROMOTEFBPAGE.UPDATED_TIME).from(PROMOTEFBPAGE).
+                where(PROMOTEFBPAGE.FB_PAGE_ID.eq(pageId)).fetchOne();
+        long updatedTime = currentTimeMillis() - 1000L * 60L * 60L * 1L * 1L;
+        if (timestampResult != null) {
+            updatedTime = timestampResult.value1().getTime();
+        }
+
+        String access_token = ConstantsData.default_access_token;
 
         FacebookClient facebookClient = new DefaultFacebookClient(access_token, Version.LATEST);
-        Date twodaysAgo = new Date(currentTimeMillis() - 1000L * 60L * 20L * 1L * 1L);
-        com.restfb.Connection<Post> myFeed = facebookClient.fetchConnection(page_id + "/feed", com.restfb.types.Post.class,
+        Date twodaysAgo = new Date(currentTimeMillis() - 1000L * 60L * 60L * 1L * 1L);
+        com.restfb.Connection<Post> myFeed = facebookClient.fetchConnection(pageId + "/feed", com.restfb.types.Post.class,
                 Parameter.with("fields", "permalink_url"),
-                Parameter.with("limit", 10),
+                Parameter.with("limit", 100),
                 Parameter.with("since", twodaysAgo));
 
         ArrayList<Post> fbPosts = new ArrayList<Post>();
@@ -61,12 +89,16 @@ public class Facebook {
                 fbPosts.add(post);
             }
 
+        dslContext.insertInto(PROMOTEFBPAGE, PROMOTEFBPAGE.FB_PAGE_ID, PROMOTEFBPAGE.UPDATED_TIME)
+                .values(pageId, new Timestamp(currentTimeMillis())).onDuplicateKeyUpdate()
+                .set(PROMOTEFBPAGE.UPDATED_TIME, new Timestamp(currentTimeMillis())).execute();
+
         return fbPosts;
     }
 
 
     public static void publish(DetailedPost post) {
-        for (AccessToken accessToken : Constants.access_tokens) {
+        for (AccessToken accessToken : ConstantsData.access_tokens) {
             publish(post, accessToken);
         }
     }
@@ -81,13 +113,13 @@ public class Facebook {
     }
 
     public static void publish(String post, String previewUrl, String imageUrl) {
-        for (AccessToken accessToken : Constants.access_tokens) {
+        for (AccessToken accessToken : ConstantsData.access_tokens) {
             publish(post, previewUrl, imageUrl, accessToken);
         }
     }
 
     public static void publishImageForPages(DetailedPost post) {
-        for (AccessToken accessToken : Constants.access_tokens) {
+        for (AccessToken accessToken : ConstantsData.access_tokens) {
             if (accessToken.id_type == AccessToken.ID_TYPE.PAGE) {
                 publishImage(post, accessToken);
             }
@@ -95,7 +127,7 @@ public class Facebook {
     }
 
     public static void publishImage(DetailedPost post) {
-        for (AccessToken accessToken : Constants.access_tokens) {
+        for (AccessToken accessToken : ConstantsData.access_tokens) {
             publishImage(post, accessToken);
         }
     }
@@ -113,7 +145,7 @@ public class Facebook {
 
     public static void shareFromPage(Post post) {
 
-        for (AccessToken accessToken : Constants.access_tokens) {
+        for (AccessToken accessToken : ConstantsData.access_tokens) {
             if (accessToken.id_type == AccessToken.ID_TYPE.USER) {
                 shareFromPage(post, accessToken);
             }

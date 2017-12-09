@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cronentries>
+    <cron>
+        <url>/getfromfbtofb</url>
+        <description>Auto Posts on Page</description>
+        <schedule>every 4 hours</schedule>
+    </cron>
+    <cron>
+        <url>/promoteownpageonprofiles</url>
+        <description>Promotion of Pages on Profiles</description>
+        <schedule>every 4 hours</schedule>
+    </cron>
+    <cron>
+        <url>/acceptfriendrequests</url>
+        <description>Accepts automatic Friend Requests</description>
+        <schedule>every 12 hours</schedule>
+    </cron>
+</cronentries>

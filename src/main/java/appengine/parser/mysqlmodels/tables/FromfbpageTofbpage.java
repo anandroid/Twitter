@@ -4,10 +4,13 @@
 package appengine.parser.mysqlmodels.tables;
 
 
+import appengine.parser.mysqlmodels.Keys;
 import appengine.parser.mysqlmodels.Parser;
 import appengine.parser.mysqlmodels.tables.records.FromfbpageTofbpageRecord;
 
 import java.sql.Timestamp;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.annotation.Generated;
 
@@ -15,6 +18,7 @@ import org.jooq.Field;
 import org.jooq.Schema;
 import org.jooq.Table;
 import org.jooq.TableField;
+import org.jooq.UniqueKey;
 import org.jooq.impl.TableImpl;
 
 
@@ -31,7 +35,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class FromfbpageTofbpage extends TableImpl<FromfbpageTofbpageRecord> {
 
-    private static final long serialVersionUID = -1642326150;
+    private static final long serialVersionUID = 2095408513;
 
     /**
      * The reference instance of <code>parser.fromfbpage_tofbpage</code>
@@ -49,12 +53,12 @@ public class FromfbpageTofbpage extends TableImpl<FromfbpageTofbpageRecord> {
     /**
      * The column <code>parser.fromfbpage_tofbpage.from_page_id</code>.
      */
-    public final TableField<FromfbpageTofbpageRecord, String> FROM_PAGE_ID = createField("from_page_id", org.jooq.impl.SQLDataType.VARCHAR.length(100), this, "");
+    public final TableField<FromfbpageTofbpageRecord, String> FROM_PAGE_ID = createField("from_page_id", org.jooq.impl.SQLDataType.VARCHAR.length(100).nullable(false), this, "");
 
     /**
      * The column <code>parser.fromfbpage_tofbpage.to_page_id</code>.
      */
-    public final TableField<FromfbpageTofbpageRecord, String> TO_PAGE_ID = createField("to_page_id", org.jooq.impl.SQLDataType.VARCHAR.length(100), this, "");
+    public final TableField<FromfbpageTofbpageRecord, String> TO_PAGE_ID = createField("to_page_id", org.jooq.impl.SQLDataType.VARCHAR.length(100).nullable(false), this, "");
 
     /**
      * The column <code>parser.fromfbpage_tofbpage.updated_time</code>.
@@ -89,6 +93,22 @@ public class FromfbpageTofbpage extends TableImpl<FromfbpageTofbpageRecord> {
     @Override
     public Schema getSchema() {
         return Parser.PARSER;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public UniqueKey<FromfbpageTofbpageRecord> getPrimaryKey() {
+        return Keys.KEY_FROMFBPAGE_TOFBPAGE_PRIMARY;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<UniqueKey<FromfbpageTofbpageRecord>> getKeys() {
+        return Arrays.<UniqueKey<FromfbpageTofbpageRecord>>asList(Keys.KEY_FROMFBPAGE_TOFBPAGE_PRIMARY);
     }
 
     /**

@@ -4,7 +4,9 @@
 package appengine.parser.mysqlmodels;
 
 
+import appengine.parser.mysqlmodels.tables.Fromfbpage;
 import appengine.parser.mysqlmodels.tables.FromfbpageTofbpage;
+import appengine.parser.mysqlmodels.tables.Promotefbpage;
 
 import javax.annotation.Generated;
 
@@ -23,7 +25,17 @@ import javax.annotation.Generated;
 public class Tables {
 
     /**
+     * The table <code>parser.fromfbpage</code>.
+     */
+    public static final Fromfbpage FROMFBPAGE = appengine.parser.mysqlmodels.tables.Fromfbpage.FROMFBPAGE;
+
+    /**
      * The table <code>parser.fromfbpage_tofbpage</code>.
      */
     public static final FromfbpageTofbpage FROMFBPAGE_TOFBPAGE = appengine.parser.mysqlmodels.tables.FromfbpageTofbpage.FROMFBPAGE_TOFBPAGE;
+
+    /**
+     * The table <code>parser.promotefbpage</code>.
+     */
+    public static final Promotefbpage PROMOTEFBPAGE = appengine.parser.mysqlmodels.tables.Promotefbpage.PROMOTEFBPAGE;
 }

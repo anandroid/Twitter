@@ -4,11 +4,12 @@ package appengine.parser;
  * Created by anand.kurapati on 09/12/17.
  */
 
-
 import appengine.parser.facebook.AcceptFriendRequests;
 import appengine.parser.facebook.DetailedPost;
 import appengine.parser.facebook.Facebook;
-import appengine.parser.utils.Constants;
+import appengine.parser.objects.AccessToken;
+import appengine.parser.utils.ConstantsData;
+import appengine.parser.utils.ConstantsFunctions;
 import appengine.parser.utils.Log;
 import com.restfb.types.Post;
 import org.springframework.boot.SpringApplication;
@@ -33,30 +34,33 @@ public class MainController {
     @GetMapping("/getfromfbtofb")
     public String getFromFBToFB() {
 
-        ArrayList<DetailedPost> fbPosts = Facebook.getPostsOfPage(Constants.page_ids[1]);
-
-        int count = 0;
-        for (DetailedPost fbPost : fbPosts) {
-            System.out.println(fbPost.toString());
-            Log.print("FbPost -  Picture " + fbPost.getFirstPictureLink() + "  Permalink " + fbPost.getPermalinkUrl());
-            Facebook.publishImageForPages(fbPost);
-            count++;
-            if (count > 10) {
-                break;
+        for (String pageId : ConstantsData.page_ids) {
+            ArrayList<DetailedPost> fbPosts = Facebook.getPostsOfPage(pageId);
+            for (AccessToken accessToken : ConstantsFunctions.getAccessTokensOfSameCategory(pageId)) {
+                for (DetailedPost fbPost : fbPosts) {
+                    System.out.println(fbPost.toString());
+                    Log.print("FbPost -  Picture " + fbPost.getFirstPictureLink() + "  Permalink " + fbPost.getPermalinkUrl());
+                    Facebook.publishImage(fbPost, accessToken);
+                }
             }
         }
+
         return "{\"success\"}";
     }
 
     @GetMapping("/promoteownpageonprofiles")
     public String promoteOwnPageonProfiles() {
-        ArrayList<Post> fbPosts = Facebook.getPermaLinksOfPage(Constants.to_be_promoted_page);
-        for (Post fbPost : fbPosts) {
-            System.out.println(fbPost.toString());
-            System.out.println("FbPost -    Permalink " + fbPost.getPermalinkUrl());
-            Facebook.shareFromPage(fbPost);
+
+        for (String pageId : ConstantsData.own_page_ids) {
+            ArrayList<Post> fbPosts = Facebook.getPermaLinksOfPage(pageId);
+            for (Post fbPost : fbPosts) {
+                System.out.println(fbPost.toString());
+                System.out.println("FbPost -    Permalink " + fbPost.getPermalinkUrl());
+                Facebook.shareFromPage(fbPost);
+            }
         }
         return "{\"success\"}";
+
     }
 
     @GetMapping("/acceptfriendrequests")
@@ -64,7 +68,6 @@ public class MainController {
         AcceptFriendRequests.acceptFriendRequestsParallelly();
         return "{\"success\"}";
     }
-
 
 
 }

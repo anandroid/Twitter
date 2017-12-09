@@ -2,13 +2,12 @@ package appengine.parser.facebook;
 
 import appengine.parser.htmlunit.InviteFriends;
 import appengine.parser.objects.UserCredentials;
-import appengine.parser.utils.Constants;
+import appengine.parser.utils.ConstantsData;
 import com.gargoylesoftware.htmlunit.BrowserVersion;
 import com.gargoylesoftware.htmlunit.Page;
 import com.gargoylesoftware.htmlunit.ScriptResult;
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.*;
-
 
 import java.io.*;
 import java.util.concurrent.ExecutorService;
@@ -29,7 +28,7 @@ public class AcceptFriendRequests {
         try {
             ExecutorService executor = Executors.newFixedThreadPool(NTHREDS);
 
-            for (UserCredentials userCredentials : Constants.userCredentials) {
+            for (UserCredentials userCredentials : ConstantsData.userCredentials) {
 
                 Runnable worker = new FriendRequestRunnable(userCredentials);
                 executor.execute(worker);
