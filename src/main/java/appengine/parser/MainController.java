@@ -42,7 +42,7 @@ public class MainController {
     public String getFromFBToFB() {
 
         for (String pageId : ConstantsData.page_ids) {
-            ArrayList<DetailedPost> fbPosts = Facebook.getPostsOfPage(pageId);
+            ArrayList<DetailedPost> fbPosts = Facebook.getPhotoPostsOfPage(pageId);
             for (AccessToken accessToken : ConstantsFunctions.getAccessTokensOfSameCategory(pageId)) {
                 for (DetailedPost fbPost : fbPosts) {
                     System.out.println(fbPost.toString());

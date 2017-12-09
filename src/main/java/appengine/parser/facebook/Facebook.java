@@ -30,8 +30,7 @@ import static java.lang.System.currentTimeMillis;
 public class Facebook {
 
 
-    public static ArrayList<DetailedPost> getPostsOfPage(String pageId) {
-
+    public static ArrayList<DetailedPost> getPhotoPostsOfPage(String pageId) {
 
         DSLContext dslContext = DataBaseConnector.getDSLContext();
         Record1<Timestamp> timestampResult = dslContext.select(FROMFBPAGE.UPDATED_TIME).from(FROMFBPAGE).
@@ -53,7 +52,9 @@ public class Facebook {
         for (List<Post> myFeedConnectionPage : myFeed)
             for (Post post : myFeedConnectionPage) {
                 DetailedPost detailedPost = new DetailedPost(post, facebookClient);
-                fbPosts.add(detailedPost);
+                if (detailedPost.isPhotoType()) {
+                    fbPosts.add(detailedPost);
+                }
             }
 
 
@@ -107,7 +108,7 @@ public class Facebook {
         FacebookClient facebookClient = new DefaultFacebookClient(accessToken.access_token, Version.LATEST);
         FacebookType publishMessageResponse =
                 facebookClient.publish("me/feed", FacebookType.class,
-                        Parameter.with("message", post.getMessage()));
+                        Parameter.with("message", post.getDescription()));
         post.getPermalinkUrl();
         System.out.println("Published message ID: " + publishMessageResponse.getId());
     }
@@ -137,7 +138,7 @@ public class Facebook {
         FacebookType publishMessageResponse =
                 facebookClient.publish("me/photos", FacebookType.class,
                         Parameter.with("url", post.getFirstPictureLink()),
-                        Parameter.with("caption", post.getDescription()),
+                        Parameter.with("caption", post.getMessage()),
                         Parameter.with("no_story", false)
                 );
         System.out.println("Published message ID: " + publishMessageResponse.getId());

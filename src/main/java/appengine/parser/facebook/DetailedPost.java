@@ -1,9 +1,9 @@
 package appengine.parser.facebook;
 
+import appengine.parser.objects.facebook.CustomStoryAttachment;
 import appengine.parser.utils.StringUtils;
 import com.restfb.FacebookClient;
 import com.restfb.types.Post;
-import com.restfb.types.StoryAttachment;
 
 import java.util.List;
 
@@ -15,20 +15,24 @@ import static org.apache.commons.beanutils.BeanUtils.copyProperties;
 public class DetailedPost extends Post {
 
 
+    CustomStoryAttachment customStoryAttachment = null;
+
 
     public DetailedPost(Post post, FacebookClient facebookClient) {
 
         try {
             copyProperties(this, post);
-        }
-        catch (Exception e){
+        } catch (Exception e) {
 
         }
-        com.restfb.Connection<StoryAttachment> postAttachments = facebookClient.fetchConnection(post.getId() + "/attachments", com.restfb.types.StoryAttachment.class);
+        com.restfb.Connection<CustomStoryAttachment> postAttachments = facebookClient.fetchConnection(post.getId() + "/attachments", CustomStoryAttachment.class);
         Post.Attachments attachments = new Post.Attachments();
-        for (List<StoryAttachment> myStoryConnectionPage : postAttachments) {
-            for (StoryAttachment storyAttachment : myStoryConnectionPage) {
+        for (List<CustomStoryAttachment> myStoryConnectionPage : postAttachments) {
+            for (CustomStoryAttachment storyAttachment : myStoryConnectionPage) {
                 attachments.addData(storyAttachment);
+                if (customStoryAttachment == null) {
+                    customStoryAttachment = storyAttachment;
+                }
             }
         }
         this.setAttachments(attachments);
@@ -37,7 +41,7 @@ public class DetailedPost extends Post {
 
     public boolean hasAttachment() {
 
-        if (getAttachments() != null && getAttachments().getData() != null && getAttachments().getData().size() > 0)
+        if (customStoryAttachment != null)
             return true;
 
         return false;
@@ -47,7 +51,7 @@ public class DetailedPost extends Post {
 
         if (hasAttachment()) {
 
-            if (StringUtils.isNonEmpty(getAttachments().getData().get(0).getDescription())) {
+            if (StringUtils.isNonEmpty(customStoryAttachment.getDescription())) {
 
                 return true;
             }
@@ -60,7 +64,7 @@ public class DetailedPost extends Post {
 
         if (hasAttachment()) {
 
-            return getAttachments().getData().get(0).getMedia().getImage().getSrc();
+            return customStoryAttachment.getMedia().getImage().getSrc();
         }
         return "";
     }
@@ -68,10 +72,19 @@ public class DetailedPost extends Post {
     public String getDescription() {
         if (hasAttachment()) {
             if (hasDescription()) {
-                return getAttachments().getData().get(0).getDescription();
+                return customStoryAttachment.getDescription();
             }
         }
         return "";
+    }
+
+    public boolean isPhotoType() {
+        if (hasAttachment()) {
+            if (customStoryAttachment.getType().equals(CustomStoryAttachment.TYPE_PHOTO)) {
+                return true;
+            }
+        }
+        return false;
     }
 
 
