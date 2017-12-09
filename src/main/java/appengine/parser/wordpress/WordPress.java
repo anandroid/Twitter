@@ -6,7 +6,6 @@ import net.bican.wordpress.MediaItem;
 import net.bican.wordpress.MediaItemUploadResult;
 import net.bican.wordpress.Wordpress;
 
-
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
@@ -21,7 +20,7 @@ public class WordPress {
 
     private static Wordpress mWordPress;
 
-    private static Wordpress getInstance(){
+    private static Wordpress getInstance() {
         try {
             if (mWordPress == null) {
                 mWordPress = new Wordpress("anandapi", "G5IBr%KN(&2IagIts46J@i(C",
@@ -29,14 +28,13 @@ public class WordPress {
             }
 
             return mWordPress;
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
     }
 
-    public static String publish(Post fbPost){
+    public static String publish(Post fbPost) {
 
         try {
             Wordpress wp = getInstance();
@@ -69,8 +67,7 @@ public class WordPress {
             System.out.println("Post Link " + post.getLink());
             return post.getLink();
 
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

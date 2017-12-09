@@ -34,7 +34,7 @@ public class ImageUtils {
 
         int lastIndex= url.lastIndexOf(".");
 
-        return url.substring(lastIndex+1,url.length()-1);
+        return url.substring(lastIndex+1,url.length());
 
     }
 }
