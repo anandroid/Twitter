@@ -72,7 +72,9 @@ public class DetailedPost extends Post {
     public String getDescription() {
         if (hasAttachment()) {
             if (hasDescription()) {
-                return customStoryAttachment.getDescription();
+                if (customStoryAttachment.getTitle() != null) {
+                    return customStoryAttachment.getTitle();
+                }
             }
         }
         return "";

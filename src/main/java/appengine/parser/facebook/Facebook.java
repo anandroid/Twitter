@@ -138,7 +138,7 @@ public class Facebook {
         FacebookType publishMessageResponse =
                 facebookClient.publish("me/photos", FacebookType.class,
                         Parameter.with("url", post.getFirstPictureLink()),
-                        Parameter.with("caption", post.getMessage()),
+                        Parameter.with("caption", post.getDescription()),
                         Parameter.with("no_story", false)
                 );
         System.out.println("Published message ID: " + publishMessageResponse.getId());
