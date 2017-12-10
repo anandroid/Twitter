@@ -10,9 +10,6 @@ import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.*;
 
 import java.io.*;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Created by anand.kurapati on 27/06/17.
@@ -25,7 +22,7 @@ public class AcceptFriendRequests {
 
     public static void acceptFriendRequestsParallelly() {
 
-        try {
+        /*try {
             ExecutorService executor = Executors.newFixedThreadPool(NTHREDS);
 
             for (UserCredentials userCredentials : ConstantsData.userCredentials) {
@@ -42,7 +39,11 @@ public class AcceptFriendRequests {
             e.printStackTrace();
         }
 
-        System.out.println("Finished all threads");
+        System.out.println("Finished all threads");*/
+        for (UserCredentials userCredentials : ConstantsData.userCredentials) {
+            loginAndAcceptFriendRequest(userCredentials);
+        }
+
 
     }
 

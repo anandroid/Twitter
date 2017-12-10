@@ -32,17 +32,17 @@ public class ConstantsData {
             new UserCredentials("swetav9856@gmail.com", "gfghjlk567")*/
     };
 
-    public static String default_access_token = "EAAYIsgwZAZAV4BAC13Q1AaMfmNYuwONB8AW0G6FCb48wr75Ch7ChrdYlX7kleWb1jYByZAZAC5iQB2acAxBVO6IlPrpZBuFZBSDJbby4WawfBVbCxmJb9UAu1ZAW3QzfpXNhzlMwCMUWQ8leag7doUjPFPRRHknTFg4beGqilqshIPruLrpZC6mC";
+    public static String default_access_token = "1698410660455774|d47xxWu7HyFQt5G3MerQE-QIgwo";
 
     public static AccessToken[] access_tokens = new AccessToken[]{
             //4g girl
             new AccessToken("EAAYIsgwZAZAV4BAMsKBZCpsVWM3KhXHzw6QFgA5oZCttbvMkZB6umo3IcOM0xnDdZB7qtbZAblkRx1GjPf3AZCo1K0Qu7M4LSgbuboSksn6JQnmPCqTvdAlKTLPWJh7PnACpZB4OiO3UbGqB2klFStwoQRqQ7n4GjG2FxzOS6iWR4uBII3gf7bSZAu",
                     AccessToken.ID_TYPE.PAGE, FOURG_GIRL_PAGE_ID),
             //priya dube
-            new AccessToken("EAAYIsgwZAZAV4BAC13Q1AaMfmNYuwONB8AW0G6FCb48wr75Ch7ChrdYlX7kleWb1jYByZAZAC5iQB2acAxBVO6IlPrpZBuFZBSDJbby4WawfBVbCxmJb9UAu1ZAW3QzfpXNhzlMwCMUWQ8leag7doUjPFPRRHknTFg4beGqilqshIPruLrpZC6mC",
+            new AccessToken("EAAYIsgwZAZAV4BAAZBu1maenkTPRfGZC7w3pa9ZBnrFQUiivuQqf6P89Ifcmj9ADgpri8u8LeQQLzAEHFAZATZBezZCcJRD5PnHXSiRDiyEosxOsEzQNPTOAfXPJzrnWm8NZBFLVLMmJJ2A81pqbUXolqXsSHtPXFEwqLdZAHeGf95AZAchRsT4GzE7",
                     AccessToken.ID_TYPE.USER, PRIYA_DUBE_ID),
 
-            new AccessToken("EAAYIsgwZAZAV4BABo6SNALxUORHNQlEMMy8zze4u39MZAfW6XXaAU9ZCWPBbinaZAJ553CcBTizFbgEsXGPXbG0IRE8jprLxrpI4otjqNbfuZA2iCnqr0bVxaiLTAAXlOrfVlzI1tRJ3nkyNm0x2Sk9mV8HVzMRDNs00WNP5SQeaMZBX7nXHy4Xk5mjqTTwYEoZD",
+            new AccessToken("EAAYIsgwZAZAV4BAIxJz53G0gnQnJ7oivqaGQbAhREqvT5CNvwW23PrUtuYA7ZCVH5cms5u0A5iaNxN2LgQvDhb7CNZC0yAZC47KjfLW37w7zZBZAB8XhrybQXMhOj3WRrW6CK9iAaVzGCEsGV7M4Jv1Ays4FRKp8py5hvUIddYSwAZDZD",
                     AccessToken.ID_TYPE.USER, PAYALY_YADAV)
             /*
             //Great Models
