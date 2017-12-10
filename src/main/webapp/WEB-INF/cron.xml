@@ -8,7 +8,7 @@
     <cron>
         <url>/promoteownpageonprofiles</url>
         <description>Promotion of Pages on Profiles</description>
-        <schedule>every 4 hours</schedule>
+        <schedule>every 5 hours</schedule>
     </cron>
     <cron>
         <url>/acceptfriendrequests</url>
