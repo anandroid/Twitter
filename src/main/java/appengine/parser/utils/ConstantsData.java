@@ -19,11 +19,17 @@ public class ConstantsData {
 
     public static final String PRIYA_DUBE_ID = "100023324076991";
 
-    public static final String PAYALY_YADAV = "100018675767618";
+    public static final String PAYALY_YADAV_ID = "100018675767618";
+
+    public static final String SWETHA_VERMA_ID = "100018589601343";
+
+    public static final String RICHA_PATEL = "100018660498186";
 
     public static UserCredentials[] userCredentials = new UserCredentials[]{
             new UserCredentials("anandparser@yahoo.com", "parsingparsing"),
-            new UserCredentials("payalyadav90566@gmail.com", "dfkler&67")
+            new UserCredentials("payalyadav90566@gmail.com", "dfkler&67"),
+            new UserCredentials("swetav9856@gmail.com", "gfghjlk567"),
+            new UserCredentials("richapatel475839@gmail.com", "dsd5kl34")
            /* new UserCredentials("aartidube588@gmail.com", "sdfertfg234"),
             // new UserCredentials("Nehasharma4379@gmail.com","sdfertfgtr67"),
             new UserCredentials("poojaverma4356@gmail.com", "fkdsljf893"),
@@ -43,7 +49,13 @@ public class ConstantsData {
                     AccessToken.ID_TYPE.USER, PRIYA_DUBE_ID),
 
             new AccessToken("EAAYIsgwZAZAV4BAIxJz53G0gnQnJ7oivqaGQbAhREqvT5CNvwW23PrUtuYA7ZCVH5cms5u0A5iaNxN2LgQvDhb7CNZC0yAZC47KjfLW37w7zZBZAB8XhrybQXMhOj3WRrW6CK9iAaVzGCEsGV7M4Jv1Ays4FRKp8py5hvUIddYSwAZDZD",
-                    AccessToken.ID_TYPE.USER, PAYALY_YADAV)
+                    AccessToken.ID_TYPE.USER, PAYALY_YADAV_ID),
+
+            new AccessToken("EAAYIsgwZAZAV4BAATqOd4HOClZCnjUKDHZCAVcK01bgdruyxoGkY0PeTZAZAsRiHoKZA5cINVHuAJZAmvxWoftpv8Im5oFZB6TmSZBqObdZARU095FljHyb4uPuPcZAfqiG4D7oda4ZB21AdQ4ceh5m8hGajhQEywOwdyACVHWyA1GG3rqmZAr1IwOCB7B",
+                    AccessToken.ID_TYPE.USER, SWETHA_VERMA_ID),
+
+            new AccessToken("EAAYIsgwZAZAV4BAPGN58k1iApmZAvA5hH2XyikyIrOOWJ7q7aN6PSNcFLtKY83Co8LxhqO6VGPgnD2T8ENDlWSbaOKa872LmqaVMZAuFLOneccy6ZCPjdmZArSmBjmWvACERmTUbl8GkOipAhxpSsJtF9DT5ZAX709DQGJShM5xFvAgfZBQEhYY8",
+                    AccessToken.ID_TYPE.USER, RICHA_PATEL)
             /*
             //Great Models
             new AccessToken("EAAYIsgwZAZAV4BAOCoGi19fxS9iYTq34rSZBBDUoSn9CUznElRZBUrKmxe2viIp8lIZAiZCcUtG0ZAgNcjvpGlRgZCkJZB7L00Y3ZCgZC1uX9zfDkrKa2UfUZCONWZCUaD0MaKFZBn1WjrZBVJKGXXzXNKCNgEz3CvjoZAQNa6qjIYlG5KJ3hf6D0CVDoZA5d",
