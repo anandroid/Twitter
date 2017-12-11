@@ -21,7 +21,7 @@ public class DataBaseConnector {
 
             String userName = "user";
             String password = "";
-            String url = "jdbc:mysql://35.184.102.21:3306/parser";
+            String url = "jdbc:mysql://35.184.102.21:3306/parser?useSSL=false";
             try {
                 Class.forName("com.mysql.jdbc.Driver").newInstance();
                 conn = DriverManager.getConnection(url, userName, password);
