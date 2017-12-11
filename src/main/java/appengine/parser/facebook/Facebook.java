@@ -144,6 +144,17 @@ public class Facebook {
         System.out.println("Published message ID: " + publishMessageResponse.getId());
     }
 
+    public static void publishVideo(DetailedPost post, AccessToken accessToken) {
+        FacebookClient facebookClient = new DefaultFacebookClient(accessToken.access_token, Version.LATEST);
+        FacebookType publishMessageResponse =
+                facebookClient.publish("me/videos", FacebookType.class,
+                        Parameter.with("url", post.getFirstPictureLink()),
+                        Parameter.with("caption", post.getDescription()),
+                        Parameter.with("no_story", false)
+                );
+        System.out.println("Published message ID: " + publishMessageResponse.getId());
+    }
+
     public static void shareFromPage(Post post) {
 
         for (AccessToken accessToken : ConstantsData.access_tokens) {

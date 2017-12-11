@@ -46,7 +46,7 @@ public class MainController {
             for (AccessToken accessToken : ConstantsFunctions.getAccessTokensOfSameCategory(pageId)) {
                 for (DetailedPost fbPost : fbPosts) {
                     System.out.println(fbPost.toString());
-                    Log.print("FbPost -  Picture " + fbPost.getFirstPictureLink() + "  Permalink " + fbPost.getPermalinkUrl());
+                    //Log.print("FbPost -  Picture " + fbPost.getFirstPictureLink() + "  Permalink " + fbPost.getPermalinkUrl());
                     Facebook.publishImage(fbPost, accessToken);
                 }
             }

@@ -14,8 +14,10 @@ public class ConstantsData {
 
     public static final String HUMORLY_YOURS_PAGE_ID = "1899435196944780";
     public static final String SARCASM_PAGE_ID = "1515871602074952";
+    public static final String AWESOME_THINGS_IN_INDIA = "1541529642777088";
 
     public static final String FOURG_GIRL_PAGE_ID = "1755050324732167";
+    public static final String AWESOME_INDIAN_THINGS = "1714453775260964";
 
     public static final String PRIYA_DUBE_ID = "100023324076991";
 
@@ -44,6 +46,9 @@ public class ConstantsData {
             //4g girl
             new AccessToken("EAAYIsgwZAZAV4BAMsKBZCpsVWM3KhXHzw6QFgA5oZCttbvMkZB6umo3IcOM0xnDdZB7qtbZAblkRx1GjPf3AZCo1K0Qu7M4LSgbuboSksn6JQnmPCqTvdAlKTLPWJh7PnACpZB4OiO3UbGqB2klFStwoQRqQ7n4GjG2FxzOS6iWR4uBII3gf7bSZAu",
                     AccessToken.ID_TYPE.PAGE, FOURG_GIRL_PAGE_ID),
+            new AccessToken("EAAYIsgwZAZAV4BAKj3jhGnho5F4TkOYPiNrPZBUi3E3UZB3naJYhKOvJ3dNZA1VbNWK1p7yceLCgbI7ah7n47zVjuTgZCx7HPx4TMaKhS768eZAUtW8GS1kNp91S64T5bqRazz8Ur7BWyCaE8j9gxLZC11gNEA05ZAbE1gz92b9KrUAZDZD",
+                    AccessToken.ID_TYPE.PAGE, AWESOME_INDIAN_THINGS),
+
             //priya dube
             new AccessToken("EAAYIsgwZAZAV4BAAZBu1maenkTPRfGZC7w3pa9ZBnrFQUiivuQqf6P89Ifcmj9ADgpri8u8LeQQLzAEHFAZATZBezZCcJRD5PnHXSiRDiyEosxOsEzQNPTOAfXPJzrnWm8NZBFLVLMmJJ2A81pqbUXolqXsSHtPXFEwqLdZAHeGf95AZAchRsT4GzE7",
                     AccessToken.ID_TYPE.USER, PRIYA_DUBE_ID),
@@ -66,12 +71,16 @@ public class ConstantsData {
             //Humourly yours
             "1899435196944780",
             //Sarcasm
-            "1515871602074952"
+            "1515871602074952",
+            //Awesome things in India
+            "1541529642777088"
     };
 
     public static String[] own_page_ids = new String[]{
             //4g girl
-            "1755050324732167"
+            "1755050324732167",
+            //Awesome Indian Things
+            "1714453775260964"
     };
 
     public static String to_be_promoted_page = own_page_ids[0];
@@ -80,6 +89,7 @@ public class ConstantsData {
         {
             put(HUMORLY_YOURS_PAGE_ID, new String[]{FOURG_GIRL_PAGE_ID});
             put(SARCASM_PAGE_ID, new String[]{FOURG_GIRL_PAGE_ID});
+            put(AWESOME_THINGS_IN_INDIA, new String[]{AWESOME_INDIAN_THINGS});
         }
     };
 

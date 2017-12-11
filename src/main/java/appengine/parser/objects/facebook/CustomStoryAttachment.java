@@ -12,6 +12,7 @@ public class CustomStoryAttachment extends StoryAttachment {
 
     public static final String TYPE_PHOTO = "photo";
     public static final String TYPE_SHARE = "share";
+    public static final String TYPE_VIDEO = "video_autoplay";
 
     @Getter
     @Setter
