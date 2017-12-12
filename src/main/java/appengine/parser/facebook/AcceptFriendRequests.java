@@ -2,7 +2,7 @@ package appengine.parser.facebook;
 
 import appengine.parser.htmlunit.InviteFriends;
 import appengine.parser.objects.UserCredentials;
-import appengine.parser.utils.ConstantsData;
+import appengine.parser.repository.BaseRepository;
 import com.gargoylesoftware.htmlunit.BrowserVersion;
 import com.gargoylesoftware.htmlunit.Page;
 import com.gargoylesoftware.htmlunit.ScriptResult;
@@ -16,11 +16,17 @@ import java.io.*;
  */
 public class AcceptFriendRequests {
 
-    private static int DEFAULT_ACCEPT_COUNT = 500;
+    private int DEFAULT_ACCEPT_COUNT = 500;
 
-    private static int NTHREDS = 4;
+    private int NTHREDS = 4;
 
-    public static void acceptFriendRequestsParallelly() {
+    BaseRepository baseRepository;
+
+    public AcceptFriendRequests(BaseRepository baseRepository) {
+        this.baseRepository = baseRepository;
+    }
+
+    public void acceptFriendRequestsParallelly() {
 
         /*try {
             ExecutorService executor = Executors.newFixedThreadPool(NTHREDS);
@@ -40,14 +46,14 @@ public class AcceptFriendRequests {
         }
 
         System.out.println("Finished all threads");*/
-        for (UserCredentials userCredentials : ConstantsData.userCredentials) {
+        for (UserCredentials userCredentials : baseRepository.getUserCredentials()) {
             loginAndAcceptFriendRequest(userCredentials);
         }
 
 
     }
 
-    private static class FriendRequestRunnable implements Runnable {
+    private class FriendRequestRunnable implements Runnable {
 
         UserCredentials userCredentials;
 
@@ -62,7 +68,7 @@ public class AcceptFriendRequests {
         }
     }
 
-    private static void loginAndAcceptFriendRequest(UserCredentials userCredentials) {
+    private void loginAndAcceptFriendRequest(UserCredentials userCredentials) {
 
         try {
             WebClient webClient = new WebClient(BrowserVersion.FIREFOX_52);
@@ -82,7 +88,7 @@ public class AcceptFriendRequests {
         }
     }
 
-    private static Page openFriendsPageAndInject(WebClient webClient) {
+    private Page openFriendsPageAndInject(WebClient webClient) {
 
         try {
             HtmlPage friendRequestsPage = webClient.getPage("https://m.facebook.com/friends/requests/?split=1&fcref=ft");
@@ -99,7 +105,7 @@ public class AcceptFriendRequests {
     }
 
 
-    public static HtmlPage createLogin(WebClient webClient, UserCredentials userCredentials) {
+    public HtmlPage createLogin(WebClient webClient, UserCredentials userCredentials) {
 
         HtmlPage loggedin_page = null;
 
@@ -121,7 +127,7 @@ public class AcceptFriendRequests {
     }
 
 
-    public static void createHtmlPreview(String content) {
+    public void createHtmlPreview(String content) {
 
         BufferedWriter bufferedWriter = null;
         try {

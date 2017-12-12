@@ -1,33 +1,33 @@
-package appengine.parser.utils;
-
+package appengine.parser.repository;
 
 import appengine.parser.objects.AccessToken;
 import appengine.parser.objects.UserCredentials;
+import appengine.parser.repository.BaseRepository;
 
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by anand.kurapati on 26/06/17.
+ * Created by anand.kurapati on 11/12/17.
  */
-public class ConstantsData {
+public class DefaultRepository extends BaseRepository {
 
-    public static final String HUMORLY_YOURS_PAGE_ID = "1899435196944780";
-    public static final String SARCASM_PAGE_ID = "1515871602074952";
-    public static final String AWESOME_THINGS_IN_INDIA = "1541529642777088";
+    private final String HUMORLY_YOURS_PAGE_ID = "1899435196944780";
+    private final String SARCASM_PAGE_ID = "1515871602074952";
+    private final String AWESOME_THINGS_IN_INDIA = "1541529642777088";
 
-    public static final String FOURG_GIRL_PAGE_ID = "1755050324732167";
-    public static final String AWESOME_INDIAN_THINGS = "1714453775260964";
+    private final String FOURG_GIRL_PAGE_ID = "1755050324732167";
+    private final String AWESOME_INDIAN_THINGS = "1714453775260964";
 
-    public static final String PRIYA_DUBE_ID = "100023324076991";
+    private final String PRIYA_DUBE_ID = "100023324076991";
 
-    public static final String PAYALY_YADAV_ID = "100018675767618";
+    private final String PAYALY_YADAV_ID = "100018675767618";
 
-    public static final String SWETHA_VERMA_ID = "100018589601343";
+    private final String SWETHA_VERMA_ID = "100018589601343";
 
-    public static final String RICHA_PATEL = "100018660498186";
+    private final String RICHA_PATEL = "100018660498186";
 
-    public static UserCredentials[] userCredentials = new UserCredentials[]{
+    private final UserCredentials[] userCredentials = new UserCredentials[]{
             new UserCredentials("anandparser@yahoo.com", "parsingparsing"),
             new UserCredentials("payalyadav90566@gmail.com", "dfkler&67"),
             new UserCredentials("swetav9856@gmail.com", "gfghjlk567"),
@@ -40,9 +40,9 @@ public class ConstantsData {
             new UserCredentials("swetav9856@gmail.com", "gfghjlk567")*/
     };
 
-    public static String default_access_token = "1698410660455774|d47xxWu7HyFQt5G3MerQE-QIgwo";
+    private final String default_access_token = "1698410660455774|d47xxWu7HyFQt5G3MerQE-QIgwo";
 
-    public static AccessToken[] access_tokens = new AccessToken[]{
+    private final AccessToken[] access_tokens = new AccessToken[]{
             //4g girl
             new AccessToken("EAAYIsgwZAZAV4BAMsKBZCpsVWM3KhXHzw6QFgA5oZCttbvMkZB6umo3IcOM0xnDdZB7qtbZAblkRx1GjPf3AZCo1K0Qu7M4LSgbuboSksn6JQnmPCqTvdAlKTLPWJh7PnACpZB4OiO3UbGqB2klFStwoQRqQ7n4GjG2FxzOS6iWR4uBII3gf7bSZAu",
                     AccessToken.ID_TYPE.PAGE, FOURG_GIRL_PAGE_ID),
@@ -67,7 +67,7 @@ public class ConstantsData {
                     AccessToken.ID_TYPE.PAGE)*/
     };
 
-    public static String[] page_ids = new String[]{
+    private final String[] third_party_page_ids = new String[]{
             //Humourly yours
             "1899435196944780",
             //Sarcasm
@@ -76,16 +76,16 @@ public class ConstantsData {
             "1541529642777088"
     };
 
-    public static String[] own_page_ids = new String[]{
+    private final String[] own_page_ids = new String[]{
             //4g girl
             "1755050324732167",
             //Awesome Indian Things
             "1714453775260964"
     };
 
-    public static String to_be_promoted_page = own_page_ids[0];
+    private final String to_be_promoted_page = own_page_ids[0];
 
-    public static Map<String, String[]> pageofSameCategoryMap = new HashMap<String, String[]>() {
+    private final Map<String, String[]> pageofSameCategoryMap = new HashMap<String, String[]>() {
         {
             put(HUMORLY_YOURS_PAGE_ID, new String[]{FOURG_GIRL_PAGE_ID});
             put(SARCASM_PAGE_ID, new String[]{FOURG_GIRL_PAGE_ID});
@@ -94,4 +94,33 @@ public class ConstantsData {
     };
 
 
+    @Override
+    public UserCredentials[] getUserCredentials() {
+        return userCredentials;
+    }
+
+    @Override
+    public String getDefaultAccessToken() {
+        return default_access_token;
+    }
+
+    @Override
+    public AccessToken[] getAccessTokens() {
+        return access_tokens;
+    }
+
+    @Override
+    public String[] getThirdPartyPages() {
+        return third_party_page_ids;
+    }
+
+    @Override
+    public String[] getOwnPages() {
+        return own_page_ids;
+    }
+
+    @Override
+    public Map<String, String[]> getPageofSameCategoryMap() {
+        return pageofSameCategoryMap;
+    }
 }

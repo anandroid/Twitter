@@ -14,6 +14,7 @@ import static org.apache.commons.beanutils.BeanUtils.copyProperties;
  */
 public class DetailedPost extends Post {
 
+    private final String PROMOTIONAL_DESCRIPTION = "Like the page for more fun :p :p";
 
     CustomStoryAttachment customStoryAttachment = null;
 
@@ -47,7 +48,7 @@ public class DetailedPost extends Post {
         return false;
     }
 
-    public boolean hasDescription() {
+    private boolean hasDescription() {
 
         if (hasAttachment()) {
 
@@ -77,7 +78,7 @@ public class DetailedPost extends Post {
                 }
             }
         }
-        return "";
+        return PROMOTIONAL_DESCRIPTION;
     }
 
     public boolean isPhotoType() {
