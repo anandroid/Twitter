@@ -5,10 +5,15 @@ package appengine.parser;
  */
 
 import appengine.parser.facebook.AcceptFriendRequests;
+import appengine.parser.facebook.AutoPost;
 import appengine.parser.facebook.DetailedPost;
 import appengine.parser.facebook.Facebook;
 import appengine.parser.objects.AccessToken;
 import appengine.parser.objects.twitter4j.Tweet;
+import appengine.parser.optimal.CandP;
+import appengine.parser.optimal.CoinCalculator;
+import appengine.parser.optimal.DataAnalyzer;
+import appengine.parser.optimal.Optimal;
 import appengine.parser.repository.BaseRepository;
 import appengine.parser.repository.DefaultRepository;
 import appengine.parser.repository.PagesAggregatorRepository;
@@ -24,7 +29,10 @@ import org.springframework.web.bind.annotation.RestController;
 import twitter4j.QueryResult;
 import twitter4j.Status;
 
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -36,6 +44,8 @@ public class MainController {
 
 
     public static void main(String[] args) {
+
+
         SpringApplication.run(MainController.class, args);
     }
 
@@ -135,6 +145,196 @@ public class MainController {
         }
 
         return "{\"success\"}";
+    }
+
+    @GetMapping("/autopost")
+    public String autoPost() {
+        BaseRepository baseRepository = new DefaultRepository();
+        AutoPost autoPost = new AutoPost(baseRepository);
+        autoPost.loginAndPost();
+        return "{\"success\"}";
+    }
+
+    @GetMapping("/candp")
+    public String candp() {
+        return new CandP().calculateCandP();
+    }
+
+    @GetMapping("/candy")
+    public String candy() {
+        return new CandP().calculateCryptoYoBit();
+    }
+
+    @GetMapping("/optimal/twoway/{investment}/exclude/{excludes}")
+    public String optimal(@PathVariable String investment, @PathVariable String[] excludes) {
+        return new Optimal().getData(investment, excludes);
+    }
+
+    @GetMapping("/optimal/twoway/{investment}")
+    public String optimal(@PathVariable String investment) {
+        return new Optimal().getData(investment);
+    }
+
+    @GetMapping("/optimal/twoway")
+    public String optimal() {
+        return new Optimal().getData();
+    }
+
+    @GetMapping("/optimal/oneway/{symbol}/{percentage}")
+    public String optimal(@PathVariable String symbol, @PathVariable String percentage) {
+        return new Optimal().getUSDToINDData(symbol, percentage);
+    }
+
+    @GetMapping("/optimal/oneway/{investment}/{symbol}/{numberofcoins}/{value}")
+    public String optimal(@PathVariable String investment, @PathVariable String symbol, @PathVariable String numberOfCoins, @PathVariable String value) {
+        return new Optimal().getUSDToINDData(investment, symbol, numberOfCoins, value);
+
+    }
+
+    @GetMapping("/optimal/oneway/{investment}/{symbol}/{percentage}")
+    public String optimal(@PathVariable String investment, @PathVariable String symbol, @PathVariable String percentage) {
+        return new Optimal().getUSDToINDData(investment, symbol, percentage);
+    }
+
+    @GetMapping("/coincalculator/binance")
+    public String coinCalculatorBinance() {
+        return new CoinCalculator().fetchBinance();
+    }
+
+    @GetMapping("/coincalculator/bitz")
+    public String coinCalculatorBitz() {
+        return new CoinCalculator().fetchBitZ();
+    }
+
+    @GetMapping("/coincalculator/cryptopia")
+    public String coinCalculatorCryptopia() {
+        return new CoinCalculator().fetchCryptopia();
+    }
+
+    @GetMapping("/coincalculator/hitbtc")
+    public String coinCalculatorHitBTC() {
+        return new CoinCalculator().fetchHitBTC();
+    }
+
+    @GetMapping("/coincalculator/liqui")
+    public String coinCalculatorLiqui() {
+        return new CoinCalculator().fetchLiqui();
+    }
+
+    @GetMapping("/coincalculator/livecoin")
+    public String coinCalculatorLiveCoin() {
+        return new CoinCalculator().fetchLivecoin();
+    }
+
+    @GetMapping("/coincalculator/poloneix")
+    public String coinCalculatorPoloneix() {
+        return new CoinCalculator().fetchPoloneix();
+    }
+
+    @GetMapping("/coincalculator/all")
+    public String coinAll() {
+        return new CoinCalculator().fetchAll();
+    }
+
+    @GetMapping("/coincalculator/all/{includes}")
+    public String coinAll(@PathVariable String[] includes) {
+        return new CoinCalculator().fetchAll(includes);
+    }
+
+    @GetMapping("/coincalculator/all/{includes}/profit/{profit}")
+    public String coinAll(@PathVariable String[] includes, @PathVariable String profit) {
+        CoinCalculator coinCalculator = new CoinCalculator();
+        coinCalculator.setMinimumProfitPercentage(Double.valueOf(profit));
+        return coinCalculator.fetchAll(includes);
+    }
+
+    @GetMapping("/coincalculator/all/{includes}/profit/{profit}/from/{from}")
+    public String coinAll(@PathVariable String[] includes, @PathVariable String profit, @PathVariable String from) {
+        CoinCalculator coinCalculator = new CoinCalculator();
+        coinCalculator.setMinimumProfitPercentage(Double.valueOf(profit));
+        coinCalculator.setBuyFromMarket(from);
+        return coinCalculator.fetchAll(includes);
+    }
+
+    @GetMapping("/coincalculator/dataanalyser/json/{labels}")
+    public String coinDataAnalyzerJson(@PathVariable String[] labels) {
+        DataAnalyzer dataAnalyzer = new DataAnalyzer();
+        return dataAnalyzer.coinAnalyzer(labels, true);
+
+    }
+
+    @GetMapping("/coincalculator/dataanalyser/{labels}")
+    public String coinDataAnalyzer(@PathVariable String[] labels) {
+        DataAnalyzer dataAnalyzer = new DataAnalyzer();
+        return dataAnalyzer.coinAnalyzer(labels, false);
+
+    }
+
+    @GetMapping("/coincalculator/dataanalyser/json/from/{time}")
+    public String coinDataAnalyzerJson(@PathVariable String time) {
+
+        DataAnalyzer dataAnalyzer = new DataAnalyzer();
+
+        Timestamp timestamp = getTimeStampFromString(time);
+        if (timestamp == null) {
+            return "Invalid timestamp . Enter in yyyy-MM-dd hh:mm:ss format";
+        }
+
+        return dataAnalyzer.getDataFromTime(timestamp, true);
+    }
+
+    @GetMapping("/coincalculator/dataanalyser/from/{time}")
+    public String coinDataAnalyzer(@PathVariable String time) {
+
+        DataAnalyzer dataAnalyzer = new DataAnalyzer();
+
+        Timestamp timestamp = getTimeStampFromString(time);
+        if (timestamp == null) {
+            return "Invalid timestamp . Enter in yyyy-MM-dd hh:mm:ss format";
+        }
+
+        return dataAnalyzer.getDataFromTime(timestamp, false);
+    }
+
+    @GetMapping("/coincalculator/dataanalyser/from/{time}/coins/{coins}")
+    public String coinDataAnalyzer(@PathVariable String time, @PathVariable String[] coins) {
+
+        DataAnalyzer dataAnalyzer = new DataAnalyzer();
+
+        Timestamp timestamp = getTimeStampFromString(time);
+        if (timestamp == null) {
+            return "Invalid timestamp . Enter in yyyy-MM-dd hh:mm:ss format";
+        }
+
+        return dataAnalyzer.getDataFromTimeAndCoin(timestamp, coins, false);
+    }
+
+    @GetMapping("/coincalculator/dataanalyser/json/from/{time}/coins/{coins}")
+    public String coinDataAnalyzerJson(@PathVariable String time, @PathVariable String[] coins) {
+
+        DataAnalyzer dataAnalyzer = new DataAnalyzer();
+
+        Timestamp timestamp = getTimeStampFromString(time);
+        if (timestamp == null) {
+            return "Invalid timestamp . Enter in yyyy-MM-dd hh:mm:ss format";
+        }
+
+        return dataAnalyzer.getDataFromTimeAndCoin(timestamp, coins, true);
+    }
+
+
+    private Timestamp getTimeStampFromString(String time) {
+        Timestamp timestamp = null;
+        try {
+            SimpleDateFormat dateFormat = new SimpleDateFormat(
+                    "yyyy-MM-dd HH:mm:ss");
+            Date parsedTimeStamp = dateFormat.parse(time);
+
+            timestamp = new Timestamp(parsedTimeStamp.getTime());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return timestamp;
     }
 
 

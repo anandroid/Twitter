@@ -1,5 +1,6 @@
 package appengine.parser.repository;
 
+import appengine.parser.facebook.AcceptFriendRequests;
 import appengine.parser.objects.AccessToken;
 import appengine.parser.objects.UserCredentials;
 import appengine.parser.repository.BaseRepository;
@@ -25,13 +26,16 @@ public class DefaultRepository extends BaseRepository {
 
     private final String SWETHA_VERMA_ID = "100018589601343";
 
-    private final String RICHA_PATEL = "100018660498186";
+    private final String RICHA_PATEL_ID = "100018660498186";
+
+    private final String KIRAN_SHINDE_ID ="100009362654286";
 
     private final UserCredentials[] userCredentials = new UserCredentials[]{
             new UserCredentials("anandparser@yahoo.com", "parsingparsing"),
             new UserCredentials("payalyadav90566@gmail.com", "dfkler&67"),
             new UserCredentials("swetav9856@gmail.com", "gfghjlk567"),
-            new UserCredentials("richapatel475839@gmail.com", "dsd5kl34")
+            new UserCredentials("richapatel475839@gmail.com", "dsd5kl34"),
+            new UserCredentials("mazisangli@rediffmail.com","asdasdsdas")
            /* new UserCredentials("aartidube588@gmail.com", "sdfertfg234"),
             // new UserCredentials("Nehasharma4379@gmail.com","sdfertfgtr67"),
             new UserCredentials("poojaverma4356@gmail.com", "fkdsljf893"),
@@ -60,7 +64,10 @@ public class DefaultRepository extends BaseRepository {
                     AccessToken.ID_TYPE.USER, SWETHA_VERMA_ID),
 
             new AccessToken("EAAYIsgwZAZAV4BAPGN58k1iApmZAvA5hH2XyikyIrOOWJ7q7aN6PSNcFLtKY83Co8LxhqO6VGPgnD2T8ENDlWSbaOKa872LmqaVMZAuFLOneccy6ZCPjdmZArSmBjmWvACERmTUbl8GkOipAhxpSsJtF9DT5ZAX709DQGJShM5xFvAgfZBQEhYY8",
-                    AccessToken.ID_TYPE.USER, RICHA_PATEL)
+                    AccessToken.ID_TYPE.USER, RICHA_PATEL_ID),
+            //feb 2018
+            new AccessToken("EAAbBb5ZAEIYIBAHjsz9mTyDoi2yRgj6aeNl5ApINPp9TdwwSZCrZCrdVB87VB4qSGDCCqvZAxrZB3DZCss2TA8fwfZAuYmdSZAhF4sbfTGHpeYtdo0gyC5I8R0LXpHrvusDHXbvy1KhB2lMZCrtReCn009DTHP4zVWgYNtI7d3nMbQQZDZD",
+                    AccessToken.ID_TYPE.USER,KIRAN_SHINDE_ID)
             /*
             //Great Models
             new AccessToken("EAAYIsgwZAZAV4BAOCoGi19fxS9iYTq34rSZBBDUoSn9CUznElRZBUrKmxe2viIp8lIZAiZCcUtG0ZAgNcjvpGlRgZCkJZB7L00Y3ZCgZC1uX9zfDkrKa2UfUZCONWZCUaD0MaKFZBn1WjrZBVJKGXXzXNKCNgEz3CvjoZAQNa6qjIYlG5KJ3hf6D0CVDoZA5d",

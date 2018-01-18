@@ -6,6 +6,10 @@ package appengine.parser.mysqlmodels;
 
 import appengine.parser.mysqlmodels.tables.Fromfbpage;
 import appengine.parser.mysqlmodels.tables.FromfbpageTofbpage;
+import appengine.parser.mysqlmodels.tables.Optimal;
+import appengine.parser.mysqlmodels.tables.Optimaljson;
+import appengine.parser.mysqlmodels.tables.Optimalnotify;
+import appengine.parser.mysqlmodels.tables.Optimalupdate;
 import appengine.parser.mysqlmodels.tables.Promotefbpage;
 
 import java.util.ArrayList;
@@ -32,7 +36,7 @@ import org.jooq.impl.SchemaImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Parser extends SchemaImpl {
 
-    private static final long serialVersionUID = 607606734;
+    private static final long serialVersionUID = 1919400432;
 
     /**
      * The reference instance of <code>parser</code>
@@ -48,6 +52,26 @@ public class Parser extends SchemaImpl {
      * The table <code>parser.fromfbpage_tofbpage</code>.
      */
     public final FromfbpageTofbpage FROMFBPAGE_TOFBPAGE = appengine.parser.mysqlmodels.tables.FromfbpageTofbpage.FROMFBPAGE_TOFBPAGE;
+
+    /**
+     * The table <code>parser.optimal</code>.
+     */
+    public final Optimal OPTIMAL = appengine.parser.mysqlmodels.tables.Optimal.OPTIMAL;
+
+    /**
+     * The table <code>parser.optimaljson</code>.
+     */
+    public final Optimaljson OPTIMALJSON = appengine.parser.mysqlmodels.tables.Optimaljson.OPTIMALJSON;
+
+    /**
+     * The table <code>parser.optimalnotify</code>.
+     */
+    public final Optimalnotify OPTIMALNOTIFY = appengine.parser.mysqlmodels.tables.Optimalnotify.OPTIMALNOTIFY;
+
+    /**
+     * The table <code>parser.optimalupdate</code>.
+     */
+    public final Optimalupdate OPTIMALUPDATE = appengine.parser.mysqlmodels.tables.Optimalupdate.OPTIMALUPDATE;
 
     /**
      * The table <code>parser.promotefbpage</code>.
@@ -81,6 +105,10 @@ public class Parser extends SchemaImpl {
         return Arrays.<Table<?>>asList(
             Fromfbpage.FROMFBPAGE,
             FromfbpageTofbpage.FROMFBPAGE_TOFBPAGE,
+            Optimal.OPTIMAL,
+            Optimaljson.OPTIMALJSON,
+            Optimalnotify.OPTIMALNOTIFY,
+            Optimalupdate.OPTIMALUPDATE,
             Promotefbpage.PROMOTEFBPAGE);
     }
 }

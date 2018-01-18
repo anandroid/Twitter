@@ -15,4 +15,9 @@
         <description>Accepts automatic Friend Requests</description>
         <schedule>every 12 hours</schedule>
     </cron>
+    <cron>
+        <url>/coincalculator/all</url>
+        <description>Coin Calculator</description>
+        <schedule>every 4 minutes</schedule>
+    </cron>
 </cronentries>

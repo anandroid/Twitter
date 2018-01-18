@@ -6,6 +6,10 @@ package appengine.parser.mysqlmodels;
 
 import appengine.parser.mysqlmodels.tables.Fromfbpage;
 import appengine.parser.mysqlmodels.tables.FromfbpageTofbpage;
+import appengine.parser.mysqlmodels.tables.Optimal;
+import appengine.parser.mysqlmodels.tables.Optimaljson;
+import appengine.parser.mysqlmodels.tables.Optimalnotify;
+import appengine.parser.mysqlmodels.tables.Optimalupdate;
 import appengine.parser.mysqlmodels.tables.Promotefbpage;
 
 import javax.annotation.Generated;
@@ -33,6 +37,26 @@ public class Tables {
      * The table <code>parser.fromfbpage_tofbpage</code>.
      */
     public static final FromfbpageTofbpage FROMFBPAGE_TOFBPAGE = appengine.parser.mysqlmodels.tables.FromfbpageTofbpage.FROMFBPAGE_TOFBPAGE;
+
+    /**
+     * The table <code>parser.optimal</code>.
+     */
+    public static final Optimal OPTIMAL = appengine.parser.mysqlmodels.tables.Optimal.OPTIMAL;
+
+    /**
+     * The table <code>parser.optimaljson</code>.
+     */
+    public static final Optimaljson OPTIMALJSON = appengine.parser.mysqlmodels.tables.Optimaljson.OPTIMALJSON;
+
+    /**
+     * The table <code>parser.optimalnotify</code>.
+     */
+    public static final Optimalnotify OPTIMALNOTIFY = appengine.parser.mysqlmodels.tables.Optimalnotify.OPTIMALNOTIFY;
+
+    /**
+     * The table <code>parser.optimalupdate</code>.
+     */
+    public static final Optimalupdate OPTIMALUPDATE = appengine.parser.mysqlmodels.tables.Optimalupdate.OPTIMALUPDATE;
 
     /**
      * The table <code>parser.promotefbpage</code>.
