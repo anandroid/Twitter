@@ -20,4 +20,14 @@
         <description>Coin Calculator</description>
         <schedule>every 4 minutes</schedule>
     </cron>
+    <cron>
+        <url>/coincalculator/notifier</url>
+        <description>Notifier - Coin Calculator</description>
+        <schedule>every 2 minutes</schedule>
+    </cron>
+    <cron>
+        <url>/coincalculator/notifier/okexbinance</url>
+        <description>Notifier okexbinance - Coin Calculator</description>
+        <schedule>every 2 minutes</schedule>
+    </cron>
 </cronentries>

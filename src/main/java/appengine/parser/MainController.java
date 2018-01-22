@@ -10,10 +10,7 @@ import appengine.parser.facebook.DetailedPost;
 import appengine.parser.facebook.Facebook;
 import appengine.parser.objects.AccessToken;
 import appengine.parser.objects.twitter4j.Tweet;
-import appengine.parser.optimal.CandP;
-import appengine.parser.optimal.CoinCalculator;
-import appengine.parser.optimal.DataAnalyzer;
-import appengine.parser.optimal.Optimal;
+import appengine.parser.optimal.*;
 import appengine.parser.repository.BaseRepository;
 import appengine.parser.repository.DefaultRepository;
 import appengine.parser.repository.PagesAggregatorRepository;
@@ -320,6 +317,31 @@ public class MainController {
         }
 
         return dataAnalyzer.getDataFromTimeAndCoin(timestamp, coins, true);
+    }
+
+    /*@GetMapping("/testfunction")
+    public String testfunction() {
+
+        CoinCalculator coinCalculator = new CoinCalculator();
+        return coinCalculator.getCurrentTime().toString();
+    }*/
+
+    @GetMapping("/coincalculator/view/all")
+    public String coincalculatorView() {
+        DataAnalyzer dataAnalyzer = new DataAnalyzer();
+        return dataAnalyzer.getDataFromLastUpdate(false);
+    }
+
+    @GetMapping("/coincalculator/notifier")
+    public String notifierAll() {
+        Notifier notifier = new Notifier();
+        return notifier.fetch();
+    }
+
+    @GetMapping("/coincalculator/notifier/okexbinance")
+    public String notifierOkexBinance() {
+        Notifier notifier = new Notifier();
+        return notifier.fetchOkexBinance();
     }
 
 

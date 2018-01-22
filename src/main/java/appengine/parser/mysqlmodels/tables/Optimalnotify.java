@@ -4,11 +4,14 @@
 package appengine.parser.mysqlmodels.tables;
 
 
+import appengine.parser.mysqlmodels.Keys;
 import appengine.parser.mysqlmodels.Parser;
 import appengine.parser.mysqlmodels.enums.OptimalnotifyNotifytype;
 import appengine.parser.mysqlmodels.tables.records.OptimalnotifyRecord;
 
 import java.sql.Timestamp;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.annotation.Generated;
 
@@ -16,6 +19,7 @@ import org.jooq.Field;
 import org.jooq.Schema;
 import org.jooq.Table;
 import org.jooq.TableField;
+import org.jooq.UniqueKey;
 import org.jooq.impl.TableImpl;
 
 
@@ -32,7 +36,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Optimalnotify extends TableImpl<OptimalnotifyRecord> {
 
-    private static final long serialVersionUID = -2052478105;
+    private static final long serialVersionUID = -1297457200;
 
     /**
      * The reference instance of <code>parser.optimalnotify</code>
@@ -55,7 +59,7 @@ public class Optimalnotify extends TableImpl<OptimalnotifyRecord> {
     /**
      * The column <code>parser.optimalnotify.time</code>.
      */
-    public final TableField<OptimalnotifyRecord, Timestamp> TIME = createField("time", org.jooq.impl.SQLDataType.TIMESTAMP, this, "");
+    public final TableField<OptimalnotifyRecord, Timestamp> TIME = createField("time", org.jooq.impl.SQLDataType.TIMESTAMP.nullable(false).defaultValue(org.jooq.impl.DSL.inline("CURRENT_TIMESTAMP", org.jooq.impl.SQLDataType.TIMESTAMP)), this, "");
 
     /**
      * The column <code>parser.optimalnotify.profit</code>.
@@ -105,6 +109,14 @@ public class Optimalnotify extends TableImpl<OptimalnotifyRecord> {
     @Override
     public Schema getSchema() {
         return Parser.PARSER;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<UniqueKey<OptimalnotifyRecord>> getKeys() {
+        return Arrays.<UniqueKey<OptimalnotifyRecord>>asList(Keys.KEY_OPTIMALNOTIFY_OPTIMALNOTIFY_COINLABEL_FROMMARKET_TOMARKET_PK);
     }
 
     /**

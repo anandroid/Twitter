@@ -27,7 +27,7 @@ public class DataBaseConnector {
                 conn = DriverManager.getConnection(url, userName, password);
                 create = DSL.using(conn, SQLDialect.MYSQL);
             } catch (Exception e) {
-
+                 e.printStackTrace();
             }
         }
         return create;

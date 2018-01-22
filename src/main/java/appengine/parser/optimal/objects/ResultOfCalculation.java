@@ -2,6 +2,7 @@ package appengine.parser.optimal.objects;
 
 import com.google.gson.Gson;
 
+import java.sql.Timestamp;
 import java.text.DecimalFormat;
 import java.util.List;
 
@@ -14,6 +15,7 @@ public class ResultOfCalculation {
     private CoinMarket lowestBuyCoin;
     private CoinMarket highestSellCoin;
     private List<CoinMarket> allOtherCoins;
+    private Timestamp timestamp;
 
     public ResultOfCalculation(String coin, CoinMarket lowestBuyCoin, CoinMarket highesSellCoin, List<CoinMarket> allMarketsOfCoins) {
         this.coin = coin;
@@ -22,6 +24,41 @@ public class ResultOfCalculation {
         allMarketsOfCoins.remove(highesSellCoin);
         allMarketsOfCoins.remove(lowestBuyCoin);
         this.allOtherCoins = allMarketsOfCoins;
+    }
+
+    public void setTimestamp(Timestamp timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public Timestamp getTimeStamp() {
+        return this.timestamp;
+    }
+
+    public void setLowestBuyCoin(CoinMarket coinMarket) {
+        this.lowestBuyCoin = coinMarket;
+    }
+
+    public void setHighestSellCoin(CoinMarket coinMarket) {
+        this.highestSellCoin = coinMarket;
+    }
+
+    public CoinMarket getLowestBuyCoin() {
+        return lowestBuyCoin;
+    }
+
+    public CoinMarket getHighestSellCoin() {
+        return highestSellCoin;
+    }
+
+    public Double profitPercentage() {
+
+        Double lowestBuy = lowestBuyCoin.getOurBuyPrice();
+
+        Double higherSell = highestSellCoin.getOurSellPrice();
+
+        Double profitPercentage = ((higherSell - lowestBuy) / lowestBuy) * 100;
+
+        return profitPercentage;
     }
 
     private Double profitPercentage(CoinMarket higherSellCoin) {
@@ -33,6 +70,10 @@ public class ResultOfCalculation {
         Double profitPercentage = ((higherSell - lowestBuy) / lowestBuy) * 100;
 
         return profitPercentage;
+    }
+
+    public List<CoinMarket> getAllOtherMarkets() {
+        return allOtherCoins;
     }
 
 
@@ -65,7 +106,7 @@ public class ResultOfCalculation {
         return new Gson().toJson(this, ResultOfCalculation.class);
     }
 
-    public String getCoin(){
+    public String getCoin() {
         return coin;
     }
 

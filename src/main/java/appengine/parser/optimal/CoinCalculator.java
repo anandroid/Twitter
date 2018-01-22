@@ -11,14 +11,10 @@ import org.jooq.DSLContext;
 import java.sql.Timestamp;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
 import java.util.*;
 
 import static appengine.parser.mysqlmodels.Tables.OPTIMALJSON;
 import static appengine.parser.mysqlmodels.Tables.OPTIMALUPDATE;
-import static appengine.parser.mysqlmodels.Tables.PROMOTEFBPAGE;
-import static java.lang.System.currentTimeMillis;
 
 /**
  * Created by anand.kurapati on 06/01/18.
@@ -61,12 +57,11 @@ public class CoinCalculator {
         fetchCobinHood();
         fetchCoinExchange();
         fetchSouthXChange();
-
+        fetchOkex();
         //fetchYobit();
 
         createCoinsMap();
 
-        fetchOkex();
 
         calculateHighesAndLowest();
 
@@ -138,6 +133,14 @@ public class CoinCalculator {
 
     private void calculateHighesAndLowest() {
 
+        Timestamp timestamp = getCurrentTime();
+        updateCalculationTimeInDB(timestamp);
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         Set<String> keyset = coinsMarketMap.keySet();
 
@@ -181,7 +184,9 @@ public class CoinCalculator {
             }
         }
 
-        //updateCalculationTimeInDB();
+
+
+
     }
 
 
@@ -210,15 +215,13 @@ public class CoinCalculator {
 
     }
 
-    /*private void updateCalculationTimeInDB(){
-
-
+    private void updateCalculationTimeInDB(Timestamp timestamp) {
         DSLContext dslContext = DataBaseConnector.getDSLContext();
-        dslContext.insertInto(OPTIMALUPDATE,OPTIMALUPDATE.OPERATION)
+        dslContext.insertInto(OPTIMALUPDATE, OPTIMALUPDATE.OPERATION)
                 .values(OptimalupdateOperation.COINCALCULATOR).onDuplicateKeyUpdate()
-                .set(OPTIMALUPDATE.UPDATEDTIME,getCurrentTime())
+                .set(OPTIMALUPDATE.UPDATEDTIME, timestamp)
                 .execute();
-    }*/
+    }
 
     private void insertResultInDB(ResultOfCalculation resultOfCalculation) {
         DSLContext dslContext = DataBaseConnector.getDSLContext();
@@ -226,18 +229,16 @@ public class CoinCalculator {
                 .values(resultOfCalculation.getCoin(), resultOfCalculation.toJSON()).execute();
     }
 
-    /*private String getCurrentTime(){
-
-        ZonedDateTime zdt = ldt.atZone(ZoneId.of("America/Los_Angeles"));
+    private Timestamp getCurrentTime() {
 
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeZone(TimeZone.getTimeZone("Asia/Kolkata"));
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         sdf.setTimeZone(TimeZone.getTimeZone("Asia/Kolkata"));
-        String result=sdf.format(calendar.getTime());
-        new Timestamp(sdf.format(calendar.getTime()));
-        return result;
-    }*/
+        String result = sdf.format(calendar.getTime());
+        Timestamp timestamp = new Timestamp(calendar.getTimeInMillis());
+        return timestamp;
+    }
 
     public String fetchSouthXChange() {
         SouthXchangeUtil marketUtil = new SouthXchangeUtil();
@@ -256,26 +257,21 @@ public class CoinCalculator {
     }
 
     public String fetchCobinHood() {
-        if (coinsMarketMap != null) {
-            CobinhoodUtil marketUtil = new CobinhoodUtil();
-            List<CoinMarket> coinMarketList = marketUtil.getCoinList();
-            cobinHoodList = coinMarketList;
-            allCoinsList.add(cobinHoodList);
-            return returnResults(coinMarketList);
-        }
-        return "";
+        CobinhoodUtil marketUtil = new CobinhoodUtil();
+        List<CoinMarket> coinMarketList = marketUtil.getCoinList();
+        cobinHoodList = coinMarketList;
+        allCoinsList.add(cobinHoodList);
+        return returnResults(coinMarketList);
+
     }
 
 
     public String fetchOkex() {
-        if (coinsMarketMap != null) {
-            OkexUtil marketUtil = new OkexUtil();
-            List<CoinMarket> coinMarketList = marketUtil.getCoinList();
-            okexList = coinMarketList;
-            allCoinsList.add(okexList);
-            return returnResults(coinMarketList);
-        }
-        return "";
+        OkexUtil marketUtil = new OkexUtil();
+        List<CoinMarket> coinMarketList = marketUtil.getCoinList();
+        okexList = coinMarketList;
+        allCoinsList.add(okexList);
+        return returnResults(coinMarketList);
     }
 
     public String fetchBinance() {
