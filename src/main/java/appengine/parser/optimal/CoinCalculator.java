@@ -4,7 +4,7 @@ import appengine.parser.mysqlmodels.enums.OptimalupdateOperation;
 import appengine.parser.optimal.constants.MarketConstants;
 import appengine.parser.optimal.objects.CoinMarket;
 import appengine.parser.optimal.objects.ResultOfCalculation;
-import appengine.parser.optimal.utils.*;
+import appengine.parser.optimal.exchangeutils.*;
 import appengine.parser.utils.DataBaseConnector;
 import org.jooq.DSLContext;
 
@@ -176,7 +176,7 @@ public class CoinCalculator {
             Double profitPercentage = ((highestSell - lowestBuy) / lowestBuy) * 100;
 
 
-            if (profitPercentage > MINIMUM_PROFIT_PERCENTAGE && lowestPurchaseCoin != null && highestSellCoin != null && profitPercentage < 200) {
+            if (lowestPurchaseCoin != null && highestSellCoin != null && profitPercentage < 200) {
                 ResultOfCalculation resultOfCalculation =
                         new ResultOfCalculation(coin, lowestPurchaseCoin, highestSellCoin, allMarketsOfCoins);
                 print(resultOfCalculation.toString());

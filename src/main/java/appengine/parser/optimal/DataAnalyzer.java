@@ -2,6 +2,7 @@ package appengine.parser.optimal;
 
 import appengine.parser.mysqlmodels.enums.OptimalnotifyNotifytype;
 import appengine.parser.mysqlmodels.enums.OptimalupdateOperation;
+import appengine.parser.optimal.objects.Market;
 import appengine.parser.optimal.objects.Notify;
 import appengine.parser.optimal.objects.NotifyType;
 import appengine.parser.optimal.objects.ResultOfCalculation;
@@ -19,7 +20,7 @@ import static appengine.parser.mysqlmodels.Tables.*;
  */
 public class DataAnalyzer {
 
-    String printString = "\n";
+    String printString = "";
 
     public String coinAnalyzer(String[] coins, boolean isJson) {
 
@@ -27,7 +28,7 @@ public class DataAnalyzer {
         for (String coin : coins) {
             coin = coin.toUpperCase();
             Result<Record2<String, Timestamp>> result = dslContext.select(OPTIMALJSON.JSON, OPTIMALJSON.TIME).from(OPTIMALJSON).
-                    where(OPTIMALJSON.COINLABEL.eq(coin)).limit(500).fetch();
+                    where(OPTIMALJSON.COINLABEL.eq(coin)).limit(1000).fetch();
 
             for (int i = 0; i < result.size(); i++) {
                 ResultOfCalculation resultOfCalculation = new Gson().fromJson(result.get(i).value1(), ResultOfCalculation.class);
@@ -49,20 +50,27 @@ public class DataAnalyzer {
                 dslContext.select(OPTIMALUPDATE.UPDATEDTIME).from(OPTIMALUPDATE)
                         .where(OPTIMALUPDATE.OPERATION.eq(OptimalupdateOperation.COINCALCULATOR)).fetchOne();
 
-        return getDataFromTime(updatedTimeRecord.value1(), isJson);
+        return getDataFromTime(updatedTimeRecord.value1(), isJson, 2);
     }
 
-    public String getDataFromTime(Timestamp timeStamp, boolean isJson) {
+    public String getDataFromTime(Timestamp timestamp, boolean isJson) {
+        return getDataFromTime(timestamp, isJson, Integer.MIN_VALUE);
+    }
+
+
+    public String getDataFromTime(Timestamp timeStamp, boolean isJson, int minPercentageProfit) {
         DSLContext dslContext = DataBaseConnector.getDSLContext();
         Result<Record2<String, Timestamp>> result = dslContext.select(OPTIMALJSON.JSON, OPTIMALJSON.TIME).from(OPTIMALJSON).
-                where(OPTIMALJSON.TIME.greaterOrEqual(timeStamp)).and(OPTIMALJSON.COINLABEL.isNotNull()).limit(500).fetch();
+                where(OPTIMALJSON.TIME.greaterOrEqual(timeStamp)).and(OPTIMALJSON.COINLABEL.isNotNull()).limit(1000).fetch();
         for (int i = 0; i < result.size(); i++) {
             ResultOfCalculation resultOfCalculation = new Gson().fromJson(result.get(i).value1(), ResultOfCalculation.class);
             resultOfCalculation.setTimestamp(result.get(i).value2());
-            if (isJson) {
-                print(resultOfCalculation.toJSON(), isJson);
-            } else {
-                print(resultOfCalculation.toString(), isJson);
+            if (resultOfCalculation.profitPercentage() > minPercentageProfit) {
+                if (isJson) {
+                    print(resultOfCalculation.toJSON(), isJson);
+                } else {
+                    print(resultOfCalculation.toString(), isJson);
+                }
             }
         }
         return resultString(isJson);
@@ -83,7 +91,7 @@ public class DataAnalyzer {
 
         DSLContext dslContext = DataBaseConnector.getDSLContext();
         Result<Record2<String, Timestamp>> result = dslContext.select(OPTIMALJSON.JSON, OPTIMALJSON.TIME).from(OPTIMALJSON).
-                where(OPTIMALJSON.TIME.greaterOrEqual(timeStamp)).and(OPTIMALJSON.COINLABEL.isNotNull()).limit(500).fetch();
+                where(OPTIMALJSON.TIME.greaterOrEqual(timeStamp)).and(OPTIMALJSON.COINLABEL.isNotNull()).limit(1000).fetch();
         for (int i = 0; i < result.size(); i++) {
             ResultOfCalculation resultOfCalculation = new Gson().fromJson(result.get(i).value1(), ResultOfCalculation.class);
             resultOfCalculation.setTimestamp(result.get(i).value2());
@@ -97,7 +105,7 @@ public class DataAnalyzer {
         for (String coin : coins) {
             coin = coin.toUpperCase();
             Result<Record2<String, Timestamp>> result = dslContext.select(OPTIMALJSON.JSON, OPTIMALJSON.TIME).from(OPTIMALJSON).
-                    where(OPTIMALJSON.TIME.greaterThan(timeStamp)).and(OPTIMALJSON.COINLABEL.eq(coin)).limit(500).fetch();
+                    where(OPTIMALJSON.TIME.greaterThan(timeStamp)).and(OPTIMALJSON.COINLABEL.eq(coin)).limit(1000).fetch();
             for (int i = 0; i < result.size(); i++) {
                 ResultOfCalculation resultOfCalculation = new Gson().fromJson(result.get(i).value1(), ResultOfCalculation.class);
                 resultOfCalculation.setTimestamp(result.get(i).value2());
@@ -111,28 +119,65 @@ public class DataAnalyzer {
         return resultString(isJson);
     }
 
-    public Notify getDataFromNotify(Notify notify) {
+    public ArrayList<Notify> getDataFromNotify(String coinlabel, Market firstmarket, Market secondmarket) {
+
+        ArrayList<Notify> notifyArrayList = new ArrayList<>();
+
         DSLContext dslContext = DataBaseConnector.getDSLContext();
-        Result<Record6<String, Timestamp, Double, String, String, OptimalnotifyNotifytype>> result =
+
+
+        for (int j = 0; j < 2; j++) {
+
+            Market FIRSTMARKET = firstmarket;
+            Market SECONDMARKET = secondmarket;
+
+            if (j == 1) {
+                FIRSTMARKET = secondmarket;
+                SECONDMARKET = firstmarket;
+            }
+
+            Result<Record8<String, Timestamp, Double, String, Double, String, Double, OptimalnotifyNotifytype>> result =
+                    dslContext.select(OPTIMALNOTIFY.COINLABEL, OPTIMALNOTIFY.TIME, OPTIMALNOTIFY.PROFIT,
+                            OPTIMALNOTIFY.FROMMARKET, OPTIMALNOTIFY.BUYPRICE, OPTIMALNOTIFY.TOMARKET,
+                            OPTIMALNOTIFY.SELLPRICE, OPTIMALNOTIFY.NOTIFYTYPE).from(OPTIMALNOTIFY).
+                            where(OPTIMALNOTIFY.COINLABEL.eq(coinlabel).and(OPTIMALNOTIFY.FROMMARKET.eq(FIRSTMARKET.name())).
+                                    and(OPTIMALNOTIFY.TOMARKET.eq(SECONDMARKET.name()))).fetch();
+
+            for (int i = 0; i < result.size(); i++) {
+                Record8<String, Timestamp, Double, String, Double, String, Double, OptimalnotifyNotifytype> record = result.get(i);
+                Notify notify = new Notify(record.value1(), record.value2(), record.value3(), record.value4(), record.value5(),
+                        record.value6(), record.value7(), NotifyType.valueOf(record.value8().toString()));
+
+                notifyArrayList.add(notify);
+            }
+
+        }
+
+
+        return notifyArrayList;
+    }
+
+    public Notify getDataFromLastNotify(Notify notify) {
+        DSLContext dslContext = DataBaseConnector.getDSLContext();
+        Result<Record8<String, Timestamp, Double, String, Double, String, Double, OptimalnotifyNotifytype>> result =
                 dslContext.select(OPTIMALNOTIFY.COINLABEL, OPTIMALNOTIFY.TIME, OPTIMALNOTIFY.PROFIT,
-                        OPTIMALNOTIFY.FROMMARKET, OPTIMALNOTIFY.TOMARKET, OPTIMALNOTIFY.NOTIFYTYPE).from(OPTIMALNOTIFY).
+                        OPTIMALNOTIFY.FROMMARKET, OPTIMALNOTIFY.BUYPRICE, OPTIMALNOTIFY.TOMARKET,
+                        OPTIMALNOTIFY.SELLPRICE, OPTIMALNOTIFY.NOTIFYTYPE).from(OPTIMALNOTIFY).
                         where(OPTIMALNOTIFY.COINLABEL.eq(notify.coinlabel).and(OPTIMALNOTIFY.FROMMARKET.eq(notify.frommarket.name())).
                                 and(OPTIMALNOTIFY.TOMARKET.eq(notify.tomarket.name()))).fetch();
 
         if (result.size() > 1) {
             //should not occur here
+            return null;
         }
 
-        if (result.size() == 1) {
+        Record8<String, Timestamp, Double, String, Double, String, Double, OptimalnotifyNotifytype> record = result.get(result.size() - 1);
+        Notify oldnotify = new Notify(record.value1(), record.value2(), record.value3(), record.value4(), record.value5(),
+                record.value6(), record.value7(), NotifyType.valueOf(record.value8().toString()));
 
-            Record6<String, Timestamp, Double, String, String, OptimalnotifyNotifytype> record = result.get(0);
-            Notify oldnotify = new Notify(record.value1(), record.value2(), record.value3(), record.value4(), record.value5(),
-                    NotifyType.valueOf(record.value6().toString()));
+        return oldnotify;
 
-            return oldnotify;
-        }
 
-        return null;
     }
 
 

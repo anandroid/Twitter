@@ -36,7 +36,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Optimalnotify extends TableImpl<OptimalnotifyRecord> {
 
-    private static final long serialVersionUID = -1297457200;
+    private static final long serialVersionUID = 1860506024;
 
     /**
      * The reference instance of <code>parser.optimalnotify</code>
@@ -80,6 +80,16 @@ public class Optimalnotify extends TableImpl<OptimalnotifyRecord> {
      * The column <code>parser.optimalnotify.notifytype</code>.
      */
     public final TableField<OptimalnotifyRecord, OptimalnotifyNotifytype> NOTIFYTYPE = createField("notifytype", org.jooq.util.mysql.MySQLDataType.VARCHAR.asEnumDataType(appengine.parser.mysqlmodels.enums.OptimalnotifyNotifytype.class), this, "");
+
+    /**
+     * The column <code>parser.optimalnotify.buyprice</code>.
+     */
+    public final TableField<OptimalnotifyRecord, Double> BUYPRICE = createField("buyprice", org.jooq.impl.SQLDataType.DOUBLE, this, "");
+
+    /**
+     * The column <code>parser.optimalnotify.sellprice</code>.
+     */
+    public final TableField<OptimalnotifyRecord, Double> SELLPRICE = createField("sellprice", org.jooq.impl.SQLDataType.DOUBLE, this, "");
 
     /**
      * Create a <code>parser.optimalnotify</code> table reference

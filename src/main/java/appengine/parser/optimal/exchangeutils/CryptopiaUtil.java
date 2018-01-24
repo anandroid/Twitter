@@ -1,4 +1,4 @@
-package appengine.parser.optimal.utils;
+package appengine.parser.optimal.exchangeutils;
 
 import appengine.parser.optimal.objects.CoinMarket;
 import appengine.parser.optimal.objects.Market;
@@ -8,7 +8,6 @@ import okhttp3.Request;
 import okhttp3.Response;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.knowm.xchange.cryptopia.dto.marketdata.CryptopiaTicker;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;

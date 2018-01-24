@@ -1,11 +1,10 @@
-package appengine.parser.optimal.utils;
+package appengine.parser.optimal.exchangeutils;
 
 import appengine.parser.optimal.objects.CoinMarket;
 import appengine.parser.optimal.objects.MarketUtil;
 import org.knowm.xchange.Exchange;
 import org.knowm.xchange.ExchangeFactory;
 import org.knowm.xchange.yobit.YoBitExchange;
-import org.knowm.xchange.yobit.dto.PublicTradesRequestParams;
 import org.knowm.xchange.yobit.service.YoBitMarketDataService;
 
 import java.util.ArrayList;

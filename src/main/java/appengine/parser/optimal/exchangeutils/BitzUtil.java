@@ -1,4 +1,4 @@
-package appengine.parser.optimal.utils;
+package appengine.parser.optimal.exchangeutils;
 
 import appengine.parser.optimal.objects.CoinMarket;
 import appengine.parser.optimal.objects.Market;

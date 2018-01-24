@@ -2,6 +2,7 @@ package appengine.parser.optimal;
 
 import appengine.parser.mysqlmodels.enums.OptimalnotifyNotifytype;
 import appengine.parser.optimal.objects.*;
+import appengine.parser.optimal.utils.DataAnalyzerUtil;
 import appengine.parser.utils.DataBaseConnector;
 import okhttp3.*;
 import org.jooq.DSLContext;
@@ -34,29 +35,13 @@ public class Notifier {
 
             Notify newnotify = new Notify(resultOfCalculation.getCoin(), resultOfCalculation.getTimeStamp(),
                     resultOfCalculation.profitPercentage(), resultOfCalculation.getLowestBuyCoin().getMarket(),
-                    resultOfCalculation.getHighestSellCoin().getMarket(), null);
+                    resultOfCalculation.getLowestBuyCoin().getOurBuyPrice(), resultOfCalculation.getHighestSellCoin().getMarket(),
+                    resultOfCalculation.getHighestSellCoin().getOurSellPrice(), null);
 
-            Notify oldnotify = dataAnalyzer.getDataFromNotify(newnotify);
+            Notify oldnotify = dataAnalyzer.getDataFromLastNotify(newnotify);
 
-            if (oldnotify == null) {
-                newnotify.setNotifyType(NotifyType.NEWRAISE);
-            } else {
+            modifyNotifyType(newnotify, oldnotify);
 
-                Double oldProfit = oldnotify.profit;
-                Double newProfit = newnotify.profit;
-
-                if (newProfit > oldProfit + percentageOf(oldProfit, 10)) {
-                    newnotify.setNotifyType(NotifyType.RAISEINCREASE);
-                }
-
-                if (newProfit < oldProfit - percentageOf(oldProfit, 10)) {
-                    newnotify.setNotifyType(NotifyType.RAISEDECREASE);
-                }
-
-                if (newProfit < 2) {
-                    newnotify.setNotifyType(NotifyType.EQUAL);
-                }
-            }
             if (newnotify.notifyType != null) {
                 insertResultInDB(newnotify);
                 postOnSlack(newnotify.toString());
@@ -73,111 +58,27 @@ public class Notifier {
         DataAnalyzer dataAnalyzer = new DataAnalyzer();
         ArrayList<ResultOfCalculation> resultOfCalculationList = dataAnalyzer.getDataFromLastUpdate();
 
-        for (int i = 0; i < resultOfCalculationList.size(); i++) {
+        DataAnalyzerUtil dataAnalyzerUtil = new DataAnalyzerUtil();
+        ArrayList<ResultOfCalculation> filterResultOfCalculationList =
+                dataAnalyzerUtil.fetchDataFromTwoExchanges(Market.BINANCE, Market.OKEX);
 
-            ResultOfCalculation resultOfCalculation = resultOfCalculationList.get(i);
+        for (int i = 0; i < filterResultOfCalculationList.size(); i++) {
 
-            boolean isPaired = false;
+            ResultOfCalculation resultOfCalculation = filterResultOfCalculationList.get(i);
 
-            if (resultOfCalculation.getLowestBuyCoin().getMarket() == Market.BINANCE) {
-                if (resultOfCalculation.getHighestSellCoin().getMarket() == Market.OKEX) {
-                    isPaired = true;
-                } else {
-                    List<CoinMarket> otherCoinMarketsList = resultOfCalculation.getAllOtherMarkets();
-                    for (int j = 0; j < otherCoinMarketsList.size(); j++) {
-                        CoinMarket otherCoinMarket = otherCoinMarketsList.get(j);
-
-                        if (otherCoinMarket.getMarket() == Market.OKEX) {
-                            resultOfCalculation.setHighestSellCoin(otherCoinMarket);
-                            isPaired = true;
-                            break;
-                        }
-                    }
-                }
-            } else if (resultOfCalculation.getLowestBuyCoin().getMarket() == Market.OKEX) {
-                if (resultOfCalculation.getHighestSellCoin().getMarket() == Market.BINANCE) {
-                    isPaired = true;
-                } else {
-                    List<CoinMarket> otherCoinMarketsList = resultOfCalculation.getAllOtherMarkets();
-
-                    for (int j = 0; j < otherCoinMarketsList.size(); j++) {
-                        CoinMarket otherCoinMarket = otherCoinMarketsList.get(j);
-                        if (otherCoinMarket.getMarket() == Market.BINANCE) {
-                            resultOfCalculation.setHighestSellCoin(otherCoinMarket);
-                            isPaired = true;
-                            break;
-                        }
-                    }
-                }
-            } else {
-                List<CoinMarket> otherCoinMarketsList = resultOfCalculation.getAllOtherMarkets();
-                CoinMarket firstCoinMarket = null;
-                CoinMarket secondCoinMarket = null;
-                for (int j = 0; j < otherCoinMarketsList.size(); j++) {
-                    CoinMarket coinMarket = otherCoinMarketsList.get(j);
-                    if (coinMarket.getMarket() == Market.OKEX) {
-                        firstCoinMarket = coinMarket;
-                    }
-                    if (coinMarket.getMarket() == Market.BINANCE) {
-                        secondCoinMarket = coinMarket;
-                    }
-                }
-                if (firstCoinMarket != null && secondCoinMarket != null) {
-
-                    resultOfCalculation.setLowestBuyCoin(firstCoinMarket);
-                    resultOfCalculation.setHighestSellCoin(secondCoinMarket);
-
-                    Double firstProfitPercentage = resultOfCalculation.profitPercentage();
-
-                    resultOfCalculation.setLowestBuyCoin(secondCoinMarket);
-                    resultOfCalculation.setHighestSellCoin(firstCoinMarket);
-
-                    Double secondProfitPercentage = resultOfCalculation.profitPercentage();
-
-                    if (firstProfitPercentage > secondProfitPercentage) {
-                        resultOfCalculation.setLowestBuyCoin(firstCoinMarket);
-                        resultOfCalculation.setHighestSellCoin(secondCoinMarket);
-                    } else {
-                        //its already set previously
-                    }
-                    isPaired = true;
-                }
-
-            }
-
-            if (isPaired && resultOfCalculation.profitPercentage() > 1) {
+            if (resultOfCalculation.profitPercentage() > 1) {
 
                 Notify newnotify = getNotifyFromResultOfCalculation(resultOfCalculation);
 
-                Notify oldnotify = dataAnalyzer.getDataFromNotify(newnotify);
+                Notify oldnotify = dataAnalyzer.getDataFromLastNotify(newnotify);
 
-                if (oldnotify == null) {
-                    newnotify.setNotifyType(NotifyType.NEWRAISE);
-                } else {
+                modifyNotifyType(newnotify, oldnotify);
 
-                    Double oldProfit = oldnotify.profit;
-                    Double newProfit = newnotify.profit;
-
-                    if (newProfit > oldProfit + percentageOf(oldProfit, 10)) {
-                        newnotify.setNotifyType(NotifyType.RAISEINCREASE);
-                    }
-
-                    if (newProfit < oldProfit - percentageOf(oldProfit, 10)) {
-                        newnotify.setNotifyType(NotifyType.RAISEDECREASE);
-                    }
-
-                    if (newProfit < 2) {
-                        newnotify.setNotifyType(NotifyType.EQUAL);
-                    }
-                }
                 if (newnotify.notifyType != null) {
                     insertResultInDB(newnotify);
                     postOnSlacKOkexBinance(newnotify.toString());
                 }
-
-
             }
-
 
         }
 
@@ -185,10 +86,36 @@ public class Notifier {
 
     }
 
+    private void modifyNotifyType(Notify newnotify, Notify oldnotify) {
+        if (oldnotify == null) {
+            if (newnotify.profit < 2) {
+                newnotify.setNotifyType(NotifyType.EQUAL);
+            } else {
+                newnotify.setNotifyType(NotifyType.NEWRAISE);
+            }
+        } else {
+
+            Double oldProfit = oldnotify.profit;
+            Double newProfit = newnotify.profit;
+
+            if (oldnotify.notifyType == NotifyType.EQUAL) {
+                newnotify.setNotifyType(NotifyType.NEWRAISE);
+            } else if (newProfit > oldProfit + percentageOf(oldProfit, 10)) {
+                newnotify.setNotifyType(NotifyType.RAISEINCREASE);
+            } else if (newProfit < oldProfit - percentageOf(oldProfit, 10)) {
+                newnotify.setNotifyType(NotifyType.RAISEDECREASE);
+            } else if (newProfit < 2) {
+                newnotify.setNotifyType(NotifyType.EQUAL);
+            }
+        }
+    }
+
+
     public Notify getNotifyFromResultOfCalculation(ResultOfCalculation resultOfCalculation) {
         Notify notify = new Notify(resultOfCalculation.getCoin(), resultOfCalculation.getTimeStamp(),
                 resultOfCalculation.profitPercentage(), resultOfCalculation.getLowestBuyCoin().getMarket(),
-                resultOfCalculation.getHighestSellCoin().getMarket(), null);
+                resultOfCalculation.getLowestBuyCoin().getOurBuyPrice(), resultOfCalculation.getHighestSellCoin().getMarket(),
+                resultOfCalculation.getHighestSellCoin().getOurSellPrice(), null);
         return notify;
     }
 
@@ -253,12 +180,13 @@ public class Notifier {
 
         DSLContext dslContext = DataBaseConnector.getDSLContext();
         dslContext.insertInto(OPTIMALNOTIFY, OPTIMALNOTIFY.COINLABEL, OPTIMALNOTIFY.PROFIT, OPTIMALNOTIFY.FROMMARKET,
-                OPTIMALNOTIFY.TOMARKET, OPTIMALNOTIFY.NOTIFYTYPE)
-                .values(notify.coinlabel, notify.profit, notify.frommarket.name(), notify.tomarket.name(),
-                        OptimalnotifyNotifytype.valueOf(notify.notifyType.name())).onDuplicateKeyUpdate()
+                OPTIMALNOTIFY.BUYPRICE, OPTIMALNOTIFY.TOMARKET, OPTIMALNOTIFY.SELLPRICE, OPTIMALNOTIFY.NOTIFYTYPE)
+                .values(notify.coinlabel, notify.profit, notify.frommarket.name(), notify.buyprice, notify.tomarket.name(),
+                        notify.sellprice, OptimalnotifyNotifytype.valueOf(notify.notifyType.name())).onDuplicateKeyUpdate()
                 .set(OPTIMALNOTIFY.TIME, getCurrentTime())
-                .set(OPTIMALNOTIFY.NOTIFYTYPE, OptimalnotifyNotifytype.valueOf(notify.notifyType.name()))
                 .set(OPTIMALNOTIFY.PROFIT, notify.profit)
+                .set(OPTIMALNOTIFY.BUYPRICE, notify.buyprice)
+                .set(OPTIMALNOTIFY.SELLPRICE, notify.sellprice)
                 .execute();
     }
 

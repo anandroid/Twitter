@@ -332,6 +332,19 @@ public class MainController {
         return dataAnalyzer.getDataFromLastUpdate(false);
     }
 
+    @GetMapping("/coincalculator/json/okexbinance")
+    public String coincalculatorViewOkexBinance() {
+        OkexBinanceApi okexBinanceApi = new OkexBinanceApi();
+        return okexBinanceApi.getLastData(true);
+    }
+
+    @GetMapping("/coincalculator/json/okexbinance/coin/{coin}")
+    public String coincalculatorViewOkexBinanceCoin(@PathVariable String coin) {
+        OkexBinanceApi okexBinanceApi = new OkexBinanceApi();
+        return okexBinanceApi.getCoinNotifyData(coin, true);
+    }
+
+
     @GetMapping("/coincalculator/notifier")
     public String notifierAll() {
         Notifier notifier = new Notifier();
