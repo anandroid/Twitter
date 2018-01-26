@@ -166,7 +166,7 @@ public class DataAnalyzer {
                         where(OPTIMALNOTIFY.COINLABEL.eq(notify.coinlabel).and(OPTIMALNOTIFY.FROMMARKET.eq(notify.frommarket.name())).
                                 and(OPTIMALNOTIFY.TOMARKET.eq(notify.tomarket.name()))).fetch();
 
-        if (result.size() > 1) {
+        if (result.size() < 1) {
             //should not occur here
             return null;
         }
