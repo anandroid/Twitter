@@ -11,6 +11,7 @@ import appengine.parser.facebook.Facebook;
 import appengine.parser.objects.AccessToken;
 import appengine.parser.objects.twitter4j.Tweet;
 import appengine.parser.optimal.*;
+import appengine.parser.optimal.livecoinokex.OkexLivecoinApi;
 import appengine.parser.repository.BaseRepository;
 import appengine.parser.repository.DefaultRepository;
 import appengine.parser.repository.PagesAggregatorRepository;
@@ -48,7 +49,7 @@ public class MainController {
 
     @GetMapping("/hello")
     public String hello() {
-        return "hello world!";
+        return "hello world! change";
     }
 
     @GetMapping("/getfromfbtofb")
@@ -356,6 +357,13 @@ public class MainController {
         Notifier notifier = new Notifier();
         return notifier.fetchOkexBinance();
     }
+
+    @GetMapping("/coincalculator/automate/okexlivecoin")
+    public String automateOkexLiveCoin() {
+        OkexLivecoinApi okexLivecoinApi = new OkexLivecoinApi();
+        return okexLivecoinApi.automate();
+    }
+
 
 
     private Timestamp getTimeStampFromString(String time) {

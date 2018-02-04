@@ -110,6 +110,11 @@ public class ResultOfCalculation {
         return coin;
     }
 
+    public String getUnderScoreBTCCoin() {
+
+        return coin.toLowerCase() + "_btc";
+    }
+
     private String percentageFormatter(Double value) {
         DecimalFormat df = new DecimalFormat("#");
         df.setMaximumFractionDigits(2);
