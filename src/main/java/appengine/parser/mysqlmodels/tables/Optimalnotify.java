@@ -36,7 +36,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Optimalnotify extends TableImpl<OptimalnotifyRecord> {
 
-    private static final long serialVersionUID = 1860506024;
+    private static final long serialVersionUID = -830462922;
 
     /**
      * The reference instance of <code>parser.optimalnotify</code>
@@ -126,7 +126,7 @@ public class Optimalnotify extends TableImpl<OptimalnotifyRecord> {
      */
     @Override
     public List<UniqueKey<OptimalnotifyRecord>> getKeys() {
-        return Arrays.<UniqueKey<OptimalnotifyRecord>>asList(Keys.KEY_OPTIMALNOTIFY_OPTIMALNOTIFY_COINLABEL_FROMMARKET_TOMARKET_PK);
+        return Arrays.<UniqueKey<OptimalnotifyRecord>>asList(Keys.KEY_OPTIMALNOTIFY_OPTIMALNOTIFY_COINLABEL_FROMMARKET_TOMARKET_NOTIFYTYPE_PK);
     }
 
     /**

@@ -16,6 +16,12 @@ public class SymbolUtil {
     public String getUnderScoreBTCCoin(String coin) {
 
         return coin.toLowerCase() + "_btc";
+
+
+    }
+
+    public String getSlashBTCCoin(String coin){
+        return coin.toUpperCase()+"/BTC";
     }
 
     public String getCoin(String coinString) {

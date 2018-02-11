@@ -1,8 +1,11 @@
 package appengine.parser.optimal.livecoinokex.utils.livecoin;
 
+import appengine.parser.optimal.livecoinokex.utils.CoinInfo;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
@@ -11,6 +14,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.Map;
 
 public class FetchFromRequest {
@@ -71,6 +75,29 @@ public class FetchFromRequest {
         }
 
         return result;
+    }
+
+    public Response getCoinsInfo() {
+
+        Response response = null;
+
+        try {
+            OkHttpClient client = new OkHttpClient();
+
+            Request request = new Request.Builder()
+                    .url("https://api.livecoin.net/info/coinInfo")
+                    .get()
+                    .addHeader("cache-control", "no-cache")
+                    .addHeader("postman-token", "b40f4b35-1863-e8ab-0c1e-b3916a3d1f4c")
+                    .build();
+
+            response = client.newCall(request).execute();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return response;
     }
 
 

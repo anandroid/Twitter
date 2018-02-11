@@ -33,7 +33,7 @@
 
     <cron>
         <url>/coincalculator/automate/okexlivecoin</url>
-        <description>Notifier okexlivecoin - Coin Calculator</description>
+        <description>Coin Transfer - okexlivecoin</description>
         <schedule>every 2 minutes</schedule>
     </cron>
 

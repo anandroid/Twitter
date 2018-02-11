@@ -4,6 +4,7 @@
 package appengine.parser.mysqlmodels;
 
 
+import appengine.parser.mysqlmodels.tables.Cointransfer;
 import appengine.parser.mysqlmodels.tables.Fromfbpage;
 import appengine.parser.mysqlmodels.tables.FromfbpageTofbpage;
 import appengine.parser.mysqlmodels.tables.Optimal;
@@ -11,6 +12,7 @@ import appengine.parser.mysqlmodels.tables.Optimaljson;
 import appengine.parser.mysqlmodels.tables.Optimalnotify;
 import appengine.parser.mysqlmodels.tables.Optimalupdate;
 import appengine.parser.mysqlmodels.tables.Promotefbpage;
+import appengine.parser.mysqlmodels.tables.Sockettradearbitary;
 
 import javax.annotation.Generated;
 
@@ -27,6 +29,11 @@ import javax.annotation.Generated;
 )
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Tables {
+
+    /**
+     * The table <code>parser.cointransfer</code>.
+     */
+    public static final Cointransfer COINTRANSFER = appengine.parser.mysqlmodels.tables.Cointransfer.COINTRANSFER;
 
     /**
      * The table <code>parser.fromfbpage</code>.
@@ -62,4 +69,9 @@ public class Tables {
      * The table <code>parser.promotefbpage</code>.
      */
     public static final Promotefbpage PROMOTEFBPAGE = appengine.parser.mysqlmodels.tables.Promotefbpage.PROMOTEFBPAGE;
+
+    /**
+     * The table <code>parser.sockettradearbitary</code>.
+     */
+    public static final Sockettradearbitary SOCKETTRADEARBITARY = appengine.parser.mysqlmodels.tables.Sockettradearbitary.SOCKETTRADEARBITARY;
 }

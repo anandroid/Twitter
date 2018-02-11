@@ -9,11 +9,13 @@ import appengine.parser.mysqlmodels.tables.FromfbpageTofbpage;
 import appengine.parser.mysqlmodels.tables.Optimalnotify;
 import appengine.parser.mysqlmodels.tables.Optimalupdate;
 import appengine.parser.mysqlmodels.tables.Promotefbpage;
+import appengine.parser.mysqlmodels.tables.Sockettradearbitary;
 import appengine.parser.mysqlmodels.tables.records.FromfbpageRecord;
 import appengine.parser.mysqlmodels.tables.records.FromfbpageTofbpageRecord;
 import appengine.parser.mysqlmodels.tables.records.OptimalnotifyRecord;
 import appengine.parser.mysqlmodels.tables.records.OptimalupdateRecord;
 import appengine.parser.mysqlmodels.tables.records.PromotefbpageRecord;
+import appengine.parser.mysqlmodels.tables.records.SockettradearbitaryRecord;
 
 import javax.annotation.Generated;
 
@@ -46,9 +48,10 @@ public class Keys {
 
     public static final UniqueKey<FromfbpageRecord> KEY_FROMFBPAGE_PRIMARY = UniqueKeys0.KEY_FROMFBPAGE_PRIMARY;
     public static final UniqueKey<FromfbpageTofbpageRecord> KEY_FROMFBPAGE_TOFBPAGE_PRIMARY = UniqueKeys0.KEY_FROMFBPAGE_TOFBPAGE_PRIMARY;
-    public static final UniqueKey<OptimalnotifyRecord> KEY_OPTIMALNOTIFY_OPTIMALNOTIFY_COINLABEL_FROMMARKET_TOMARKET_PK = UniqueKeys0.KEY_OPTIMALNOTIFY_OPTIMALNOTIFY_COINLABEL_FROMMARKET_TOMARKET_PK;
+    public static final UniqueKey<OptimalnotifyRecord> KEY_OPTIMALNOTIFY_OPTIMALNOTIFY_COINLABEL_FROMMARKET_TOMARKET_NOTIFYTYPE_PK = UniqueKeys0.KEY_OPTIMALNOTIFY_OPTIMALNOTIFY_COINLABEL_FROMMARKET_TOMARKET_NOTIFYTYPE_PK;
     public static final UniqueKey<OptimalupdateRecord> KEY_OPTIMALUPDATE_PRIMARY = UniqueKeys0.KEY_OPTIMALUPDATE_PRIMARY;
     public static final UniqueKey<PromotefbpageRecord> KEY_PROMOTEFBPAGE_PRIMARY = UniqueKeys0.KEY_PROMOTEFBPAGE_PRIMARY;
+    public static final UniqueKey<SockettradearbitaryRecord> KEY_SOCKETTRADEARBITARY_SOCKETTRADEARBITARY_COINLABEL_MARKET_TRADETYPE_CREATEDTIME_PK = UniqueKeys0.KEY_SOCKETTRADEARBITARY_SOCKETTRADEARBITARY_COINLABEL_MARKET_TRADETYPE_CREATEDTIME_PK;
 
     // -------------------------------------------------------------------------
     // FOREIGN KEY definitions
@@ -62,8 +65,9 @@ public class Keys {
     private static class UniqueKeys0 extends AbstractKeys {
         public static final UniqueKey<FromfbpageRecord> KEY_FROMFBPAGE_PRIMARY = createUniqueKey(Fromfbpage.FROMFBPAGE, "KEY_fromfbpage_PRIMARY", Fromfbpage.FROMFBPAGE.FROM_PAGE_ID);
         public static final UniqueKey<FromfbpageTofbpageRecord> KEY_FROMFBPAGE_TOFBPAGE_PRIMARY = createUniqueKey(FromfbpageTofbpage.FROMFBPAGE_TOFBPAGE, "KEY_fromfbpage_tofbpage_PRIMARY", FromfbpageTofbpage.FROMFBPAGE_TOFBPAGE.FROM_PAGE_ID, FromfbpageTofbpage.FROMFBPAGE_TOFBPAGE.TO_PAGE_ID);
-        public static final UniqueKey<OptimalnotifyRecord> KEY_OPTIMALNOTIFY_OPTIMALNOTIFY_COINLABEL_FROMMARKET_TOMARKET_PK = createUniqueKey(Optimalnotify.OPTIMALNOTIFY, "KEY_optimalnotify_optimalnotify_coinlabel_frommarket_tomarket_pk", Optimalnotify.OPTIMALNOTIFY.COINLABEL, Optimalnotify.OPTIMALNOTIFY.FROMMARKET, Optimalnotify.OPTIMALNOTIFY.TOMARKET);
+        public static final UniqueKey<OptimalnotifyRecord> KEY_OPTIMALNOTIFY_OPTIMALNOTIFY_COINLABEL_FROMMARKET_TOMARKET_NOTIFYTYPE_PK = createUniqueKey(Optimalnotify.OPTIMALNOTIFY, "KEY_optimalnotify_optimalnotify_coinlabel_frommarket_tomarket_notifytype_pk", Optimalnotify.OPTIMALNOTIFY.COINLABEL, Optimalnotify.OPTIMALNOTIFY.FROMMARKET, Optimalnotify.OPTIMALNOTIFY.TOMARKET, Optimalnotify.OPTIMALNOTIFY.NOTIFYTYPE);
         public static final UniqueKey<OptimalupdateRecord> KEY_OPTIMALUPDATE_PRIMARY = createUniqueKey(Optimalupdate.OPTIMALUPDATE, "KEY_optimalupdate_PRIMARY", Optimalupdate.OPTIMALUPDATE.OPERATION);
         public static final UniqueKey<PromotefbpageRecord> KEY_PROMOTEFBPAGE_PRIMARY = createUniqueKey(Promotefbpage.PROMOTEFBPAGE, "KEY_promotefbpage_PRIMARY", Promotefbpage.PROMOTEFBPAGE.FB_PAGE_ID);
+        public static final UniqueKey<SockettradearbitaryRecord> KEY_SOCKETTRADEARBITARY_SOCKETTRADEARBITARY_COINLABEL_MARKET_TRADETYPE_CREATEDTIME_PK = createUniqueKey(Sockettradearbitary.SOCKETTRADEARBITARY, "KEY_sockettradearbitary_sockettradearbitary_coinlabel_market_tradetype_createdtime_pk", Sockettradearbitary.SOCKETTRADEARBITARY.COINLABEL, Sockettradearbitary.SOCKETTRADEARBITARY.MARKET, Sockettradearbitary.SOCKETTRADEARBITARY.TRADETYPE, Sockettradearbitary.SOCKETTRADEARBITARY.CREATEDTIME);
     }
 }
