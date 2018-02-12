@@ -1,9 +1,11 @@
 package appengine.parser.optimal.livecoinokex.utils.okex;
 
+import appengine.parser.optimal.livecoinokex.utils.AddressUtil;
 import appengine.parser.optimal.livecoinokex.utils.SymbolUtil;
 import appengine.parser.optimal.livecoinokex.utils.TradeDepth;
 import appengine.parser.optimal.livecoinokex.utils.Transfer;
-import appengine.parser.optimal.livecoinokex.utils.okex.StockRestApi;
+import appengine.parser.optimal.livecoinokex.utils.livecoin.LivecoinUtil;
+import appengine.parser.optimal.objects.Market;
 import org.apache.http.HttpException;
 import org.json.JSONObject;
 
@@ -38,6 +40,26 @@ public class OkexUtil {
         }
 
         return tradeDepth;
+    }
+
+    public void makeTransfer(Transfer transfer) {
+
+        if (transfer.sellMarket == Market.LIVECOIN) {
+
+            try {
+
+                LivecoinUtil livecoinUtil = new LivecoinUtil();
+                AddressUtil addressUtil = livecoinUtil.getAddress(transfer.coin.toUpperCase());
+                String response = stockRestApi.withdraw(new SymbolUtil().getUnderScoreBTCCoin(transfer.coin),
+                        addressUtil.wallet, transfer.amount, 2.0);
+                System.out.println("Withdraw " + response);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+
     }
 
 

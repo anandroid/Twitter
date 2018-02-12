@@ -1,10 +1,8 @@
 package appengine.parser.optimal.livecoinokex.utils.livecoin;
 
-import appengine.parser.optimal.livecoinokex.utils.CoinInfo;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 import javax.crypto.Mac;
@@ -14,8 +12,9 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.util.ArrayList;
 import java.util.Map;
+import java.util.TreeMap;
+import java.util.concurrent.TimeUnit;
 
 public class FetchFromRequest {
 
@@ -56,10 +55,71 @@ public class FetchFromRequest {
         return "";
     }
 
+    public String getAddress(String coinInCaps) {
+
+        try {
+
+            Map<String, String> postData = new TreeMap<>();
+            postData.put("currency", coinInCaps);
+
+            String signature = createSignature(buildQueryString(postData), secKey);
+
+            OkHttpClient client = new OkHttpClient();
+
+            Request request = new Request.Builder()
+                    .url("https://api.livecoin.net/payment/get/address?currency=" + coinInCaps)
+                    .get()
+                    .addHeader("api-key", apiKey)
+                    .addHeader("sign", signature)
+                    .addHeader("cache-control", "no-cache")
+                    .addHeader("postman-token", "b1cef183-eae0-7afc-0c1a-23e7987bb7f6")
+                    .build();
+
+            Response response = client.newCall(request).execute();
+            String responseString = response.body().string();
+            JSONObject jsonObject = new JSONObject(responseString);
+            responseString = jsonObject.getString("wallet");
+            response.close();
+            return responseString;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+
+    public String makeGetRequest(String queryString, Map<String, String> postData, String url) {
+
+        try {
+
+            String signature = createSignature(buildQueryString(postData), secKey);
+            System.out.println("signature " + signature);
+            // url = url + "&Api-Key=" + apiKey + "&Sign=" + signature;
+
+            URL queryUrl = new URL(url);
+            HttpURLConnection connection = (HttpURLConnection) queryUrl.openConnection();
+            connection.setDoOutput(true);
+            //connection.setRequestMethod("GET");
+            connection.setRequestProperty("Api-Key", apiKey);
+            // connection.setRequestProperty("Sign", signature);
+
+            BufferedReader rd = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            StringBuilder sb = new StringBuilder();
+            String line;
+            while ((line = rd.readLine()) != null) {
+                sb.append(line + '\n');
+            }
+            return sb.toString();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+
     public String getAllOrderBook() {
         String result = "";
         try {
-            OkHttpClient client = new OkHttpClient();
+            OkHttpClient client = new OkHttpClient.Builder().
+                    connectTimeout(15000, TimeUnit.MILLISECONDS).build();
 
             Request request = new Request.Builder()
                     .url("https://api.livecoin.net/exchange/all/order_book")
@@ -70,6 +130,7 @@ public class FetchFromRequest {
 
             Response response = client.newCall(request).execute();
             result = response.body().string();
+            response.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -101,7 +162,7 @@ public class FetchFromRequest {
     }
 
 
-    private String buildQueryString(Map<String, String> args) {
+    public String buildQueryString(Map<String, String> args) {
         StringBuilder result = new StringBuilder();
         for (String hashKey : args.keySet()) {
             if (result.length() > 0) result.append('&');

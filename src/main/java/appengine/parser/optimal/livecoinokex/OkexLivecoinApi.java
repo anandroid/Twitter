@@ -63,7 +63,6 @@ public class OkexLivecoinApi {
                         transfersList.add(transfer);
                         postOnSlack(transfer.toString());
                         //purchase(transfer, coinInfo);
-
                     }
                     print(transfer.toString(), isJson);
                     System.out.println(transfer.toString());
@@ -316,6 +315,7 @@ public class OkexLivecoinApi {
                     .addHeader("postman-token", "8fa86be2-d201-9b05-5249-2be48eeb8a59")
                     .build();
             Response response = client.newCall(request).execute();
+            response.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -337,6 +337,7 @@ public class OkexLivecoinApi {
                     .addHeader("postman-token", "8fa86be2-d201-9b05-5249-2be48eeb8a59")
                     .build();
             Response response = client.newCall(request).execute();
+            response.close();
         } catch (Exception e) {
             e.printStackTrace();
         }

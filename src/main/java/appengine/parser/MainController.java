@@ -12,6 +12,8 @@ import appengine.parser.objects.AccessToken;
 import appengine.parser.objects.twitter4j.Tweet;
 import appengine.parser.optimal.*;
 import appengine.parser.optimal.livecoinokex.OkexLivecoinApi;
+import appengine.parser.optimal.livecoinokex.TransferApi;
+import appengine.parser.optimal.livecoinokex.utils.livecoin.LivecoinUtil;
 import appengine.parser.repository.BaseRepository;
 import appengine.parser.repository.DefaultRepository;
 import appengine.parser.repository.PagesAggregatorRepository;
@@ -364,7 +366,28 @@ public class MainController {
         return okexLivecoinApi.automate();
     }
 
+    @GetMapping("/coincalculator/automate/okexlivecoin/getorders")
+    public String getOrdersOkexLiveCoin() {
+        TransferApi transferApi = new TransferApi();
+        transferApi.getPurchasedOrders();
+        return "";
+    }
 
+
+    @GetMapping("/coincalculator/automate/livecoin/getaddress/{coin}")
+    public String getCoinAddress(@PathVariable String coin) {
+        LivecoinUtil livecoinUtil = new LivecoinUtil();
+        return livecoinUtil.getAddress(coin.toUpperCase()).toString();
+    }
+
+
+    @GetMapping("/coincalculator/automate/okexlivecoin/transfer")
+    public String makeTransfer() {
+        TransferApi transferApi = new TransferApi();
+        transferApi.transferOrder();
+        return "";
+
+    }
 
     private Timestamp getTimeStampFromString(String time) {
         Timestamp timestamp = null;

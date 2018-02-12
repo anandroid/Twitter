@@ -31,10 +31,10 @@
         <schedule>every 2 minutes</schedule>
     </cron>
 
-    <cron>
-        <url>/coincalculator/automate/okexlivecoin</url>
-        <description>Coin Transfer - okexlivecoin</description>
-        <schedule>every 2 minutes</schedule>
-    </cron>
+    <!-- <cron>
+         <url>/coincalculator/automate/okexlivecoin</url>
+         <description>Coin Transfer - okexlivecoin</description>
+         <schedule>every 2 minutes</schedule>
+     </cron>-->
 
 </cronentries>

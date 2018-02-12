@@ -1,10 +1,6 @@
 package appengine.parser.optimal.livecoinokex.utils.livecoin;
 
-import appengine.parser.optimal.livecoinokex.utils.CoinInfo;
-import appengine.parser.optimal.livecoinokex.utils.SymbolUtil;
-import appengine.parser.optimal.livecoinokex.utils.TradeDepth;
-import appengine.parser.optimal.livecoinokex.utils.Transfer;
-import appengine.parser.optimal.livecoinokex.utils.livecoin.FetchFromRequest;
+import appengine.parser.optimal.livecoinokex.utils.*;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -46,6 +42,22 @@ public class LivecoinUtil {
         }
 
         return tradeDepthsList;
+    }
+
+    public AddressUtil getAddress(String coinInCaps) {
+        FetchFromRequest fetchFromRequest = new FetchFromRequest();
+        String totalAddress = fetchFromRequest.getAddress(coinInCaps);
+
+        AddressUtil addressUtil = new AddressUtil();
+
+        if (totalAddress.contains("::")) {
+            String[] array = totalAddress.split("::");
+            addressUtil.wallet = array[0];
+            addressUtil.extraId = array[1];
+        } else {
+            addressUtil.wallet = totalAddress;
+        }
+        return addressUtil;
     }
 
     public ArrayList<CoinInfo> getCoinsInfo() {
