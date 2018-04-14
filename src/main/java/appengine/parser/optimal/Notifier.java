@@ -1,21 +1,21 @@
 package appengine.parser.optimal;
 
 import appengine.parser.mysqlmodels.enums.OptimalnotifyNotifytype;
-import appengine.parser.optimal.objects.*;
+import appengine.parser.optimal.objects.Market;
+import appengine.parser.optimal.objects.Notify;
+import appengine.parser.optimal.objects.NotifyType;
+import appengine.parser.optimal.objects.ResultOfCalculation;
 import appengine.parser.optimal.utils.DataAnalyzerUtil;
 import appengine.parser.utils.DataBaseConnector;
 import okhttp3.*;
 import org.jooq.DSLContext;
 
 import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
-import java.util.TimeZone;
 
 import static appengine.parser.mysqlmodels.Tables.OPTIMALJSON;
 import static appengine.parser.mysqlmodels.Tables.OPTIMALNOTIFY;
+import static appengine.parser.utils.TimeUtils.getCurrentTime;
 
 /**
  * Created by anand.kurapati on 17/01/18.
@@ -44,7 +44,7 @@ public class Notifier {
 
             if (newnotify.notifyType != null) {
                 insertResultInDB(newnotify);
-                if(!(newnotify.profit<0 && oldnotify.profit<0)) {
+                if (!(newnotify.profit < 0 && oldnotify.profit < 0)) {
                     postOnSlack(newnotify.toString());
                 }
             }
@@ -190,17 +190,6 @@ public class Notifier {
                 .set(OPTIMALNOTIFY.BUYPRICE, notify.buyprice)
                 .set(OPTIMALNOTIFY.SELLPRICE, notify.sellprice)
                 .execute();
-    }
-
-    private Timestamp getCurrentTime() {
-
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeZone(TimeZone.getTimeZone("Asia/Kolkata"));
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-        sdf.setTimeZone(TimeZone.getTimeZone("Asia/Kolkata"));
-        String result = sdf.format(calendar.getTime());
-        Timestamp timestamp = new Timestamp(calendar.getTimeInMillis());
-        return timestamp;
     }
 
 

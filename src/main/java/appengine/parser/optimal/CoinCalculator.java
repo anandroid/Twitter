@@ -2,9 +2,9 @@ package appengine.parser.optimal;
 
 import appengine.parser.mysqlmodels.enums.OptimalupdateOperation;
 import appengine.parser.optimal.constants.MarketConstants;
+import appengine.parser.optimal.exchangeutils.*;
 import appengine.parser.optimal.objects.CoinMarket;
 import appengine.parser.optimal.objects.ResultOfCalculation;
-import appengine.parser.optimal.exchangeutils.*;
 import appengine.parser.utils.DataBaseConnector;
 import org.jooq.DSLContext;
 
@@ -185,8 +185,6 @@ public class CoinCalculator {
         }
 
 
-
-
     }
 
 
@@ -336,6 +334,23 @@ public class CoinCalculator {
         yobitList = coinMarketList;
         allCoinsList.add(yobitList);
         return returnResults(coinMarketList);
+    }
+
+    public String printLiveCoin() {
+        fetchLivecoin();
+        return returnArrayResults(livecoinList);
+    }
+
+    public String returnArrayResults(List<CoinMarket> coinMarketList) {
+
+        String printString = "\n";
+
+        for (int i = 0; i < coinMarketList.size(); i++) {
+            CoinMarket coinMarket = coinMarketList.get(i);
+            printString += coinMarket.toString() + "\n";
+        }
+
+        return printString;
     }
 
     public String returnResults(List<CoinMarket> coinMarketList) {

@@ -31,6 +31,21 @@
         <schedule>every 2 minutes</schedule>
     </cron>
 
+    <cron>
+        <url>/coincalculator/fetch/okex</url>
+        <description>Fetcher Okex - Coin Calculator</description>
+        <schedule>every 2 minutes</schedule>
+    </cron>
+    <cron>
+        <url>/coincalculator/fetch/cobinhood</url>
+        <description>Fetcher Cobinhood- Coin Calculator</description>
+        <schedule>every 2 minutes</schedule>
+    </cron>
+
+
+
+
+
     <!-- <cron>
          <url>/coincalculator/automate/okexlivecoin</url>
          <description>Coin Transfer - okexlivecoin</description>

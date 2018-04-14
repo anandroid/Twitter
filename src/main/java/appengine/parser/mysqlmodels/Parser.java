@@ -5,6 +5,7 @@ package appengine.parser.mysqlmodels;
 
 
 import appengine.parser.mysqlmodels.tables.Cointransfer;
+import appengine.parser.mysqlmodels.tables.Fetcher;
 import appengine.parser.mysqlmodels.tables.Fromfbpage;
 import appengine.parser.mysqlmodels.tables.FromfbpageTofbpage;
 import appengine.parser.mysqlmodels.tables.Optimal;
@@ -38,7 +39,7 @@ import org.jooq.impl.SchemaImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Parser extends SchemaImpl {
 
-    private static final long serialVersionUID = 1950862846;
+    private static final long serialVersionUID = -1898264288;
 
     /**
      * The reference instance of <code>parser</code>
@@ -49,6 +50,11 @@ public class Parser extends SchemaImpl {
      * The table <code>parser.cointransfer</code>.
      */
     public final Cointransfer COINTRANSFER = appengine.parser.mysqlmodels.tables.Cointransfer.COINTRANSFER;
+
+    /**
+     * The table <code>parser.fetcher</code>.
+     */
+    public final Fetcher FETCHER = appengine.parser.mysqlmodels.tables.Fetcher.FETCHER;
 
     /**
      * The table <code>parser.fromfbpage</code>.
@@ -116,6 +122,7 @@ public class Parser extends SchemaImpl {
     private final List<Table<?>> getTables0() {
         return Arrays.<Table<?>>asList(
             Cointransfer.COINTRANSFER,
+            Fetcher.FETCHER,
             Fromfbpage.FROMFBPAGE,
             FromfbpageTofbpage.FROMFBPAGE_TOFBPAGE,
             Optimal.OPTIMAL,

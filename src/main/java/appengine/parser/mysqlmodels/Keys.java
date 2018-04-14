@@ -4,12 +4,14 @@
 package appengine.parser.mysqlmodels;
 
 
+import appengine.parser.mysqlmodels.tables.Fetcher;
 import appengine.parser.mysqlmodels.tables.Fromfbpage;
 import appengine.parser.mysqlmodels.tables.FromfbpageTofbpage;
 import appengine.parser.mysqlmodels.tables.Optimalnotify;
 import appengine.parser.mysqlmodels.tables.Optimalupdate;
 import appengine.parser.mysqlmodels.tables.Promotefbpage;
 import appengine.parser.mysqlmodels.tables.Sockettradearbitary;
+import appengine.parser.mysqlmodels.tables.records.FetcherRecord;
 import appengine.parser.mysqlmodels.tables.records.FromfbpageRecord;
 import appengine.parser.mysqlmodels.tables.records.FromfbpageTofbpageRecord;
 import appengine.parser.mysqlmodels.tables.records.OptimalnotifyRecord;
@@ -46,6 +48,7 @@ public class Keys {
     // UNIQUE and PRIMARY KEY definitions
     // -------------------------------------------------------------------------
 
+    public static final UniqueKey<FetcherRecord> KEY_FETCHER_PRIMARY = UniqueKeys0.KEY_FETCHER_PRIMARY;
     public static final UniqueKey<FromfbpageRecord> KEY_FROMFBPAGE_PRIMARY = UniqueKeys0.KEY_FROMFBPAGE_PRIMARY;
     public static final UniqueKey<FromfbpageTofbpageRecord> KEY_FROMFBPAGE_TOFBPAGE_PRIMARY = UniqueKeys0.KEY_FROMFBPAGE_TOFBPAGE_PRIMARY;
     public static final UniqueKey<OptimalnotifyRecord> KEY_OPTIMALNOTIFY_OPTIMALNOTIFY_COINLABEL_FROMMARKET_TOMARKET_NOTIFYTYPE_PK = UniqueKeys0.KEY_OPTIMALNOTIFY_OPTIMALNOTIFY_COINLABEL_FROMMARKET_TOMARKET_NOTIFYTYPE_PK;
@@ -63,6 +66,7 @@ public class Keys {
     // -------------------------------------------------------------------------
 
     private static class UniqueKeys0 extends AbstractKeys {
+        public static final UniqueKey<FetcherRecord> KEY_FETCHER_PRIMARY = createUniqueKey(Fetcher.FETCHER, "KEY_fetcher_PRIMARY", Fetcher.FETCHER.COIN, Fetcher.FETCHER.MARKET);
         public static final UniqueKey<FromfbpageRecord> KEY_FROMFBPAGE_PRIMARY = createUniqueKey(Fromfbpage.FROMFBPAGE, "KEY_fromfbpage_PRIMARY", Fromfbpage.FROMFBPAGE.FROM_PAGE_ID);
         public static final UniqueKey<FromfbpageTofbpageRecord> KEY_FROMFBPAGE_TOFBPAGE_PRIMARY = createUniqueKey(FromfbpageTofbpage.FROMFBPAGE_TOFBPAGE, "KEY_fromfbpage_tofbpage_PRIMARY", FromfbpageTofbpage.FROMFBPAGE_TOFBPAGE.FROM_PAGE_ID, FromfbpageTofbpage.FROMFBPAGE_TOFBPAGE.TO_PAGE_ID);
         public static final UniqueKey<OptimalnotifyRecord> KEY_OPTIMALNOTIFY_OPTIMALNOTIFY_COINLABEL_FROMMARKET_TOMARKET_NOTIFYTYPE_PK = createUniqueKey(Optimalnotify.OPTIMALNOTIFY, "KEY_optimalnotify_optimalnotify_coinlabel_frommarket_tomarket_notifytype_pk", Optimalnotify.OPTIMALNOTIFY.COINLABEL, Optimalnotify.OPTIMALNOTIFY.FROMMARKET, Optimalnotify.OPTIMALNOTIFY.TOMARKET, Optimalnotify.OPTIMALNOTIFY.NOTIFYTYPE);

@@ -25,7 +25,6 @@ public class BinanceUtil implements MarketUtil {
     public void fetch() {
 
         try {
-            try {
                 OkHttpClient client = new OkHttpClient();
 
                 Request request = new Request.Builder()
@@ -54,10 +53,6 @@ public class BinanceUtil implements MarketUtil {
 
                     }
                 }
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
 
         } catch (Exception e) {
             e.printStackTrace();

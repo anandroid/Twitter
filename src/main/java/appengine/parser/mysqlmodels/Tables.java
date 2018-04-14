@@ -5,6 +5,7 @@ package appengine.parser.mysqlmodels;
 
 
 import appengine.parser.mysqlmodels.tables.Cointransfer;
+import appengine.parser.mysqlmodels.tables.Fetcher;
 import appengine.parser.mysqlmodels.tables.Fromfbpage;
 import appengine.parser.mysqlmodels.tables.FromfbpageTofbpage;
 import appengine.parser.mysqlmodels.tables.Optimal;
@@ -34,6 +35,11 @@ public class Tables {
      * The table <code>parser.cointransfer</code>.
      */
     public static final Cointransfer COINTRANSFER = appengine.parser.mysqlmodels.tables.Cointransfer.COINTRANSFER;
+
+    /**
+     * The table <code>parser.fetcher</code>.
+     */
+    public static final Fetcher FETCHER = appengine.parser.mysqlmodels.tables.Fetcher.FETCHER;
 
     /**
      * The table <code>parser.fromfbpage</code>.

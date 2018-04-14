@@ -316,7 +316,7 @@ public class Optimal {
             for (int i = 0; i < indianSymbols.size(); i++) {
                 String symbol = indianSymbols.get(i);
                 JSONObject statsObject = jsonObject.getJSONObject(symbol);
-                String lastTradedprice = statsObject.getString("last_traded_price");
+                String lastTradedprice = String.valueOf(statsObject.getDouble("last_traded_price"));
                 printString += symbol + "BuyPrice - Rs " + statsObject.getString("lowest_ask") +"SellPrice - " +statsObject.getString("highest_bid")+"\n";
                 Double dlastTradedprice = Double.valueOf(lastTradedprice);
                 indianSymbolBuyPrice.put(symbol,Double.valueOf(statsObject.getString("lowest_ask")));

@@ -196,6 +196,18 @@ public class MainController {
         return new Optimal().getUSDToINDData(investment, symbol, percentage);
     }
 
+    @GetMapping("/coincalculator/fetch/okex")
+    public String prefetcherOkex() {
+        return new Fetcher().fetchOkex();
+        // return "ok";
+    }
+
+    @GetMapping("/coincalculator/fetch/cobinhood")
+    public String prefetcherCobinHood() {
+        return new Fetcher().fetchCobinHood();
+        // return "ok";
+    }
+
     @GetMapping("/coincalculator/binance")
     public String coinCalculatorBinance() {
         return new CoinCalculator().fetchBinance();
@@ -223,7 +235,7 @@ public class MainController {
 
     @GetMapping("/coincalculator/livecoin")
     public String coinCalculatorLiveCoin() {
-        return new CoinCalculator().fetchLivecoin();
+        return new CoinCalculator().printLiveCoin();
     }
 
     @GetMapping("/coincalculator/poloneix")
@@ -321,13 +333,6 @@ public class MainController {
 
         return dataAnalyzer.getDataFromTimeAndCoin(timestamp, coins, true);
     }
-
-    /*@GetMapping("/testfunction")
-    public String testfunction() {
-
-        CoinCalculator coinCalculator = new CoinCalculator();
-        return coinCalculator.getCurrentTime().toString();
-    }*/
 
     @GetMapping("/coincalculator/view/all")
     public String coincalculatorView() {
