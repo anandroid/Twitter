@@ -243,6 +243,16 @@ public class MainController {
         return new CoinCalculator().fetchPoloneix();
     }
 
+    @GetMapping("/coincalculator/cobinhood")
+    public String coinCalculatorCobinhood() {
+        return new CoinCalculator().fetchCobinHood();
+    }
+
+    @GetMapping("/coincalculator/okex")
+    public String coinCalculatorOkex() {
+        return new CoinCalculator().fetchOkex();
+    }
+
     @GetMapping("/coincalculator/all")
     public String coinAll() {
         return new CoinCalculator().fetchAll();

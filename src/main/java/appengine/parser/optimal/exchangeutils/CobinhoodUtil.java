@@ -3,14 +3,21 @@ package appengine.parser.optimal.exchangeutils;
 import appengine.parser.optimal.objects.CoinMarket;
 import appengine.parser.optimal.objects.Market;
 import appengine.parser.optimal.objects.MarketUtil;
+import appengine.parser.utils.DataBaseConnector;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import org.jooq.DSLContext;
+import org.jooq.Record6;
+import org.jooq.Result;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+
+import static appengine.parser.mysqlmodels.tables.Fetcher.FETCHER;
 
 /**
  * Created by anand.kurapati on 09/01/18.
@@ -22,6 +29,21 @@ public class CobinhoodUtil implements MarketUtil {
 
     @Override
     public void fetch() {
+        DSLContext dslContext = DataBaseConnector.getDSLContext();
+        Result<Record6<String,String,Double,Double,Double,Timestamp>> result =
+                dslContext.select(FETCHER.COIN,FETCHER.MARKET,FETCHER.BUY_FOR,
+                        FETCHER.SELL_FOR,FETCHER.VOLUME,FETCHER.TIME).from(FETCHER)
+                        .where(FETCHER.MARKET.eq(Market.COBINHOOD.name())).fetch();
+
+
+        for(Record6<String,String,Double,Double,Double,Timestamp> record6 : result){
+            CoinMarket coinMarket = toCoinMarket(record6.value1(),String.valueOf(record6.value3()),
+                    String.valueOf(record6.value4()),String.valueOf(record6.value5()));
+            coinMarketList.add(coinMarket);
+        }
+    }
+
+    public void fetchCoinHills() {
         try {
             OkHttpClient client = new OkHttpClient();
 
@@ -68,7 +90,22 @@ public class CobinhoodUtil implements MarketUtil {
     }
 
     @Override
-    public CoinMarket toCoinMarket(Object... rawCoinMarket) {
+    public CoinMarket toCoinMarket(Object... rawCoinMarket){
+
+        String label = (String) rawCoinMarket[0];
+        String askPrice = (String) rawCoinMarket[1];
+        String bidPrice = (String) rawCoinMarket[2];
+        String volume = (String) rawCoinMarket[3];
+
+        CoinMarket coinMarket = new CoinMarket(Market.COBINHOOD, label, askPrice, bidPrice,
+                volume);
+
+        return coinMarket;
+
+    }
+
+
+    public CoinMarket toCoinMarketCoinHills(Object... rawCoinMarket) {
         String coinname = (String) rawCoinMarket[0];
         String last = (String) rawCoinMarket[1];
         String volume = (String) rawCoinMarket[2];
