@@ -43,6 +43,15 @@ public class DataAnalyzer {
         return resultString(isJson);
     }
 
+    public String getLastUpdatedTime(){
+        DSLContext dslContext = DataBaseConnector.getDSLContext();
+        Record1<Timestamp> updatedTimeRecord =
+                dslContext.select(OPTIMALUPDATE.UPDATEDTIME).from(OPTIMALUPDATE)
+                        .where(OPTIMALUPDATE.OPERATION.eq(OptimalupdateOperation.COINCALCULATOR)).fetchOne();
+
+        return updatedTimeRecord.value1().toString();
+    }
+
     public String getDataFromLastUpdate(boolean isJson) {
 
         DSLContext dslContext = DataBaseConnector.getDSLContext();

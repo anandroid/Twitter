@@ -303,6 +303,8 @@ public class MainController {
         }
 
         return dataAnalyzer.getDataFromTime(timestamp, true);
+        //return "hey response";
+        //return dataAnalyzer.getDataFromTime(timestamp, true);
     }
 
     @GetMapping("/coincalculator/dataanalyser/from/{time}")
@@ -344,10 +346,21 @@ public class MainController {
         return dataAnalyzer.getDataFromTimeAndCoin(timestamp, coins, true);
     }
 
+    @GetMapping("/coincalculator/optimalupdatedtime")
+    public String getOptimalUpdateTime(){
+        return new DataAnalyzer().getLastUpdatedTime();
+    }
+
     @GetMapping("/coincalculator/view/all")
     public String coincalculatorView() {
         DataAnalyzer dataAnalyzer = new DataAnalyzer();
         return dataAnalyzer.getDataFromLastUpdate(false);
+    }
+
+    @GetMapping("/coincalculator/view/json/all")
+    public String coincalculatorViewjson() {
+        DataAnalyzer dataAnalyzer = new DataAnalyzer();
+        return dataAnalyzer.getDataFromLastUpdate(true);
     }
 
     @GetMapping("/coincalculator/json/okexbinance")

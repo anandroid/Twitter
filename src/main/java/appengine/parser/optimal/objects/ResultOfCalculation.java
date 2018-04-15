@@ -16,6 +16,7 @@ public class ResultOfCalculation {
     private CoinMarket highestSellCoin;
     private List<CoinMarket> allOtherCoins;
     private Timestamp timestamp;
+    private Double profit;
 
     public ResultOfCalculation(String coin, CoinMarket lowestBuyCoin, CoinMarket highesSellCoin, List<CoinMarket> allMarketsOfCoins) {
         this.coin = coin;
@@ -57,6 +58,8 @@ public class ResultOfCalculation {
         Double higherSell = highestSellCoin.getOurSellPrice();
 
         Double profitPercentage = ((higherSell - lowestBuy) / lowestBuy) * 100;
+
+        this.profit = profitPercentage;
 
         return profitPercentage;
     }
