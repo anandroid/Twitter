@@ -1,10 +1,7 @@
 package appengine.parser.optimal.livecoinokex;
 
 import appengine.parser.optimal.livecoinokex.enums.TransferState;
-import appengine.parser.optimal.livecoinokex.utils.CoinInfo;
-import appengine.parser.optimal.livecoinokex.utils.DoubleUtil;
-import appengine.parser.optimal.livecoinokex.utils.TradeDepth;
-import appengine.parser.optimal.livecoinokex.utils.Transfer;
+import appengine.parser.optimal.livecoinokex.utils.*;
 import appengine.parser.optimal.livecoinokex.utils.livecoin.LivecoinUtil;
 import appengine.parser.optimal.livecoinokex.utils.okex.OkexUtil;
 import appengine.parser.optimal.objects.Market;
@@ -137,8 +134,8 @@ public class OkexLivecoinApi {
             }
 
 
-            TradeDepth.Ask ourBuyTrade = buyTradeDepth.askList.get(buytradeIndex);
-            TradeDepth.Bid ourSellTrade = sellTradeDepth.bidList.get(selltradeIndex);
+            Ask ourBuyTrade = buyTradeDepth.askList.get(buytradeIndex);
+            Bid ourSellTrade = sellTradeDepth.bidList.get(selltradeIndex);
 
 
             if (ourBuyTrade.price > ourSellTrade.price) {

@@ -11,9 +11,12 @@ import appengine.parser.facebook.Facebook;
 import appengine.parser.objects.AccessToken;
 import appengine.parser.objects.twitter4j.Tweet;
 import appengine.parser.optimal.*;
+import appengine.parser.optimal.exchangeutils.BinanceUtil;
 import appengine.parser.optimal.livecoinokex.OkexLivecoinApi;
 import appengine.parser.optimal.livecoinokex.TransferApi;
+import appengine.parser.optimal.livecoinokex.utils.Transfer;
 import appengine.parser.optimal.livecoinokex.utils.livecoin.LivecoinUtil;
+import appengine.parser.optimal.utils.OrderBookCalculator;
 import appengine.parser.repository.BaseRepository;
 import appengine.parser.repository.DefaultRepository;
 import appengine.parser.repository.PagesAggregatorRepository;
@@ -416,6 +419,25 @@ public class MainController {
         return "";
 
     }
+
+    @GetMapping("/coincalculator/orderbook/binance")
+    public String orderBook(){
+        BinanceUtil binanceUtil = new BinanceUtil();
+        binanceUtil.getOrderBook();
+        return "";
+    }
+
+    @GetMapping("/coincalculator/orderbook/{coin}/buyfrom/{buymarket}/sellat/{sellmarket}")
+    public String calculateOrderBook(@PathVariable String coin,@PathVariable String buymarket,@PathVariable String sellmarket){
+
+        OrderBookCalculator orderBookCalculator = new OrderBookCalculator(coin,buymarket,sellmarket);
+        Transfer transfer = orderBookCalculator.calculate();
+        return transfer.toJSON();
+    }
+
+
+
+
 
     private Timestamp getTimeStampFromString(String time) {
         Timestamp timestamp = null;

@@ -7,6 +7,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.knowm.xchange.btcmarkets.dto.trade.BTCMarketsOrder.Side.Bid;
+
 public class TradeDepth {
 
 
@@ -40,7 +42,7 @@ public class TradeDepth {
                 Double price = askArrayObject.getDouble(0);
                 Double amount = askArrayObject.getDouble(1);
 
-                Ask ask = tradeDepth.new Ask(price, amount);
+                Ask ask = new Ask(price, amount);
                 if (addAskInreverse) {
                     tradeDepth.askList.add(0, ask);
                 } else {
@@ -58,7 +60,7 @@ public class TradeDepth {
                 Double price = bidArrayObject.getDouble(0);
                 Double amount = bidArrayObject.getDouble(1);
 
-                Bid bid = tradeDepth.new Bid(price, amount);
+                Bid bid = new Bid(price, amount);
                 tradeDepth.bidList.add(bid);
             }
 
@@ -71,25 +73,8 @@ public class TradeDepth {
 
     }
 
-    public class Ask {
-        public Double price;
-        public Double amount;
 
-        Ask(Double price, Double amount) {
-            this.price = price;
-            this.amount = amount;
-        }
-    }
 
-    public class Bid {
-        public Double price;
-        public Double amount;
-
-        Bid(Double price, Double amount) {
-            this.price = price;
-            this.amount = amount;
-        }
-    }
 
 
 }

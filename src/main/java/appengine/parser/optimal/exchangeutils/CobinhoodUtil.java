@@ -1,5 +1,8 @@
 package appengine.parser.optimal.exchangeutils;
 
+import appengine.parser.optimal.livecoinokex.utils.Ask;
+import appengine.parser.optimal.livecoinokex.utils.Bid;
+import appengine.parser.optimal.livecoinokex.utils.TradeDepth;
 import appengine.parser.optimal.objects.CoinMarket;
 import appengine.parser.optimal.objects.Market;
 import appengine.parser.optimal.objects.MarketUtil;
@@ -30,15 +33,15 @@ public class CobinhoodUtil implements MarketUtil {
     @Override
     public void fetch() {
         DSLContext dslContext = DataBaseConnector.getDSLContext();
-        Result<Record6<String,String,Double,Double,Double,Timestamp>> result =
-                dslContext.select(FETCHER.COIN,FETCHER.MARKET,FETCHER.BUY_FOR,
-                        FETCHER.SELL_FOR,FETCHER.VOLUME,FETCHER.TIME).from(FETCHER)
+        Result<Record6<String, String, Double, Double, Double, Timestamp>> result =
+                dslContext.select(FETCHER.COIN, FETCHER.MARKET, FETCHER.BUY_FOR,
+                        FETCHER.SELL_FOR, FETCHER.VOLUME, FETCHER.TIME).from(FETCHER)
                         .where(FETCHER.MARKET.eq(Market.COBINHOOD.name())).fetch();
 
 
-        for(Record6<String,String,Double,Double,Double,Timestamp> record6 : result){
-            CoinMarket coinMarket = toCoinMarket(record6.value1(),String.valueOf(record6.value3()),
-                    String.valueOf(record6.value4()),String.valueOf(record6.value5()));
+        for (Record6<String, String, Double, Double, Double, Timestamp> record6 : result) {
+            CoinMarket coinMarket = toCoinMarket(record6.value1(), String.valueOf(record6.value3()),
+                    String.valueOf(record6.value4()), String.valueOf(record6.value5()));
             coinMarketList.add(coinMarket);
         }
     }
@@ -90,7 +93,7 @@ public class CobinhoodUtil implements MarketUtil {
     }
 
     @Override
-    public CoinMarket toCoinMarket(Object... rawCoinMarket){
+    public CoinMarket toCoinMarket(Object... rawCoinMarket) {
 
         String label = (String) rawCoinMarket[0];
         String askPrice = (String) rawCoinMarket[1];
@@ -102,6 +105,62 @@ public class CobinhoodUtil implements MarketUtil {
 
         return coinMarket;
 
+    }
+
+    public TradeDepth getTradeDepth(String coin) {
+
+        TradeDepth tradeDepth = new TradeDepth();
+        tradeDepth.coin = coin;
+
+        try {
+
+            OkHttpClient client = new OkHttpClient();
+
+            Request request = new Request.Builder()
+                    .url("http://api.cobinhood.com/v1/market/orderbooks/" + coin.toUpperCase() + "-BTC")
+                    .get()
+                    .addHeader("cache-control", "no-cache")
+                    .addHeader("postman-token", "f0cf41fc-8c84-f033-6da1-d9f7efa4ecda")
+                    .build();
+
+            Response response = client.newCall(request).execute();
+            String jsonString = response.body().string();
+
+            JSONObject jsonObject = new JSONObject(jsonString);
+            JSONObject resultObject = jsonObject.getJSONObject("result");
+            JSONObject orderObject = resultObject.getJSONObject("orderbook");
+            JSONArray bids = orderObject.getJSONArray("bids");
+
+            for (int i = 0; i < bids.length(); i++) {
+
+                JSONArray bidsJSONArray = bids.getJSONArray(i);
+                String price = bidsJSONArray.getString(0);
+                String amount = bidsJSONArray.getString(2);
+
+                Bid bid = new Bid(Double.parseDouble(price), Double.parseDouble(amount));
+                tradeDepth.bidList.add(bid);
+
+            }
+
+            JSONArray asks = orderObject.getJSONArray("asks");
+
+            for (int i = 0; i < asks.length(); i++) {
+
+                JSONArray asksJSONArray = asks.getJSONArray(i);
+                String price = asksJSONArray.getString(0);
+                String amount = asksJSONArray.getString(2);
+
+                Ask ask = new Ask(Double.parseDouble(price), Double.parseDouble(amount));
+                tradeDepth.askList.add(ask);
+
+            }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return tradeDepth;
     }
 
 

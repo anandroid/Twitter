@@ -8,8 +8,17 @@ import okhttp3.Request;
 import okhttp3.Response;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.knowm.xchange.Exchange;
+import org.knowm.xchange.ExchangeFactory;
+import org.knowm.xchange.binance.BinanceExchange;
 import org.knowm.xchange.binance.dto.marketdata.BinanceTicker24h;
+import org.knowm.xchange.bitcurex.BitcurexExchange;
+import org.knowm.xchange.currency.CurrencyPair;
+import org.knowm.xchange.dto.marketdata.OrderBook;
+import org.knowm.xchange.dto.trade.LimitOrder;
+import org.knowm.xchange.service.marketdata.MarketDataService;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,6 +68,30 @@ public class BinanceUtil implements MarketUtil {
         }
 
 
+    }
+
+    public void getOrderBook(){
+
+        Exchange binanceExchange = ExchangeFactory.INSTANCE.createExchange(BinanceExchange.class.getName());
+
+        MarketDataService marketDataService = binanceExchange.getMarketDataService();
+        try {
+            generic(marketDataService, new CurrencyPair( "ltc","btc"));
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
+
+    }
+
+    private static void generic(MarketDataService marketDataService, CurrencyPair pair) throws IOException {
+        System.out.println("cuurency pair "+pair.toString());
+        OrderBook orderBook = marketDataService.getOrderBook(pair, new Object[0]);
+        System.out.println("Current Order Book size for BTC / " + pair.counter.getCurrencyCode() + ": " + (orderBook.getAsks().size() + orderBook.getBids().size()));
+        System.out.println("First Ask: " + ((LimitOrder)orderBook.getAsks().get(0)).toString());
+        System.out.println("First Bid: " + ((LimitOrder)orderBook.getBids().get(0)).toString());
+        System.out.println(orderBook.toString());
     }
 
 

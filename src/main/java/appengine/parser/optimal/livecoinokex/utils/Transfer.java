@@ -3,7 +3,9 @@ package appengine.parser.optimal.livecoinokex.utils;
 import appengine.parser.mysqlmodels.enums.CointransferCurrentstate;
 import appengine.parser.optimal.livecoinokex.enums.TransferState;
 import appengine.parser.optimal.objects.Market;
+import appengine.parser.optimal.objects.ResultOfCalculation;
 import appengine.parser.utils.DataBaseConnector;
+import com.google.gson.Gson;
 import org.jooq.DSLContext;
 
 import java.sql.Timestamp;
@@ -34,6 +36,10 @@ public class Transfer implements Comparable<Transfer> {
                     + " BuyOrderid: " + buyorderid + " SellorderId: " + sellorderid + "\n CurrentState:" + currentState.name() + " UpdatedTime:" + updatedtime;
         }
         return "";
+    }
+
+    public String toJSON() {
+        return new Gson().toJson(this, Transfer.class);
     }
 
 
