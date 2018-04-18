@@ -90,6 +90,8 @@ public class DataAnalyzerUtil {
                 }
             }
 
+            resultOfCalculation.profitPercentage();
+
             if (isPaired) {
                 filteredresultOfCalculationList.add(resultOfCalculation);
             }

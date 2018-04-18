@@ -43,9 +43,12 @@ public class Notifier {
             modifyNotifyType(newnotify, oldnotify);
 
             if (newnotify.notifyType != null) {
-                insertResultInDB(newnotify);
-                if (!(newnotify.profit < 0 && oldnotify.profit < 0)) {
-                    postOnSlack(newnotify.toString());
+                if (newnotify.notifyType != NotifyType.EQUAL &&
+                        oldnotify.notifyType != NotifyType.EQUAL) {
+                    insertResultInDB(newnotify);
+                    if (!(newnotify.profit < 0 && oldnotify.profit < 0)) {
+                        postOnSlack(newnotify.toString());
+                    }
                 }
             }
 

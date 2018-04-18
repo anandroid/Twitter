@@ -61,6 +61,8 @@ public class ResultOfCalculation {
 
         this.profit = profitPercentage;
 
+        setProfitForOtherMarkets();
+
         return profitPercentage;
     }
 
@@ -77,6 +79,13 @@ public class ResultOfCalculation {
 
     public List<CoinMarket> getAllOtherMarkets() {
         return allOtherCoins;
+    }
+
+    private void setProfitForOtherMarkets() {
+
+        for (CoinMarket otherMarket : allOtherCoins) {
+            otherMarket.profit = profitPercentage(otherMarket);
+        }
     }
 
 

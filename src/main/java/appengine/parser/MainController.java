@@ -350,7 +350,7 @@ public class MainController {
     }
 
     @GetMapping("/coincalculator/optimalupdatedtime")
-    public String getOptimalUpdateTime(){
+    public String getOptimalUpdateTime() {
         return new DataAnalyzer().getLastUpdatedTime();
     }
 
@@ -364,6 +364,19 @@ public class MainController {
     public String coincalculatorViewjson() {
         DataAnalyzer dataAnalyzer = new DataAnalyzer();
         return dataAnalyzer.getDataFromLastUpdate(true);
+    }
+
+    @GetMapping("/coincalculator/json/marketscompare/{firstmarket}/{secondmarket}")
+    public String coincalculatorMarketsCompare(@PathVariable String firstmarket, @PathVariable String secondmarket) {
+        MarketsCompare marketsCompare = new MarketsCompare();
+        return marketsCompare.getLastData(firstmarket, secondmarket, true);
+    }
+
+    @GetMapping("/coincalculator/json/marketscompare/{firstmarket}/{secondmarket}/{coin}")
+    public String coincalculatorMarketsCoinCompare(@PathVariable String firstmarket, @PathVariable String secondmarket,
+                                                   @PathVariable String coin) {
+        MarketsCompare marketsCompare = new MarketsCompare();
+        return marketsCompare.getCoinNotifyData(firstmarket, secondmarket, coin, true);
     }
 
     @GetMapping("/coincalculator/json/okexbinance")
@@ -421,22 +434,19 @@ public class MainController {
     }
 
     @GetMapping("/coincalculator/orderbook/binance")
-    public String orderBook(){
+    public String orderBook() {
         BinanceUtil binanceUtil = new BinanceUtil();
         binanceUtil.getOrderBook();
         return "";
     }
 
     @GetMapping("/coincalculator/orderbook/{coin}/buyfrom/{buymarket}/sellat/{sellmarket}")
-    public String calculateOrderBook(@PathVariable String coin,@PathVariable String buymarket,@PathVariable String sellmarket){
+    public String calculateOrderBook(@PathVariable String coin, @PathVariable String buymarket, @PathVariable String sellmarket) {
 
-        OrderBookCalculator orderBookCalculator = new OrderBookCalculator(coin,buymarket,sellmarket);
+        OrderBookCalculator orderBookCalculator = new OrderBookCalculator(coin, buymarket, sellmarket);
         Transfer transfer = orderBookCalculator.calculate();
         return transfer.toJSON();
     }
-
-
-
 
 
     private Timestamp getTimeStampFromString(String time) {

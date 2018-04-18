@@ -16,6 +16,7 @@ public class CoinMarket {
     private Double sellprice;
     private Double totalvolume;
     private CoinType coinType = null;
+    public Double profit;
 
 
     public CoinMarket(Market market, String coinName, BigDecimal buyprice, BigDecimal sellprice, BigDecimal totalvolume) {
