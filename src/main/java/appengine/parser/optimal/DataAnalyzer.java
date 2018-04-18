@@ -28,7 +28,7 @@ public class DataAnalyzer {
         for (String coin : coins) {
             coin = coin.toUpperCase();
             Result<Record2<String, Timestamp>> result = dslContext.select(OPTIMALJSON.JSON, OPTIMALJSON.TIME).from(OPTIMALJSON).
-                    where(OPTIMALJSON.COINLABEL.eq(coin)).limit(1000).fetch();
+                    where(OPTIMALJSON.COINLABEL.eq(coin)).fetch();
 
             for (int i = 0; i < result.size(); i++) {
                 ResultOfCalculation resultOfCalculation = new Gson().fromJson(result.get(i).value1(), ResultOfCalculation.class);
@@ -52,6 +52,17 @@ public class DataAnalyzer {
         return updatedTimeRecord.value1().toString();
     }
 
+    public String getDataFromLastUpdateWithMinPercentage(boolean isJson,
+                                                         int minimumPercentage) {
+
+        DSLContext dslContext = DataBaseConnector.getDSLContext();
+        Record1<Timestamp> updatedTimeRecord =
+                dslContext.select(OPTIMALUPDATE.UPDATEDTIME).from(OPTIMALUPDATE)
+                        .where(OPTIMALUPDATE.OPERATION.eq(OptimalupdateOperation.COINCALCULATOR)).fetchOne();
+
+        return getDataFromTime(updatedTimeRecord.value1(), isJson, minimumPercentage);
+    }
+
     public String getDataFromLastUpdate(boolean isJson) {
 
         DSLContext dslContext = DataBaseConnector.getDSLContext();
@@ -59,7 +70,7 @@ public class DataAnalyzer {
                 dslContext.select(OPTIMALUPDATE.UPDATEDTIME).from(OPTIMALUPDATE)
                         .where(OPTIMALUPDATE.OPERATION.eq(OptimalupdateOperation.COINCALCULATOR)).fetchOne();
 
-        return getDataFromTime(updatedTimeRecord.value1(), isJson, 2);
+        return getDataFromTime(updatedTimeRecord.value1(), isJson );
     }
 
     public String getDataFromTime(Timestamp timestamp, boolean isJson) {
@@ -70,7 +81,7 @@ public class DataAnalyzer {
     public String getDataFromTime(Timestamp timeStamp, boolean isJson, int minPercentageProfit) {
         DSLContext dslContext = DataBaseConnector.getDSLContext();
         Result<Record2<String, Timestamp>> result = dslContext.select(OPTIMALJSON.JSON, OPTIMALJSON.TIME).from(OPTIMALJSON).
-                where(OPTIMALJSON.TIME.greaterOrEqual(timeStamp)).and(OPTIMALJSON.COINLABEL.isNotNull()).limit(1000).fetch();
+                where(OPTIMALJSON.TIME.greaterOrEqual(timeStamp)).and(OPTIMALJSON.COINLABEL.isNotNull()).fetch();
         for (int i = 0; i < result.size(); i++) {
             ResultOfCalculation resultOfCalculation = new Gson().fromJson(result.get(i).value1(), ResultOfCalculation.class);
             resultOfCalculation.setTimestamp(result.get(i).value2());
@@ -100,7 +111,7 @@ public class DataAnalyzer {
 
         DSLContext dslContext = DataBaseConnector.getDSLContext();
         Result<Record2<String, Timestamp>> result = dslContext.select(OPTIMALJSON.JSON, OPTIMALJSON.TIME).from(OPTIMALJSON).
-                where(OPTIMALJSON.TIME.greaterOrEqual(timeStamp)).and(OPTIMALJSON.COINLABEL.isNotNull()).limit(1000).fetch();
+                where(OPTIMALJSON.TIME.greaterOrEqual(timeStamp)).and(OPTIMALJSON.COINLABEL.isNotNull()).fetch();
         for (int i = 0; i < result.size(); i++) {
             ResultOfCalculation resultOfCalculation = new Gson().fromJson(result.get(i).value1(), ResultOfCalculation.class);
             resultOfCalculation.setTimestamp(result.get(i).value2());
@@ -114,7 +125,7 @@ public class DataAnalyzer {
         for (String coin : coins) {
             coin = coin.toUpperCase();
             Result<Record2<String, Timestamp>> result = dslContext.select(OPTIMALJSON.JSON, OPTIMALJSON.TIME).from(OPTIMALJSON).
-                    where(OPTIMALJSON.TIME.greaterThan(timeStamp)).and(OPTIMALJSON.COINLABEL.eq(coin)).limit(1000).fetch();
+                    where(OPTIMALJSON.TIME.greaterThan(timeStamp)).and(OPTIMALJSON.COINLABEL.eq(coin)).fetch();
             for (int i = 0; i < result.size(); i++) {
                 ResultOfCalculation resultOfCalculation = new Gson().fromJson(result.get(i).value1(), ResultOfCalculation.class);
                 resultOfCalculation.setTimestamp(result.get(i).value2());

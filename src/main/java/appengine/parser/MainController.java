@@ -357,13 +357,15 @@ public class MainController {
     @GetMapping("/coincalculator/view/all")
     public String coincalculatorView() {
         DataAnalyzer dataAnalyzer = new DataAnalyzer();
-        return dataAnalyzer.getDataFromLastUpdate(false);
+        return dataAnalyzer.getDataFromLastUpdateWithMinPercentage(false,
+                0);
     }
 
     @GetMapping("/coincalculator/view/json/all")
     public String coincalculatorViewjson() {
         DataAnalyzer dataAnalyzer = new DataAnalyzer();
-        return dataAnalyzer.getDataFromLastUpdate(true);
+        return dataAnalyzer.getDataFromLastUpdateWithMinPercentage(true,
+                0);
     }
 
     @GetMapping("/coincalculator/json/marketscompare/{firstmarket}/{secondmarket}")

@@ -38,13 +38,16 @@ public class Notifier {
                     resultOfCalculation.getLowestBuyCoin().getOurBuyPrice(), resultOfCalculation.getHighestSellCoin().getMarket(),
                     resultOfCalculation.getHighestSellCoin().getOurSellPrice(), null);
 
+            if(resultOfCalculation.getCoin().equalsIgnoreCase("MNE")){
+                System.out.println("log from here");
+            }
             Notify oldnotify = dataAnalyzer.getDataFromLastNotify(newnotify);
 
             modifyNotifyType(newnotify, oldnotify);
 
             if (newnotify.notifyType != null) {
                 if (newnotify.notifyType != NotifyType.EQUAL &&
-                        oldnotify.notifyType != NotifyType.EQUAL) {
+                        (oldnotify == null || oldnotify.notifyType != NotifyType.EQUAL)) {
                     insertResultInDB(newnotify);
                     if (!(newnotify.profit < 0 && oldnotify.profit < 0)) {
                         postOnSlack(newnotify.toString());
@@ -193,13 +196,5 @@ public class Notifier {
                 .set(OPTIMALNOTIFY.BUYPRICE, notify.buyprice)
                 .set(OPTIMALNOTIFY.SELLPRICE, notify.sellprice)
                 .execute();
-    }
-
-
-    private void insertResultInDB(ResultOfCalculation resultOfCalculation) {
-
-        DSLContext dslContext = DataBaseConnector.getDSLContext();
-        dslContext.insertInto(OPTIMALJSON, OPTIMALJSON.COINLABEL, OPTIMALJSON.JSON)
-                .values(resultOfCalculation.getCoin(), resultOfCalculation.toJSON()).execute();
     }
 }
