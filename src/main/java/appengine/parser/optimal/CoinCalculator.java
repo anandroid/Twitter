@@ -44,6 +44,7 @@ public class CoinCalculator {
     List<CoinMarket> cobinHoodList = new ArrayList<>();
     List<CoinMarket> coinExchangeList = new ArrayList<>();
     List<CoinMarket> southXchangeList = new ArrayList<>();
+    List<CoinMarket> bittrexList = new ArrayList<>();
 
     public String fetchAll() {
 
@@ -58,10 +59,12 @@ public class CoinCalculator {
         fetchCoinExchange();
         fetchSouthXChange();
         fetchOkex();
+        fetchBittrex();
         //fetchYobit();
 
         createCoinsMap();
 
+        deleteOldFromDB();
 
         calculateHighesAndLowest();
 
@@ -121,15 +124,20 @@ public class CoinCalculator {
         if (includeList.contains(MarketConstants.SouthXChangeString)) {
             fetchSouthXChange();
         }
+        if (includeList.contains(MarketConstants.BittrexString)) {
+            fetchBittrex();
+        }
 
         createCoinsMap();
 
+        deleteOldFromDB();
 
         calculateHighesAndLowest();
 
 
         return printString;
     }
+
 
     private void calculateHighesAndLowest() {
 
@@ -176,7 +184,7 @@ public class CoinCalculator {
             Double profitPercentage = ((highestSell - lowestBuy) / lowestBuy) * 100;
 
 
-            if (lowestPurchaseCoin != null && highestSellCoin != null && profitPercentage < 200) {
+            if (lowestPurchaseCoin != null && highestSellCoin != null) {
                 ResultOfCalculation resultOfCalculation =
                         new ResultOfCalculation(coin, lowestPurchaseCoin, highestSellCoin, allMarketsOfCoins);
                 print(resultOfCalculation.toString());
@@ -219,6 +227,11 @@ public class CoinCalculator {
                 .values(OptimalupdateOperation.COINCALCULATOR).onDuplicateKeyUpdate()
                 .set(OPTIMALUPDATE.UPDATEDTIME, timestamp)
                 .execute();
+    }
+
+    private void deleteOldFromDB() {
+        DSLContext dslContext = DataBaseConnector.getDSLContext();
+        dslContext.deleteFrom(OPTIMALJSON).execute();
     }
 
     private void insertResultInDB(ResultOfCalculation resultOfCalculation) {
@@ -333,6 +346,14 @@ public class CoinCalculator {
         List<CoinMarket> coinMarketList = marketUtil.getCoinList();
         yobitList = coinMarketList;
         allCoinsList.add(yobitList);
+        return returnResults(coinMarketList);
+    }
+
+    public String fetchBittrex() {
+        BittrexUtil marketUtil = new BittrexUtil();
+        List<CoinMarket> coinMarketList = marketUtil.getCoinList();
+        bittrexList = coinMarketList;
+        allCoinsList.add(bittrexList);
         return returnResults(coinMarketList);
     }
 

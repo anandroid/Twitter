@@ -1,10 +1,7 @@
 package appengine.parser.optimal;
 
 import appengine.parser.mysqlmodels.enums.OptimalnotifyNotifytype;
-import appengine.parser.optimal.objects.Market;
-import appengine.parser.optimal.objects.Notify;
-import appengine.parser.optimal.objects.NotifyType;
-import appengine.parser.optimal.objects.ResultOfCalculation;
+import appengine.parser.optimal.objects.*;
 import appengine.parser.optimal.utils.DataAnalyzerUtil;
 import appengine.parser.utils.DataBaseConnector;
 import okhttp3.*;
@@ -12,8 +9,8 @@ import org.jooq.DSLContext;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.List;
 
-import static appengine.parser.mysqlmodels.Tables.OPTIMALJSON;
 import static appengine.parser.mysqlmodels.Tables.OPTIMALNOTIFY;
 import static appengine.parser.utils.TimeUtils.getCurrentTime;
 
@@ -31,34 +28,99 @@ public class Notifier {
 
         for (int i = 0; i < resultOfCalculationList.size(); i++) {
 
-            ResultOfCalculation resultOfCalculation = resultOfCalculationList.get(i);
+            ResultOfCalculation realResultOfCalculation = resultOfCalculationList.get(i);
 
-            Notify newnotify = new Notify(resultOfCalculation.getCoin(), resultOfCalculation.getTimeStamp(),
-                    resultOfCalculation.profitPercentage(), resultOfCalculation.getLowestBuyCoin().getMarket(),
-                    resultOfCalculation.getLowestBuyCoin().getOurBuyPrice(), resultOfCalculation.getHighestSellCoin().getMarket(),
-                    resultOfCalculation.getHighestSellCoin().getOurSellPrice(), null);
-
-            if(resultOfCalculation.getCoin().equalsIgnoreCase("MNE")){
-                System.out.println("log from here");
+            int otherMarketsSize = 0;
+            if (realResultOfCalculation.getAllOtherMarkets() != null) {
+                otherMarketsSize = realResultOfCalculation.getAllOtherMarkets().size();
             }
-            Notify oldnotify = dataAnalyzer.getDataFromLastNotify(newnotify);
 
-            modifyNotifyType(newnotify, oldnotify);
+            ResultOfCalculation resultOfCalculation;
 
-            if (newnotify.notifyType != null) {
-                if (newnotify.notifyType != NotifyType.EQUAL &&
-                        (oldnotify == null || oldnotify.notifyType != NotifyType.EQUAL)) {
-                    insertResultInDB(newnotify);
-                    if (!(newnotify.profit < 0 && oldnotify.profit < 0)) {
-                        postOnSlack(newnotify.toString());
+            if (otherMarketsSize > 0) {
+                resultOfCalculation = realResultOfCalculation.clone();
+            } else {
+                resultOfCalculation = realResultOfCalculation;
+            }
+
+            if (resultOfCalculation.getCoin().equalsIgnoreCase("DASH")) {
+                System.out.println("Reached here");
+            }
+
+
+            int otherMarketIndex = -1;
+
+            while (otherMarketIndex < otherMarketsSize) {
+
+                // for -1 it is best seller
+                if (otherMarketIndex >= 0) {
+                    resultOfCalculation.setHighestSellCoin(
+                            resultOfCalculation.getAllOtherMarkets().get(otherMarketIndex));
+                }
+                evaluateNewNotify(resultOfCalculation, dataAnalyzer);
+                otherMarketIndex++;
+
+            }
+
+            if (otherMarketsSize > 0) {
+                resultOfCalculation = realResultOfCalculation.clone();
+
+                otherMarketIndex = 0;
+
+                while (otherMarketIndex < otherMarketsSize) {
+
+                    resultOfCalculation.setLowestBuyCoin(resultOfCalculation.getAllOtherMarkets()
+                            .get(otherMarketIndex));
+
+                    evaluateNewNotify(resultOfCalculation, dataAnalyzer);
+                    otherMarketIndex++;
+
+                }
+
+
+                resultOfCalculation = realResultOfCalculation.clone();
+                List<CoinMarket> otherMarkets = resultOfCalculation.getAllOtherMarkets();
+
+                for (int p = 0; p < otherMarketsSize; p++) {
+                    for (int q = 0; q < otherMarketsSize; q++) {
+                        if (p != q) {
+                            if (otherMarkets.get(p).getOurBuyPrice()
+                                    < otherMarkets.get(q).getOurBuyPrice()) {
+                                resultOfCalculation.setLowestBuyCoin(otherMarkets.get(p));
+                                realResultOfCalculation.setHighestSellCoin(otherMarkets.get(q));
+                            } else {
+                                resultOfCalculation.setLowestBuyCoin(otherMarkets.get(q));
+                                realResultOfCalculation.setHighestSellCoin(otherMarkets.get(p));
+                            }
+
+                            evaluateNewNotify(resultOfCalculation, dataAnalyzer);
+                        }
                     }
                 }
             }
-
         }
 
         return "ok";
 
+    }
+
+    private void evaluateNewNotify(ResultOfCalculation resultOfCalculation, DataAnalyzer dataAnalyzer) {
+        Notify newnotify = new Notify(resultOfCalculation.getCoin(), resultOfCalculation.getTimeStamp(),
+                resultOfCalculation.profitPercentage(), resultOfCalculation.getLowestBuyCoin().getMarket(),
+                resultOfCalculation.getLowestBuyCoin().getOurBuyPrice(), resultOfCalculation.getHighestSellCoin().getMarket(),
+                resultOfCalculation.getHighestSellCoin().getOurSellPrice(), null);
+
+        Notify oldnotify = dataAnalyzer.getDataFromLastNotify(newnotify);
+
+        modifyNotifyType(newnotify, oldnotify);
+
+        if (newnotify.notifyType != null) {
+            insertResultInDB(newnotify);
+            if (newnotify.profit > 2) {
+                //postOnSlack(newnotify.toString());
+            }
+
+        }
     }
 
     public String fetchOkexBinance() {
@@ -95,6 +157,75 @@ public class Notifier {
     }
 
     private void modifyNotifyType(Notify newnotify, Notify oldnotify) {
+
+        if (oldnotify == null) {
+
+            if (newnotify.profit < 0) {
+                newnotify.setNotifyType(NotifyType.LOSS);
+            } else {
+                if (newnotify.profit > 0.2) {
+                    newnotify.setNotifyType(NotifyType.NEWRAISE);
+                } else {
+                    newnotify.setNotifyType(NotifyType.EQUAL);
+                }
+            }
+
+        } else {
+
+            Double oldProfit = oldnotify.profit;
+            Double newProfit = newnotify.profit;
+
+            if (newProfit < 0) {
+                if (oldnotify.notifyType != NotifyType.LOSS) {
+                    newnotify.setNotifyType(NotifyType.LOSS);
+                }
+            } else if (newProfit < 0.2) {
+                if (oldnotify.notifyType != NotifyType.EQUAL) {
+                    newnotify.setNotifyType(NotifyType.EQUAL);
+                }
+            } else {
+
+                if (newProfit > oldProfit + percentageOf(oldProfit, 10)) {
+
+                    if (oldnotify.notifyType == NotifyType.LOSS) {
+
+                        if (newProfit > 0.2) {
+                            newnotify.setNotifyType(NotifyType.NEWRAISE);
+                        } else {
+                            newnotify.setNotifyType(NotifyType.EQUAL);
+                        }
+
+                    } else if (oldnotify.notifyType == NotifyType.EQUAL) {
+                        newnotify.setNotifyType(NotifyType.NEWRAISE);
+                    } else if (oldnotify.notifyType == NotifyType.NEWRAISE) {
+                        newnotify.setNotifyType(NotifyType.RAISEINCREASE);
+                    } else if (oldnotify.notifyType == NotifyType.RAISEINCREASE) {
+                        if (newProfit > oldProfit + percentageOf(oldProfit, 20)) {
+                            newnotify.setNotifyType(NotifyType.RAISEINCREASE);
+                        }
+                    }
+                } else if (newProfit < oldProfit - percentageOf(oldProfit, 10)) {
+
+                    if (oldnotify.notifyType == NotifyType.LOSS) {
+                        // this should never occur
+                    } else if (oldnotify.notifyType == NotifyType.EQUAL) {
+                        // no need to update on this as it is still greater than 0
+                    } else if (oldnotify.notifyType == NotifyType.NEWRAISE) {
+                        newnotify.setNotifyType(NotifyType.RAISEDECREASE);
+                    } else if (oldnotify.notifyType == NotifyType.RAISEINCREASE) {
+                        newnotify.setNotifyType(NotifyType.RAISEDECREASE);
+                    }
+
+                }
+
+            }
+
+        }
+
+
+    }
+
+   /* private void modifyNotifyType(Notify newnotify, Notify oldnotify) {
         if (oldnotify == null) {
             if (newnotify.profit < 2) {
                 newnotify.setNotifyType(NotifyType.EQUAL);
@@ -116,7 +247,7 @@ public class Notifier {
                 newnotify.setNotifyType(NotifyType.EQUAL);
             }
         }
-    }
+    }*/
 
 
     public Notify getNotifyFromResultOfCalculation(ResultOfCalculation resultOfCalculation) {

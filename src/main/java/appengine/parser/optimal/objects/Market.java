@@ -14,5 +14,6 @@ public enum  Market {
     OKEX,
     COBINHOOD,
     COINEXCHANGE,
-    SOUTHXCHANGE
+    SOUTHXCHANGE,
+    BITTREX
 }

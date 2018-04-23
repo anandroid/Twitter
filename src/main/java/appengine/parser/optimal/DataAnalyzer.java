@@ -12,6 +12,7 @@ import org.jooq.*;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 import static appengine.parser.mysqlmodels.Tables.*;
 
@@ -43,7 +44,7 @@ public class DataAnalyzer {
         return resultString(isJson);
     }
 
-    public String getLastUpdatedTime(){
+    public String getLastUpdatedTime() {
         DSLContext dslContext = DataBaseConnector.getDSLContext();
         Record1<Timestamp> updatedTimeRecord =
                 dslContext.select(OPTIMALUPDATE.UPDATEDTIME).from(OPTIMALUPDATE)
@@ -70,7 +71,7 @@ public class DataAnalyzer {
                 dslContext.select(OPTIMALUPDATE.UPDATEDTIME).from(OPTIMALUPDATE)
                         .where(OPTIMALUPDATE.OPERATION.eq(OptimalupdateOperation.COINCALCULATOR)).fetchOne();
 
-        return getDataFromTime(updatedTimeRecord.value1(), isJson );
+        return getDataFromTime(updatedTimeRecord.value1(), isJson);
     }
 
     public String getDataFromTime(Timestamp timestamp, boolean isJson) {
@@ -173,6 +174,12 @@ public class DataAnalyzer {
 
         }
 
+        notifyArrayList.sort(new Comparator<Notify>() {
+            @Override
+            public int compare(Notify o1, Notify o2) {
+                return o1.timestamp.compareTo(o2.timestamp);
+            }
+        });
 
         return notifyArrayList;
     }

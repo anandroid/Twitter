@@ -53,13 +53,14 @@ public class CoinMarket {
         coinName = coinName.toUpperCase();
     }
 
-    private void setBuyPrice(Double buyprice) {
+    public void setBuyPrice(Double buyprice) {
         this.buyprice = buyprice;
     }
 
-    private void setSellPrice(Double sellPrice) {
-        this.sellprice = sellPrice;
+    public void setSellPrice(Double sellprice) {
+        this.sellprice = sellprice;
     }
+
 
     public void setTotalvolume(Double totalvolume) {
         this.totalvolume = totalvolume;

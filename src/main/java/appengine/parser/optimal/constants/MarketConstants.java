@@ -15,5 +15,6 @@ public class MarketConstants {
     public static String CobinhoodString = "cobinhood";
     public static String CoinExchangeString = "coinexchange";
     public static String SouthXChangeString = "southxchange";
+    public static String BittrexString = "bittrex";
 
 }

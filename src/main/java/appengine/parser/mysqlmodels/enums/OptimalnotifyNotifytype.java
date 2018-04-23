@@ -29,7 +29,9 @@ public enum OptimalnotifyNotifytype implements EnumType {
 
     RAISEDECREASE("RAISEDECREASE"),
 
-    EQUAL("EQUAL");
+    EQUAL("EQUAL"),
+
+    LOSS("LOSS");
 
     private final String literal;
 

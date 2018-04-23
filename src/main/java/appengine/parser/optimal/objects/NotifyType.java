@@ -7,5 +7,6 @@ public enum  NotifyType {
     NEWRAISE,
     RAISEINCREASE,
     RAISEDECREASE,
-    EQUAL
+    EQUAL,
+    LOSS
 }
