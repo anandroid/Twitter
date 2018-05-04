@@ -28,9 +28,13 @@ public class LiquiUtil implements MarketUtil {
         Iterator<String> iterator = keys.iterator();
         while (iterator.hasNext()) {
             String key = iterator.next();
-            LiquiTicker liquiTicker = liquiTickerMap.get(key);
-            CoinMarket coinMarket = toCoinMarket(liquiTicker, key);
-            coinMarketList.add(coinMarket);
+            if (key.contains("_btc")) {
+                LiquiTicker liquiTicker = liquiTickerMap.get(key);
+                CoinMarket coinMarket = toCoinMarket(liquiTicker, key);
+                if (coinMarket.getOurBuyPrice() > 0) {
+                    coinMarketList.add(coinMarket);
+                }
+            }
         }
     }
 
@@ -47,7 +51,7 @@ public class LiquiUtil implements MarketUtil {
         if (coinMarketList == null || coinMarketList.size() == 0) {
             fetch();
         }
-        return null;
+        return coinMarketList;
     }
 
     @Override
@@ -55,7 +59,7 @@ public class LiquiUtil implements MarketUtil {
         LiquiTicker liquiTicker = (LiquiTicker) rawCoinMarket[0];
         String label = (String) rawCoinMarket[1];
 
-        CoinMarket coinMarket = new CoinMarket(Market.LIQUI, label, liquiTicker.getBuy(), liquiTicker.getSell(), liquiTicker.getVol());
+        CoinMarket coinMarket = new CoinMarket(Market.LIQUI, label, liquiTicker.getSell(), liquiTicker.getBuy(), liquiTicker.getVol());
 
         return coinMarket;
     }

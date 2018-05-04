@@ -5,7 +5,6 @@ import appengine.parser.optimal.objects.Market;
 import appengine.parser.optimal.objects.MarketUtil;
 import org.knowm.xchange.Exchange;
 import org.knowm.xchange.ExchangeFactory;
-import org.knowm.xchange.bittrex.Bittrex;
 import org.knowm.xchange.bittrex.BittrexExchange;
 import org.knowm.xchange.bittrex.dto.marketdata.BittrexMarketSummary;
 import org.knowm.xchange.bittrex.service.BittrexMarketDataServiceRaw;
@@ -30,7 +29,9 @@ public class BittrexUtil implements MarketUtil {
             for (BittrexMarketSummary bittrexMarketSummary : bittrexMarketSummaryArrayList) {
                 if (bittrexMarketSummary.getMarketName().contains("BTC-")) {
                     CoinMarket coinMarket = toCoinMarket(bittrexMarketSummary);
-                    coinMarketList.add(coinMarket);
+                    if (coinMarket.getOurBuyPrice() > 0) {
+                        coinMarketList.add(coinMarket);
+                    }
                 }
             }
 
@@ -52,7 +53,7 @@ public class BittrexUtil implements MarketUtil {
         if (coinMarketList == null || coinMarketList.size() == 0) {
             fetch();
         }
-        return null;
+        return coinMarketList;
     }
 
     @Override

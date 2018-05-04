@@ -29,101 +29,97 @@ public class ResultOfCalculation {
         validateExclusionList();
     }
 
-    private void validateExclusionList(){
+    private void validateExclusionList() {
 
-        if(ExcludeList.isExcluded(coin,lowestBuyCoin,null)){
-            CoinMarket nextLowestBuyMarket=null;
+        if (ExcludeList.isExcluded(coin, lowestBuyCoin, null)) {
+            CoinMarket nextLowestBuyMarket = null;
             Double lowestBuyPrice = new Double(10);
 
-            for(CoinMarket otherCoinMarket : allOtherCoins){
-                if(otherCoinMarket.getOurBuyPrice()<lowestBuyPrice){
-                    if(!ExcludeList.isExcluded(coin,otherCoinMarket,null)) {
+            for (CoinMarket otherCoinMarket : allOtherCoins) {
+                if (otherCoinMarket.getOurBuyPrice() < lowestBuyPrice) {
+                    if (!ExcludeList.isExcluded(coin, otherCoinMarket, null)) {
                         nextLowestBuyMarket = otherCoinMarket;
                         lowestBuyPrice = otherCoinMarket.getOurBuyPrice();
                     }
                 }
             }
 
-            if(nextLowestBuyMarket!=null){
-                this.lowestBuyCoin=nextLowestBuyMarket;
-            }
-            else{
+            if (nextLowestBuyMarket != null) {
+                this.lowestBuyCoin = nextLowestBuyMarket;
+            } else {
                 // means no good pair exists hence loss will occur if u buy
                 this.lowestBuyCoin.setBuyPrice(new Double(10));
                 return;
             }
         }
 
-        if(ExcludeList.isExcluded(coin,highestSellCoin,null)){
+        if (ExcludeList.isExcluded(coin, highestSellCoin, null)) {
             CoinMarket nextHighestSellMarket = null;
             Double highestSellPrice = new Double(0);
 
-            for(CoinMarket otherCoinMarket : allOtherCoins){
-                if(otherCoinMarket.getOurSellPrice()>highestSellPrice){
-                    if(!ExcludeList.isExcluded(coin,otherCoinMarket,null)){
+            for (CoinMarket otherCoinMarket : allOtherCoins) {
+                if (otherCoinMarket.getOurSellPrice() > highestSellPrice) {
+                    if (!ExcludeList.isExcluded(coin, otherCoinMarket, null)) {
                         nextHighestSellMarket = otherCoinMarket;
                         highestSellPrice = otherCoinMarket.getOurSellPrice();
                     }
                 }
             }
 
-            if(nextHighestSellMarket!=null){
+            if (nextHighestSellMarket != null) {
                 this.highestSellCoin = nextHighestSellMarket;
-            }
-            else{
+            } else {
                 // means no good pair hence loss will occur if u sell anywhere
                 this.highestSellCoin.setSellPrice(new Double(0));
                 return;
             }
         }
 
-        if(ExcludeList.isExcluded(coin,lowestBuyCoin,highestSellCoin)){
+        if (ExcludeList.isExcluded(coin, lowestBuyCoin, highestSellCoin)) {
 
-            CoinMarket nextLowestBuyMarket=null;
+            CoinMarket nextLowestBuyMarket = null;
             Double lowestBuyPrice = new Double(10);
 
-            for(CoinMarket otherCoinMarket : allOtherCoins){
-                if(otherCoinMarket.getOurBuyPrice()<lowestBuyPrice){
-                    if(!ExcludeList.isExcluded(coin,otherCoinMarket,highestSellCoin)) {
+            for (CoinMarket otherCoinMarket : allOtherCoins) {
+                if (otherCoinMarket.getOurBuyPrice() < lowestBuyPrice) {
+                    if (!ExcludeList.isExcluded(coin, otherCoinMarket, highestSellCoin)) {
                         nextLowestBuyMarket = otherCoinMarket;
                         lowestBuyPrice = otherCoinMarket.getOurBuyPrice();
                     }
                 }
             }
 
-            if(nextLowestBuyMarket==null){
+            if (nextLowestBuyMarket == null) {
                 // means no pair exists with current highestSellcoin , so try changing highestSellCoin
 
                 CoinMarket nextHighestSellMarket = null;
                 Double highestSellPrice = new Double(0);
 
-                for(CoinMarket otherCoinMarket : allOtherCoins){
-                    if(otherCoinMarket.getOurSellPrice()>highestSellPrice){
-                        if(!ExcludeList.isExcluded(coin,lowestBuyCoin,otherCoinMarket)){
+                for (CoinMarket otherCoinMarket : allOtherCoins) {
+                    if (otherCoinMarket.getOurSellPrice() > highestSellPrice) {
+                        if (!ExcludeList.isExcluded(coin, lowestBuyCoin, otherCoinMarket)) {
                             nextHighestSellMarket = otherCoinMarket;
                             highestSellPrice = otherCoinMarket.getOurSellPrice();
                         }
                     }
                 }
 
-                if(nextHighestSellMarket==null) {
+                if (nextHighestSellMarket == null) {
                     //Ditch this dont sell this coin
                     this.highestSellCoin.setSellPrice(new Double(0));
                     this.lowestBuyCoin.setBuyPrice(new Double(10));
                     return;
+                } else {
+                    this.highestSellCoin = nextHighestSellMarket;
                 }
-                else{
-                    this.highestSellCoin= nextHighestSellMarket;
-                }
-            }
-            else{
+            } else {
 
                 CoinMarket nextHighestSellMarket = null;
                 Double highestSellPrice = new Double(0);
 
-                for(CoinMarket otherCoinMarket : allOtherCoins){
-                    if(otherCoinMarket.getOurSellPrice()>highestSellPrice){
-                        if(!ExcludeList.isExcluded(coin,lowestBuyCoin,otherCoinMarket)){
+                for (CoinMarket otherCoinMarket : allOtherCoins) {
+                    if (otherCoinMarket.getOurSellPrice() > highestSellPrice) {
+                        if (!ExcludeList.isExcluded(coin, lowestBuyCoin, otherCoinMarket)) {
                             nextHighestSellMarket = otherCoinMarket;
                             highestSellPrice = otherCoinMarket.getOurSellPrice();
                         }
@@ -142,10 +138,9 @@ public class ResultOfCalculation {
 
                 Double profitPercentageWithHighestSellMarketChanged = ((higherSell - lowestBuy) / lowestBuy) * 100;
 
-                if(profitPercentageWithHighestSellMarketChanged>profitPercentageWithLowestBuyMarketChanged){
+                if (profitPercentageWithHighestSellMarketChanged > profitPercentageWithLowestBuyMarketChanged) {
                     highestSellCoin = nextHighestSellMarket;
-                }
-                else{
+                } else {
                     lowestBuyCoin = nextLowestBuyMarket;
                 }
 
@@ -154,7 +149,6 @@ public class ResultOfCalculation {
         }
 
     }
-
 
 
     public void setTimestamp(Timestamp timestamp) {
@@ -245,6 +239,7 @@ public class ResultOfCalculation {
 
 
     public String toJSON() {
+        System.out.println("Coin " + coin + "Profit " + profit);
         return new Gson().toJson(this, ResultOfCalculation.class);
     }
 
