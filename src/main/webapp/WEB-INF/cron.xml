@@ -42,8 +42,11 @@
         <schedule>every 2 minutes</schedule>
     </cron>
 
-
-
+    <cron>
+        <url>/coincalculator/coinstatus/fetcher</url>
+        <description>Fetcher CoinStatus - Coin Calculator</description>
+        <schedule>every 30 minutes</schedule>
+    </cron>
 
 
     <!-- <cron>

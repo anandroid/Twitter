@@ -11,11 +11,15 @@ import appengine.parser.facebook.Facebook;
 import appengine.parser.objects.AccessToken;
 import appengine.parser.objects.twitter4j.Tweet;
 import appengine.parser.optimal.*;
+import appengine.parser.optimal.coinsstatus.*;
 import appengine.parser.optimal.exchangeutils.BinanceUtil;
 import appengine.parser.optimal.livecoinokex.OkexLivecoinApi;
 import appengine.parser.optimal.livecoinokex.TransferApi;
 import appengine.parser.optimal.livecoinokex.utils.Transfer;
 import appengine.parser.optimal.livecoinokex.utils.livecoin.LivecoinUtil;
+import appengine.parser.optimal.objects.CoinStatus;
+import appengine.parser.optimal.objects.CoinsStatusUtil;
+import appengine.parser.optimal.objects.Market;
 import appengine.parser.optimal.utils.OrderBookCalculator;
 import appengine.parser.repository.BaseRepository;
 import appengine.parser.repository.DefaultRepository;
@@ -36,6 +40,7 @@ import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -448,6 +453,48 @@ public class MainController {
         OrderBookCalculator orderBookCalculator = new OrderBookCalculator(coin, buymarket, sellmarket);
         Transfer transfer = orderBookCalculator.calculate();
         return transfer.toJSON();
+    }
+
+    @GetMapping("/coincalculator/coinstatus/fetcher")
+    public String coinStatusFetcher() {
+        CoinStatusFetcher coinStatusFetcher = new CoinStatusFetcher();
+        coinStatusFetcher.fetch();
+        return "success";
+    }
+
+    @GetMapping("/coincalculator/coinsstatus/{market}")
+    public String getcoinsInfo(@PathVariable String market) {
+        CoinsStatusUtil coinsStatusUtil = null;
+        if (market.equalsIgnoreCase(Market.BINANCE.name())) {
+            coinsStatusUtil = new BinanceCoinStatus();
+        }
+        if (market.equalsIgnoreCase(Market.CRYPTOPIA.name())) {
+            coinsStatusUtil = new CryptopiaCoinsStatus();
+        }
+        if (market.equalsIgnoreCase(Market.COINEXCHANGE.name())) {
+            coinsStatusUtil = new CoinExchangeCoinStatus();
+        }
+        if (market.equalsIgnoreCase(Market.HitBTC.name())) {
+            coinsStatusUtil = new HitBTCCoinStatus();
+        }
+        if (market.equalsIgnoreCase(Market.LIVECOIN.name())) {
+            coinsStatusUtil = new LiveCoinCoinStatus();
+        }
+        if (market.equalsIgnoreCase(Market.OKEX.name())) {
+            coinsStatusUtil = new OkexCoinStatus();
+        }
+        if (market.equalsIgnoreCase(Market.POLONEIX.name())) {
+            coinsStatusUtil = new PoloniexCoinStatus();
+        }
+        if (market.equalsIgnoreCase(Market.BITTREX.name())) {
+            coinsStatusUtil = new BittrexCoinStatus();
+        }
+        if (market.equalsIgnoreCase(Market.SOUTHXCHANGE.name())) {
+            coinsStatusUtil = new SouthXchangeCoinStatus();
+        }
+
+        List<CoinStatus> coinInfoList = coinsStatusUtil.getCoinsStatusList();
+        return "size " + coinInfoList.size();
     }
 
 

@@ -1,15 +1,26 @@
 package appengine.parser.optimal.constants;
 
 import appengine.parser.optimal.objects.CoinMarket;
+import appengine.parser.optimal.objects.CoinStatus;
 import appengine.parser.optimal.objects.Market;
+import appengine.parser.utils.DataBaseConnector;
+import org.jooq.DSLContext;
+import org.jooq.Record5;
+import org.jooq.util.derby.sys.Sys;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
+import static appengine.parser.mysqlmodels.Tables.COINSTATUS;
+import static appengine.parser.utils.OtherUtils.byteToBool;
+
 public class ExcludeList {
 
     static HashMap<String, List<Market>> exclusions = new HashMap<>();
+
+    static List<CoinStatus> coinStatusList = new ArrayList<>();
 
     public static boolean isExcluded(String coin, CoinMarket firstMarket, CoinMarket secondMarket) {
         if (exclusions.size() == 0) {
@@ -23,7 +34,7 @@ public class ExcludeList {
             exclusions.put("DFS", Arrays.asList(Market.CRYPTOPIA));
             exclusions.put("BTA", Arrays.asList(Market.SOUTHXCHANGE));
             exclusions.put("GOLOS", Arrays.asList(Market.LIQUI));
-            exclusions.put("INCNT",Arrays.asList(Market.LIQUI));
+            exclusions.put("INCNT", Arrays.asList(Market.LIQUI));
         }
 
         List<Market> markets = exclusions.get(coin.toUpperCase());
@@ -37,7 +48,76 @@ public class ExcludeList {
             }
         }
 
+        return checkExclusionFromDB(coin, firstMarket, secondMarket);
+
+    }
+
+    private static boolean checkExclusionFromDB(String coin, CoinMarket firstMarket, CoinMarket secondMarket) {
+
+        if (firstMarket.getMarket() == Market.BITZ ||
+                firstMarket.getMarket() == Market.COBINHOOD
+                || firstMarket.getMarket() == Market.LIQUI) {
+            return false;
+        }
+
+        if (secondMarket != null &&
+                (secondMarket.getMarket() == Market.BITZ ||
+                        secondMarket.getMarket() == Market.COBINHOOD
+                        || secondMarket.getMarket() == Market.LIQUI)) {
+            return false;
+        }
+
+        DSLContext dslContext = DataBaseConnector.getDSLContext();
+
+        Record5<String, String, String, Byte, Byte> firstCoinRecord = dslContext.select(COINSTATUS.NAME, COINSTATUS.LABEL, COINSTATUS.MARKET,
+                COINSTATUS.ISWALLETACTIVE, COINSTATUS.ISLISTINGACTIVE).from(COINSTATUS).where(COINSTATUS.LABEL.eq(coin).and(
+                COINSTATUS.MARKET.eq(firstMarket.getMarket().name()))).fetchOne();
+
+        System.out.println("Coin Market "+coin+" "+firstMarket.getMarket());
+
+        CoinStatus firstCoinStatus = new CoinStatus(Market.valueOf(firstCoinRecord.value3()),
+                firstCoinRecord.value1(), firstCoinRecord.value2(), byteToBool(firstCoinRecord.value4()),
+                byteToBool(firstCoinRecord.value5()));
+
+        if (!firstCoinStatus.isWalletActive()) {
+            return true;
+        }
+
+        if (!firstCoinStatus.isListingActive()) {
+            return true;
+        }
+
+        if (secondMarket != null) {
+
+            Record5<String, String, String, Byte, Byte> secondCoinRecord = dslContext.select(COINSTATUS.NAME, COINSTATUS.LABEL, COINSTATUS.MARKET,
+                    COINSTATUS.ISWALLETACTIVE, COINSTATUS.ISLISTINGACTIVE).from(COINSTATUS).where(COINSTATUS.LABEL.eq(coin).and(
+                    COINSTATUS.MARKET.eq(secondMarket.getMarket().name()))).fetchOne();
+
+            System.out.println("Coin Market "+coin+" "+firstMarket.getMarket()+" "+secondMarket.getMarket());
+
+            CoinStatus secondCoinStatus = new CoinStatus(Market.valueOf(secondCoinRecord.value3()),
+                    secondCoinRecord.value1(), secondCoinRecord.value2(), byteToBool(secondCoinRecord.value4()),
+                    byteToBool(secondCoinRecord.value5()));
+
+            if (!secondCoinStatus.isWalletActive()) {
+                return true;
+            }
+            if (!secondCoinStatus.isListingActive()) {
+                return true;
+            }
+
+            if (!firstCoinStatus.getCoinName().equalsIgnoreCase("") &&
+                    !secondCoinStatus.getCoinName().equalsIgnoreCase("")) {
+
+                if (!firstCoinStatus.getCoinName().trim().equalsIgnoreCase(
+                        secondCoinStatus.getCoinName().trim())) {
+                    return true;
+                }
+            }
+        }
+
         return false;
+
     }
 
 

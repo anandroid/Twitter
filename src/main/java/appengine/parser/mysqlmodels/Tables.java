@@ -4,6 +4,7 @@
 package appengine.parser.mysqlmodels;
 
 
+import appengine.parser.mysqlmodels.tables.Coinstatus;
 import appengine.parser.mysqlmodels.tables.Cointransfer;
 import appengine.parser.mysqlmodels.tables.Fetcher;
 import appengine.parser.mysqlmodels.tables.Fromfbpage;
@@ -30,6 +31,11 @@ import javax.annotation.Generated;
 )
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Tables {
+
+    /**
+     * The table <code>parser.coinstatus</code>.
+     */
+    public static final Coinstatus COINSTATUS = appengine.parser.mysqlmodels.tables.Coinstatus.COINSTATUS;
 
     /**
      * The table <code>parser.cointransfer</code>.
