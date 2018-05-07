@@ -35,6 +35,7 @@ public class ExcludeList {
             exclusions.put("BTA", Arrays.asList(Market.SOUTHXCHANGE));
             exclusions.put("GOLOS", Arrays.asList(Market.LIQUI));
             exclusions.put("INCNT", Arrays.asList(Market.LIQUI));
+            exclusions.put("BCD",Arrays.asList(Market.BINANCE));
         }
 
         List<Market> markets = exclusions.get(coin.toUpperCase());

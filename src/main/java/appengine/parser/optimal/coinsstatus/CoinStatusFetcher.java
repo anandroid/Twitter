@@ -18,7 +18,6 @@ public class CoinStatusFetcher {
 
 
         CoinsStatusUtil coinStatus = null;
-
         for (Market market : Market.values()) {
             try {
 
@@ -76,6 +75,7 @@ public class CoinStatusFetcher {
                     .set(COINSTATUS.ISWALLETACTIVE, boolToByte(coinStatus.isWalletActive()))
                     .set(COINSTATUS.ISLISTINGACTIVE, boolToByte(coinStatus.isListingActive()))
                     .set(COINSTATUS.TIME, getCurrentTime())
+                    //.set(COINSTATUS.NAME, coinStatus.getCoinName())
                     .execute();
 
         }
