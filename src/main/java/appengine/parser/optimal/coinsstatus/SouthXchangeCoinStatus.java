@@ -97,7 +97,7 @@ public class SouthXchangeCoinStatus implements CoinsStatusUtil {
         HashMap<String, String> map = new HashMap<>();
         try {
             jsonString = IOUtils.toString(new FileInputStream(new
-                    File("/Users/anand.kurapati/Downloads/Parser/Parser/southxchange_coinnames.json")), "UTF-8");
+                    File("southxchange_coinnames.json")), "UTF-8");
 
             JSONArray jsonArray = new JSONArray(jsonString);
             for (int i = 0; i < jsonArray.length(); i++) {

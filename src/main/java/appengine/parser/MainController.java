@@ -492,6 +492,9 @@ public class MainController {
         if (market.equalsIgnoreCase(Market.SOUTHXCHANGE.name())) {
             coinsStatusUtil = new SouthXchangeCoinStatus();
         }
+        if (market.equalsIgnoreCase(Market.BITZ.name())) {
+            coinsStatusUtil = new BitzCoinStatus();
+        }
 
         List<CoinStatus> coinInfoList = coinsStatusUtil.getCoinsStatusList();
         return "size " + coinInfoList.size();

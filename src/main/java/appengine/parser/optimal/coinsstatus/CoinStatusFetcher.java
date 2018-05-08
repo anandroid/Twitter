@@ -48,6 +48,9 @@ public class CoinStatusFetcher {
                 if (market == Market.SOUTHXCHANGE) {
                     coinStatus = new SouthXchangeCoinStatus();
                 }
+                if (market == Market.BITZ) {
+                    coinStatus = new BitzCoinStatus();
+                }
 
                 updateOnDB(coinStatus.getCoinsStatusList());
 
