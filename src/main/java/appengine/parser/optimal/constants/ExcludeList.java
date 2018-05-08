@@ -6,7 +6,6 @@ import appengine.parser.optimal.objects.Market;
 import appengine.parser.utils.DataBaseConnector;
 import org.jooq.DSLContext;
 import org.jooq.Record5;
-import org.jooq.util.derby.sys.Sys;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -35,7 +34,7 @@ public class ExcludeList {
             exclusions.put("BTA", Arrays.asList(Market.SOUTHXCHANGE));
             exclusions.put("GOLOS", Arrays.asList(Market.LIQUI));
             exclusions.put("INCNT", Arrays.asList(Market.LIQUI));
-            exclusions.put("BCD",Arrays.asList(Market.BINANCE));
+            exclusions.put("BCD", Arrays.asList(Market.BINANCE));
         }
 
         List<Market> markets = exclusions.get(coin.toUpperCase());
@@ -55,18 +54,6 @@ public class ExcludeList {
 
     private static boolean checkExclusionFromDB(String coin, CoinMarket firstMarket, CoinMarket secondMarket) {
 
-        if (firstMarket.getMarket() == Market.BITZ ||
-                firstMarket.getMarket() == Market.COBINHOOD
-                || firstMarket.getMarket() == Market.LIQUI) {
-            return false;
-        }
-
-        if (secondMarket != null &&
-                (secondMarket.getMarket() == Market.BITZ ||
-                        secondMarket.getMarket() == Market.COBINHOOD
-                        || secondMarket.getMarket() == Market.LIQUI)) {
-            return false;
-        }
 
         DSLContext dslContext = DataBaseConnector.getDSLContext();
 
@@ -74,7 +61,7 @@ public class ExcludeList {
                 COINSTATUS.ISWALLETACTIVE, COINSTATUS.ISLISTINGACTIVE).from(COINSTATUS).where(COINSTATUS.LABEL.eq(coin).and(
                 COINSTATUS.MARKET.eq(firstMarket.getMarket().name()))).fetchOne();
 
-        System.out.println("Coin Market "+coin+" "+firstMarket.getMarket());
+        System.out.println("Coin Market " + coin + " " + firstMarket.getMarket());
 
         CoinStatus firstCoinStatus = new CoinStatus(Market.valueOf(firstCoinRecord.value3()),
                 firstCoinRecord.value1(), firstCoinRecord.value2(), byteToBool(firstCoinRecord.value4()),
@@ -94,7 +81,7 @@ public class ExcludeList {
                     COINSTATUS.ISWALLETACTIVE, COINSTATUS.ISLISTINGACTIVE).from(COINSTATUS).where(COINSTATUS.LABEL.eq(coin).and(
                     COINSTATUS.MARKET.eq(secondMarket.getMarket().name()))).fetchOne();
 
-            System.out.println("Coin Market "+coin+" "+firstMarket.getMarket()+" "+secondMarket.getMarket());
+            System.out.println("Coin Market " + coin + " " + firstMarket.getMarket() + " " + secondMarket.getMarket());
 
             CoinStatus secondCoinStatus = new CoinStatus(Market.valueOf(secondCoinRecord.value3()),
                     secondCoinRecord.value1(), secondCoinRecord.value2(), byteToBool(secondCoinRecord.value4()),

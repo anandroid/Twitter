@@ -495,6 +495,12 @@ public class MainController {
         if (market.equalsIgnoreCase(Market.BITZ.name())) {
             coinsStatusUtil = new BitzCoinStatus();
         }
+        if (market.equalsIgnoreCase(Market.COBINHOOD.name())) {
+            coinsStatusUtil = new CobinhoodCoinStatus();
+        }
+        if (market.equalsIgnoreCase(Market.LIQUI.name())) {
+            coinsStatusUtil = new LiquiCoinStatus();
+        }
 
         List<CoinStatus> coinInfoList = coinsStatusUtil.getCoinsStatusList();
         return "size " + coinInfoList.size();

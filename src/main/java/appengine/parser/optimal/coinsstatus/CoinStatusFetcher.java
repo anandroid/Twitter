@@ -51,6 +51,12 @@ public class CoinStatusFetcher {
                 if (market == Market.BITZ) {
                     coinStatus = new BitzCoinStatus();
                 }
+                if (market == Market.COBINHOOD) {
+                    coinStatus = new CobinhoodCoinStatus();
+                }
+                if (market == Market.LIQUI) {
+                    coinStatus = new LiquiCoinStatus();
+                }
 
                 updateOnDB(coinStatus.getCoinsStatusList());
 

@@ -26,7 +26,7 @@ public class BitzCoinStatus implements CoinsStatusUtil {
             for (Element coinRowElement : coinRowElements) {
 
                 try {
-                    String coin = coinRowElement.attr("coin");
+                    String coin = coinRowElement.attr("coin").toUpperCase();
                     String name = coinRowElement.attr("display");
 
                     Elements aElements = coinRowElement.getElementsByTag("a");
