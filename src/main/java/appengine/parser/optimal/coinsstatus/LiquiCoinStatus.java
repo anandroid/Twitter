@@ -44,7 +44,7 @@ public class LiquiCoinStatus implements CoinsStatusUtil {
 
 
                     String name = "";
-                    String label = key.split("_btc")[0];
+                    String label = (key.split("_btc")[0]).toUpperCase();
                     boolean isWalletActive = true;
                     boolean isListingActive = true;
 
@@ -70,7 +70,7 @@ public class LiquiCoinStatus implements CoinsStatusUtil {
         if (coinInfoList == null || coinInfoList.size() == 0) {
             fetch();
         }
-        return coinInfoList;
+            return coinInfoList;
     }
 
     @Override

@@ -14,6 +14,7 @@ import appengine.parser.optimal.objects.Market;
 import org.knowm.xchange.Exchange;
 import org.knowm.xchange.ExchangeFactory;
 import org.knowm.xchange.binance.BinanceExchange;
+import org.knowm.xchange.bittrex.BittrexExchange;
 import org.knowm.xchange.cryptopia.CryptopiaExchange;
 import org.knowm.xchange.currency.CurrencyPair;
 import org.knowm.xchange.dto.marketdata.OrderBook;
@@ -185,6 +186,8 @@ public class OrderBookCalculator {
             case SOUTHXCHANGE:
                 tradeDepth = new SouthXchangeUtil().getTradeDepth(coin);
                 break;
+            case BITTREX:
+                exchange = ExchangeFactory.INSTANCE.createExchange(BittrexExchange.class.getName());
 
         }
 
