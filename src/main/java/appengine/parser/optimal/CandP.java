@@ -61,7 +61,6 @@ public class CandP {
 
     private void rawCryptoPia(CryptopiaMarketDataServiceRaw marketDataService) throws IOException {
         cryptopiaTickerList = marketDataService.getCryptopiaMarkets(Currency.BTC);
-        //System.out.println(cryptopiaTickerList.toString());
     }
 
     private void fillPoloniex() {

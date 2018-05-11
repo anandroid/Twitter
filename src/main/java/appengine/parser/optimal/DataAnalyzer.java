@@ -13,6 +13,7 @@ import org.jooq.*;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 
 import static appengine.parser.mysqlmodels.Tables.*;
 
@@ -64,6 +65,16 @@ public class DataAnalyzer {
         return getDataFromTime(updatedTimeRecord.value1(), isJson, minimumPercentage);
     }
 
+    public List<ResultOfCalculation> getDataFromLastUpdateWithMinPercentage(int minimumPercentage) {
+
+        DSLContext dslContext = DataBaseConnector.getDSLContext();
+        Record1<Timestamp> updatedTimeRecord =
+                dslContext.select(OPTIMALUPDATE.UPDATEDTIME).from(OPTIMALUPDATE)
+                        .where(OPTIMALUPDATE.OPERATION.eq(OptimalupdateOperation.COINCALCULATOR)).fetchOne();
+
+        return getDataFromTime(updatedTimeRecord.value1(), minimumPercentage);
+    }
+
     public String getDataFromLastUpdate(boolean isJson) {
 
         DSLContext dslContext = DataBaseConnector.getDSLContext();
@@ -80,6 +91,21 @@ public class DataAnalyzer {
 
 
     public String getDataFromTime(Timestamp timeStamp, boolean isJson, int minPercentageProfit) {
+        List<ResultOfCalculation> resultOfCalculations = getDataFromTime(timeStamp, minPercentageProfit);
+        for (int i = 0; i < resultOfCalculations.size(); i++) {
+            ResultOfCalculation resultOfCalculation = resultOfCalculations.get(i);
+            if (isJson) {
+                print(resultOfCalculation.toJSON(), isJson);
+            } else {
+                print(resultOfCalculation.toString(), isJson);
+            }
+
+        }
+        return resultString(isJson);
+    }
+
+    public List<ResultOfCalculation> getDataFromTime(Timestamp timeStamp, int minPercentageProfit) {
+        List<ResultOfCalculation> resultOfCalculations = new ArrayList<>();
         DSLContext dslContext = DataBaseConnector.getDSLContext();
         Result<Record2<String, Timestamp>> result = dslContext.select(OPTIMALJSON.JSON, OPTIMALJSON.TIME).from(OPTIMALJSON).
                 where(OPTIMALJSON.TIME.greaterOrEqual(timeStamp)).and(OPTIMALJSON.COINLABEL.isNotNull()).fetch();
@@ -87,14 +113,10 @@ public class DataAnalyzer {
             ResultOfCalculation resultOfCalculation = new Gson().fromJson(result.get(i).value1(), ResultOfCalculation.class);
             resultOfCalculation.setTimestamp(result.get(i).value2());
             if (resultOfCalculation.profitPercentage() > minPercentageProfit) {
-                if (isJson) {
-                    print(resultOfCalculation.toJSON(), isJson);
-                } else {
-                    print(resultOfCalculation.toString(), isJson);
-                }
+                resultOfCalculations.add(resultOfCalculation);
             }
         }
-        return resultString(isJson);
+        return resultOfCalculations;
     }
 
     public ArrayList<ResultOfCalculation> getDataFromLastUpdate() {

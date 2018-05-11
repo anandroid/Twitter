@@ -72,7 +72,6 @@ public class MainController {
             ArrayList<DetailedPost> fbPosts = facebook.getPhotoPostsOfPage(pageId);
             for (AccessToken accessToken : baseRepository.getAccessTokensOfSameCategory(pageId)) {
                 for (DetailedPost fbPost : fbPosts) {
-                    System.out.println(fbPost.toString());
                     //Log.print("FbPost -  Picture " + fbPost.getFirstPictureLink() + "  Permalink " + fbPost.getPermalinkUrl());
                     facebook.publishImage(fbPost, accessToken);
                 }
@@ -504,6 +503,13 @@ public class MainController {
 
         List<CoinStatus> coinInfoList = coinsStatusUtil.getCoinsStatusList();
         return "size " + coinInfoList.size();
+    }
+
+    @GetMapping("/coincalculator/appnotifier")
+    public String appNotifier() {
+        AppNotifier appNotifier = new AppNotifier();
+        appNotifier.calculateAndNotify();
+        return "success";
     }
 
 

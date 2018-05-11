@@ -42,7 +42,6 @@ public class OkexLivecoinApi {
             CoinInfo coinInfo = getCoinInfoFromCoin(resultOfCalculation.getCoin(), liveCoinInfoList);
             if (resultOfCalculation.profitPercentage() > 0.5 && coinInfo != null && isCoinWalletStatusOk(coinInfo)) {
 
-                System.out.println(resultOfCalculation.toString());
                 print(resultOfCalculation.toJSON(), isJson);
 
                 TradeDepth tradeDepth = getTradeDepthForCoin(resultOfCalculation.getCoin(), allTradeDepths);
@@ -62,10 +61,8 @@ public class OkexLivecoinApi {
                         //purchase(transfer, coinInfo);
                     }
                     print(transfer.toString(), isJson);
-                    System.out.println(transfer.toString());
                 } else {
                     print("Trade depth null", isJson);
-                    System.out.println("Trade depth null");
                 }
             }
 

@@ -86,12 +86,7 @@ public class BinanceUtil implements MarketUtil {
     }
 
     private static void generic(MarketDataService marketDataService, CurrencyPair pair) throws IOException {
-        System.out.println("cuurency pair "+pair.toString());
         OrderBook orderBook = marketDataService.getOrderBook(pair, new Object[0]);
-        System.out.println("Current Order Book size for BTC / " + pair.counter.getCurrencyCode() + ": " + (orderBook.getAsks().size() + orderBook.getBids().size()));
-        System.out.println("First Ask: " + ((LimitOrder)orderBook.getAsks().get(0)).toString());
-        System.out.println("First Bid: " + ((LimitOrder)orderBook.getBids().get(0)).toString());
-        System.out.println(orderBook.toString());
     }
 
 

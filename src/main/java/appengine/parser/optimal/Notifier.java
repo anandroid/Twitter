@@ -43,11 +43,6 @@ public class Notifier {
                 resultOfCalculation = realResultOfCalculation;
             }
 
-            if (resultOfCalculation.getCoin().equalsIgnoreCase("DASH")) {
-                System.out.println("Reached here");
-            }
-
-
             int otherMarketIndex = -1;
 
             while (otherMarketIndex < otherMarketsSize) {
@@ -146,7 +141,7 @@ public class Notifier {
 
                 if (newnotify.notifyType != null) {
                     insertResultInDB(newnotify);
-                    postOnSlacKOkexBinance(newnotify.toString());
+                    //postOnSlacKOkexBinance(newnotify.toString());
                 }
             }
 

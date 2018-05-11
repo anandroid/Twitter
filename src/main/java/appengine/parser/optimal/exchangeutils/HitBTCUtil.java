@@ -46,7 +46,6 @@ public class HitBTCUtil implements MarketUtil {
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
-                    // System.out.print("Error Coin " + tickers.get(key).getSymbol());
                 }
             }
         } catch (Exception e) {

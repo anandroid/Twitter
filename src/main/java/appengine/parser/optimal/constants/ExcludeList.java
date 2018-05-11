@@ -61,7 +61,6 @@ public class ExcludeList {
                 COINSTATUS.ISWALLETACTIVE, COINSTATUS.ISLISTINGACTIVE).from(COINSTATUS).where(COINSTATUS.LABEL.eq(coin).and(
                 COINSTATUS.MARKET.eq(firstMarket.getMarket().name()))).fetchOne();
 
-        System.out.println("Coin Market " + coin + " " + firstMarket.getMarket());
 
         CoinStatus firstCoinStatus = new CoinStatus(Market.valueOf(firstCoinRecord.value3()),
                 firstCoinRecord.value1(), firstCoinRecord.value2(), byteToBool(firstCoinRecord.value4()),
@@ -81,7 +80,6 @@ public class ExcludeList {
                     COINSTATUS.ISWALLETACTIVE, COINSTATUS.ISLISTINGACTIVE).from(COINSTATUS).where(COINSTATUS.LABEL.eq(coin).and(
                     COINSTATUS.MARKET.eq(secondMarket.getMarket().name()))).fetchOne();
 
-            System.out.println("Coin Market " + coin + " " + firstMarket.getMarket() + " " + secondMarket.getMarket());
 
             CoinStatus secondCoinStatus = new CoinStatus(Market.valueOf(secondCoinRecord.value3()),
                     secondCoinRecord.value1(), secondCoinRecord.value2(), byteToBool(secondCoinRecord.value4()),

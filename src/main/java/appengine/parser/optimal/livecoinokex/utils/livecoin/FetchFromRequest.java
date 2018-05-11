@@ -92,7 +92,6 @@ public class FetchFromRequest {
         try {
 
             String signature = createSignature(buildQueryString(postData), secKey);
-            System.out.println("signature " + signature);
             // url = url + "&Api-Key=" + apiKey + "&Sign=" + signature;
 
             URL queryUrl = new URL(url);

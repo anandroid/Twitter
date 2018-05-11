@@ -239,7 +239,6 @@ public class ResultOfCalculation {
 
 
     public String toJSON() {
-        System.out.println("Coin " + coin + "Profit " + profit);
         return new Gson().toJson(this, ResultOfCalculation.class);
     }
 
