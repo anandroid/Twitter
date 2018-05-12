@@ -31,121 +31,136 @@ public class ResultOfCalculation {
 
     private void validateExclusionList() {
 
-        if (ExcludeList.isExcluded(coin, lowestBuyCoin, null)) {
-            CoinMarket nextLowestBuyMarket = null;
-            Double lowestBuyPrice = new Double(10);
+        try {
 
-            for (CoinMarket otherCoinMarket : allOtherCoins) {
-                if (otherCoinMarket.getOurBuyPrice() < lowestBuyPrice) {
-                    if (!ExcludeList.isExcluded(coin, otherCoinMarket, null)) {
-                        nextLowestBuyMarket = otherCoinMarket;
-                        lowestBuyPrice = otherCoinMarket.getOurBuyPrice();
-                    }
-                }
-            }
-
-            if (nextLowestBuyMarket != null) {
-                this.lowestBuyCoin = nextLowestBuyMarket;
-            } else {
-                // means no good pair exists hence loss will occur if u buy
-                this.lowestBuyCoin.setBuyPrice(new Double(10));
-                return;
-            }
-        }
-
-        if (ExcludeList.isExcluded(coin, highestSellCoin, null)) {
-            CoinMarket nextHighestSellMarket = null;
-            Double highestSellPrice = new Double(0);
-
-            for (CoinMarket otherCoinMarket : allOtherCoins) {
-                if (otherCoinMarket.getOurSellPrice() > highestSellPrice) {
-                    if (!ExcludeList.isExcluded(coin, otherCoinMarket, null)) {
-                        nextHighestSellMarket = otherCoinMarket;
-                        highestSellPrice = otherCoinMarket.getOurSellPrice();
-                    }
-                }
-            }
-
-            if (nextHighestSellMarket != null) {
-                this.highestSellCoin = nextHighestSellMarket;
-            } else {
-                // means no good pair hence loss will occur if u sell anywhere
-                this.highestSellCoin.setSellPrice(new Double(0));
-                return;
-            }
-        }
-
-        if (ExcludeList.isExcluded(coin, lowestBuyCoin, highestSellCoin)) {
-
-            CoinMarket nextLowestBuyMarket = null;
-            Double lowestBuyPrice = new Double(10);
-
-            for (CoinMarket otherCoinMarket : allOtherCoins) {
-                if (otherCoinMarket.getOurBuyPrice() < lowestBuyPrice) {
-                    if (!ExcludeList.isExcluded(coin, otherCoinMarket, highestSellCoin)) {
-                        nextLowestBuyMarket = otherCoinMarket;
-                        lowestBuyPrice = otherCoinMarket.getOurBuyPrice();
-                    }
-                }
-            }
-
-            if (nextLowestBuyMarket == null) {
-                // means no pair exists with current highestSellcoin , so try changing highestSellCoin
-
-                CoinMarket nextHighestSellMarket = null;
-                Double highestSellPrice = new Double(0);
+            if (ExcludeList.isExcluded(coin, lowestBuyCoin, null)) {
+                CoinMarket nextLowestBuyMarket = null;
+                Double lowestBuyPrice = new Double(10);
 
                 for (CoinMarket otherCoinMarket : allOtherCoins) {
-                    if (otherCoinMarket.getOurSellPrice() > highestSellPrice) {
-                        if (!ExcludeList.isExcluded(coin, lowestBuyCoin, otherCoinMarket)) {
-                            nextHighestSellMarket = otherCoinMarket;
-                            highestSellPrice = otherCoinMarket.getOurSellPrice();
+                    if (otherCoinMarket.getOurBuyPrice() < lowestBuyPrice) {
+                        if (!ExcludeList.isExcluded(coin, otherCoinMarket, null)) {
+                            nextLowestBuyMarket = otherCoinMarket;
+                            lowestBuyPrice = otherCoinMarket.getOurBuyPrice();
                         }
                     }
                 }
 
-                if (nextHighestSellMarket == null) {
-                    //Ditch this dont sell this coin
-                    this.highestSellCoin.setSellPrice(new Double(0));
+                if (nextLowestBuyMarket != null) {
+                    this.lowestBuyCoin = nextLowestBuyMarket;
+                } else {
+                    // means no good pair exists hence loss will occur if u buy
                     this.lowestBuyCoin.setBuyPrice(new Double(10));
                     return;
-                } else {
-                    this.highestSellCoin = nextHighestSellMarket;
                 }
-            } else {
+            }
 
+            if (ExcludeList.isExcluded(coin, highestSellCoin, null)) {
                 CoinMarket nextHighestSellMarket = null;
                 Double highestSellPrice = new Double(0);
 
                 for (CoinMarket otherCoinMarket : allOtherCoins) {
                     if (otherCoinMarket.getOurSellPrice() > highestSellPrice) {
-                        if (!ExcludeList.isExcluded(coin, lowestBuyCoin, otherCoinMarket)) {
+                        if (!ExcludeList.isExcluded(coin, otherCoinMarket, null)) {
                             nextHighestSellMarket = otherCoinMarket;
                             highestSellPrice = otherCoinMarket.getOurSellPrice();
                         }
                     }
                 }
 
-                Double lowestBuy = nextLowestBuyMarket.getOurBuyPrice();
-
-                Double higherSell = highestSellCoin.getOurSellPrice();
-
-                Double profitPercentageWithLowestBuyMarketChanged = ((higherSell - lowestBuy) / lowestBuy) * 100;
-
-                lowestBuy = lowestBuyCoin.getOurBuyPrice();
-
-                higherSell = nextHighestSellMarket.getOurSellPrice();
-
-                Double profitPercentageWithHighestSellMarketChanged = ((higherSell - lowestBuy) / lowestBuy) * 100;
-
-                if (profitPercentageWithHighestSellMarketChanged > profitPercentageWithLowestBuyMarketChanged) {
-                    highestSellCoin = nextHighestSellMarket;
+                if (nextHighestSellMarket != null) {
+                    this.highestSellCoin = nextHighestSellMarket;
                 } else {
-                    lowestBuyCoin = nextLowestBuyMarket;
+                    // means no good pair hence loss will occur if u sell anywhere
+                    this.highestSellCoin.setSellPrice(new Double(0));
+                    return;
+                }
+            }
+
+            if (ExcludeList.isExcluded(coin, lowestBuyCoin, highestSellCoin)) {
+
+                CoinMarket nextLowestBuyMarket = null;
+                Double lowestBuyPrice = new Double(10);
+
+                for (CoinMarket otherCoinMarket : allOtherCoins) {
+                    if (otherCoinMarket.getOurBuyPrice() < lowestBuyPrice) {
+                        if (!ExcludeList.isExcluded(coin, otherCoinMarket, highestSellCoin)) {
+                            nextLowestBuyMarket = otherCoinMarket;
+                            lowestBuyPrice = otherCoinMarket.getOurBuyPrice();
+                        }
+                    }
+                }
+
+                if (nextLowestBuyMarket == null) {
+                    // means no pair exists with current highestSellcoin , so try changing highestSellCoin
+
+                    CoinMarket nextHighestSellMarket = null;
+                    Double highestSellPrice = new Double(0);
+
+                    for (CoinMarket otherCoinMarket : allOtherCoins) {
+                        if (otherCoinMarket.getOurSellPrice() > highestSellPrice) {
+                            if (!ExcludeList.isExcluded(coin, lowestBuyCoin, otherCoinMarket)) {
+                                nextHighestSellMarket = otherCoinMarket;
+                                highestSellPrice = otherCoinMarket.getOurSellPrice();
+                            }
+                        }
+                    }
+
+                    if (nextHighestSellMarket == null) {
+                        //Ditch this dont sell this coin
+                        this.highestSellCoin.setSellPrice(new Double(0));
+                        this.lowestBuyCoin.setBuyPrice(new Double(10));
+                        return;
+                    } else {
+                        this.highestSellCoin = nextHighestSellMarket;
+                    }
+                } else {
+
+                    CoinMarket nextHighestSellMarket = null;
+                    Double highestSellPrice = new Double(0);
+
+                    for (CoinMarket otherCoinMarket : allOtherCoins) {
+                        if (otherCoinMarket.getOurSellPrice() > highestSellPrice) {
+                            if (!ExcludeList.isExcluded(coin, lowestBuyCoin, otherCoinMarket)) {
+                                nextHighestSellMarket = otherCoinMarket;
+                                highestSellPrice = otherCoinMarket.getOurSellPrice();
+                            }
+                        }
+                    }
+
+                    if (nextHighestSellMarket == null) {
+                        //Ditch this dont sell this coin
+                        this.highestSellCoin.setSellPrice(new Double(0));
+                        this.lowestBuyCoin.setBuyPrice(new Double(10));
+                        return;
+                    }
+
+                    Double lowestBuy = nextLowestBuyMarket.getOurBuyPrice();
+
+                    Double higherSell = highestSellCoin.getOurSellPrice();
+
+                    Double profitPercentageWithLowestBuyMarketChanged = ((higherSell - lowestBuy) / lowestBuy) * 100;
+
+                    lowestBuy = lowestBuyCoin.getOurBuyPrice();
+
+                    higherSell = nextHighestSellMarket.getOurSellPrice();
+
+                    Double profitPercentageWithHighestSellMarketChanged = ((higherSell - lowestBuy) / lowestBuy) * 100;
+
+                    if (profitPercentageWithHighestSellMarketChanged > profitPercentageWithLowestBuyMarketChanged) {
+                        highestSellCoin = nextHighestSellMarket;
+                    } else {
+                        lowestBuyCoin = nextLowestBuyMarket;
+                    }
+
                 }
 
             }
-
+        } catch (Exception e) {
+            System.out.println(toJSON());
+            e.printStackTrace();
+            this.highestSellCoin.setSellPrice(new Double(0));
+            this.lowestBuyCoin.setBuyPrice(new Double(10));
         }
 
     }

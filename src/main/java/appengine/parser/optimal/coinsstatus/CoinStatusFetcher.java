@@ -16,7 +16,6 @@ public class CoinStatusFetcher {
 
     public void fetch() {
 
-
         CoinsStatusUtil coinStatus = null;
         for (Market market : Market.values()) {
             try {

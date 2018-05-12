@@ -22,7 +22,7 @@ public class ExcludeList {
     static List<CoinStatus> coinStatusList = new ArrayList<>();
 
     public static boolean isExcluded(String coin, CoinMarket firstMarket, CoinMarket secondMarket) {
-        if (exclusions.size() == 0) {
+        if (exclusions.size() != 14) {
             exclusions.put("PXC", Arrays.asList(Market.CRYPTOPIA, Market.BITZ));
             exclusions.put("SMT", Arrays.asList(Market.SOUTHXCHANGE));
             exclusions.put("OC", Arrays.asList(Market.BITZ, Market.COINEXCHANGE));
@@ -35,6 +35,8 @@ public class ExcludeList {
             exclusions.put("GOLOS", Arrays.asList(Market.LIQUI));
             exclusions.put("INCNT", Arrays.asList(Market.LIQUI));
             exclusions.put("BCD", Arrays.asList(Market.BINANCE));
+            exclusions.put("SLR", Arrays.asList(Market.COINEXCHANGE));//may 11th 2018
+            exclusions.put("BCN", Arrays.asList(Market.HitBTC));//may 11th 2018
         }
 
         List<Market> markets = exclusions.get(coin.toUpperCase());
@@ -61,10 +63,10 @@ public class ExcludeList {
                 COINSTATUS.ISWALLETACTIVE, COINSTATUS.ISLISTINGACTIVE).from(COINSTATUS).where(COINSTATUS.LABEL.eq(coin).and(
                 COINSTATUS.MARKET.eq(firstMarket.getMarket().name()))).fetchOne();
 
-
         CoinStatus firstCoinStatus = new CoinStatus(Market.valueOf(firstCoinRecord.value3()),
                 firstCoinRecord.value1(), firstCoinRecord.value2(), byteToBool(firstCoinRecord.value4()),
                 byteToBool(firstCoinRecord.value5()));
+
 
         if (!firstCoinStatus.isWalletActive()) {
             return true;
@@ -95,11 +97,35 @@ public class ExcludeList {
             if (!firstCoinStatus.getCoinName().equalsIgnoreCase("") &&
                     !secondCoinStatus.getCoinName().equalsIgnoreCase("")) {
 
-                if (!firstCoinStatus.getCoinName().trim().equalsIgnoreCase(
-                        secondCoinStatus.getCoinName().trim())) {
+                if (!isCoinNameEqual(firstCoinStatus.getCoinName(), secondCoinStatus.getCoinName())) {
                     return true;
                 }
             }
+        }
+
+        return false;
+
+    }
+
+    public static boolean isCoinNameEqual(String firstCoinName, String secondCoinName) {
+
+        firstCoinName = firstCoinName.trim();
+        secondCoinName = secondCoinName.trim();
+
+        firstCoinName = firstCoinName.replace(" ", "");
+        secondCoinName = secondCoinName.replace(" ", "");
+
+        firstCoinName = firstCoinName.toLowerCase();
+        secondCoinName = secondCoinName.toLowerCase();
+
+        firstCoinName = firstCoinName.replace("token", "");
+        secondCoinName = secondCoinName.replace("token", "");
+
+        firstCoinName = firstCoinName.replace("coin", "");
+        secondCoinName = secondCoinName.replace("coin", "");
+
+        if (firstCoinName.equalsIgnoreCase(secondCoinName)) {
+            return true;
         }
 
         return false;
