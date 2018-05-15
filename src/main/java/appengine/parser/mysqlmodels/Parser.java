@@ -15,6 +15,7 @@ import appengine.parser.mysqlmodels.tables.Optimalnotify;
 import appengine.parser.mysqlmodels.tables.Optimalupdate;
 import appengine.parser.mysqlmodels.tables.Promotefbpage;
 import appengine.parser.mysqlmodels.tables.Sockettradearbitary;
+import appengine.parser.mysqlmodels.tables.Swiggyevents;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -40,7 +41,7 @@ import org.jooq.impl.SchemaImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Parser extends SchemaImpl {
 
-    private static final long serialVersionUID = 2118466000;
+    private static final long serialVersionUID = 592502112;
 
     /**
      * The reference instance of <code>parser</code>
@@ -103,6 +104,11 @@ public class Parser extends SchemaImpl {
     public final Sockettradearbitary SOCKETTRADEARBITARY = appengine.parser.mysqlmodels.tables.Sockettradearbitary.SOCKETTRADEARBITARY;
 
     /**
+     * The table <code>parser.swiggyevents</code>.
+     */
+    public final Swiggyevents SWIGGYEVENTS = appengine.parser.mysqlmodels.tables.Swiggyevents.SWIGGYEVENTS;
+
+    /**
      * No further instances allowed
      */
     private Parser() {
@@ -137,6 +143,7 @@ public class Parser extends SchemaImpl {
             Optimalnotify.OPTIMALNOTIFY,
             Optimalupdate.OPTIMALUPDATE,
             Promotefbpage.PROMOTEFBPAGE,
-            Sockettradearbitary.SOCKETTRADEARBITARY);
+            Sockettradearbitary.SOCKETTRADEARBITARY,
+            Swiggyevents.SWIGGYEVENTS);
     }
 }

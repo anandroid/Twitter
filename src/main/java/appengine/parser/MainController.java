@@ -24,15 +24,20 @@ import appengine.parser.optimal.utils.OrderBookCalculator;
 import appengine.parser.repository.BaseRepository;
 import appengine.parser.repository.DefaultRepository;
 import appengine.parser.repository.PagesAggregatorRepository;
+import appengine.parser.temp.SwiggyEvent;
+import appengine.parser.temp.SwiggyEventList;
+import appengine.parser.temp.SwiggyEventsUtil;
 import appengine.parser.twitter.Twitter;
 import appengine.parser.utils.StringUtils;
 import appengine.parser.wordpress.WordPress;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.JsonObject;
 import com.restfb.types.Post;
+import org.json.JSONObject;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import twitter4j.QueryResult;
 import twitter4j.Status;
 
@@ -510,6 +515,30 @@ public class MainController {
         AppNotifier appNotifier = new AppNotifier();
         appNotifier.calculateAndNotify();
         return "success";
+    }
+
+    @GetMapping("/coincalculator/getunequalnames")
+    public String getUnEqualNames() {
+        MiscCoinStatusUtil miscCoinStatusUtil = new MiscCoinStatusUtil();
+        return miscCoinStatusUtil.printSameCoinWithDifferentLabels();
+    }
+
+    @PostMapping("/swiggylytics/post")
+    public String post(@RequestBody SwiggyEventList events) {
+        new SwiggyEventsUtil().addAll(events);
+        return "success";
+    }
+
+    @PostMapping("/swiggylytics/deleteall")
+    public String deleteAll() {
+        new SwiggyEventsUtil().deleteAll();
+        return "success";
+    }
+
+    @GetMapping(value = "/swiggylytics/get/limit/{limit}", produces = "application/json; charset=UTF-8")
+    @ResponseBody
+    public String getevents(@PathVariable String limit) {
+       return new SwiggyEventsUtil().getEvents(Integer.parseInt(limit)).toString();
     }
 
 

@@ -41,4 +41,5 @@ public class CoinStatus {
     public void setMarket(Market market) {
         this.market = market;
     }
+
 }

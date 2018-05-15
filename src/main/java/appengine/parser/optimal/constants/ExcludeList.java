@@ -108,27 +108,23 @@ public class ExcludeList {
     }
 
     public static boolean isCoinNameEqual(String firstCoinName, String secondCoinName) {
-
-        firstCoinName = firstCoinName.trim();
-        secondCoinName = secondCoinName.trim();
-
-        firstCoinName = firstCoinName.replace(" ", "");
-        secondCoinName = secondCoinName.replace(" ", "");
-
-        firstCoinName = firstCoinName.toLowerCase();
-        secondCoinName = secondCoinName.toLowerCase();
-
-        firstCoinName = firstCoinName.replace("token", "");
-        secondCoinName = secondCoinName.replace("token", "");
-
-        firstCoinName = firstCoinName.replace("coin", "");
-        secondCoinName = secondCoinName.replace("coin", "");
+        firstCoinName = convertToGenericName(firstCoinName);
+        secondCoinName = convertToGenericName(secondCoinName);
 
         if (firstCoinName.equalsIgnoreCase(secondCoinName)) {
             return true;
         }
 
         return false;
+    }
+
+    public static String convertToGenericName(String coinName) {
+        coinName = coinName.trim();
+        coinName = coinName.replace(" ", "");
+        coinName = coinName.toLowerCase();
+        coinName = coinName.replace("token", "");
+        coinName = coinName.replace("coin", "");
+        return coinName;
 
     }
 

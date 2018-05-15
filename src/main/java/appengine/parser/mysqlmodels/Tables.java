@@ -15,6 +15,7 @@ import appengine.parser.mysqlmodels.tables.Optimalnotify;
 import appengine.parser.mysqlmodels.tables.Optimalupdate;
 import appengine.parser.mysqlmodels.tables.Promotefbpage;
 import appengine.parser.mysqlmodels.tables.Sockettradearbitary;
+import appengine.parser.mysqlmodels.tables.Swiggyevents;
 
 import javax.annotation.Generated;
 
@@ -86,4 +87,9 @@ public class Tables {
      * The table <code>parser.sockettradearbitary</code>.
      */
     public static final Sockettradearbitary SOCKETTRADEARBITARY = appengine.parser.mysqlmodels.tables.Sockettradearbitary.SOCKETTRADEARBITARY;
+
+    /**
+     * The table <code>parser.swiggyevents</code>.
+     */
+    public static final Swiggyevents SWIGGYEVENTS = appengine.parser.mysqlmodels.tables.Swiggyevents.SWIGGYEVENTS;
 }
