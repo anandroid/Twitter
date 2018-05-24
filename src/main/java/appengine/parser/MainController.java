@@ -24,17 +24,12 @@ import appengine.parser.optimal.utils.OrderBookCalculator;
 import appengine.parser.repository.BaseRepository;
 import appengine.parser.repository.DefaultRepository;
 import appengine.parser.repository.PagesAggregatorRepository;
-import appengine.parser.temp.SwiggyEvent;
-import appengine.parser.temp.SwiggyEventList;
+import appengine.parser.temp.SwiggyEventAndHeader;
 import appengine.parser.temp.SwiggyEventsUtil;
 import appengine.parser.twitter.Twitter;
 import appengine.parser.utils.StringUtils;
 import appengine.parser.wordpress.WordPress;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.JsonObject;
 import com.restfb.types.Post;
-import org.json.JSONObject;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.*;
@@ -524,7 +519,7 @@ public class MainController {
     }
 
     @PostMapping("/swiggylytics/post")
-    public String post(@RequestBody SwiggyEventList events) {
+    public String post(@RequestBody List<SwiggyEventAndHeader> events) {
         new SwiggyEventsUtil().addAll(events);
         return "success";
     }
@@ -538,7 +533,7 @@ public class MainController {
     @GetMapping(value = "/swiggylytics/get/limit/{limit}", produces = "application/json; charset=UTF-8")
     @ResponseBody
     public String getevents(@PathVariable String limit) {
-       return new SwiggyEventsUtil().getEvents(Integer.parseInt(limit)).toString();
+        return new SwiggyEventsUtil().getSwiggyEventsAndHeders(Integer.parseInt(limit)).toString();
     }
 
 
