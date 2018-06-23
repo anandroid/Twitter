@@ -54,6 +54,66 @@
         <schedule>every 15 minutes</schedule>
     </cron>
 
+    <!--<cron>
+        <url>/instagram/getlistoffollowers</url>
+        <description>Get Dogs Lover Followers - Instagram</description>
+        <schedule>every 12 minutes</schedule>
+    </cron>
+
+    <cron>
+        <url>/instagram/getlistoflikers</url>
+        <description>Get Dogs Lover Pic Likers - Instagram</description>
+        <schedule>every 12 minutes</schedule>
+    </cron>-->
+
+    <cron>
+        <url>/instagram/unfollowusers</url>
+        <description>Get Dogs Lover Pic Likers - Instagram</description>
+        <schedule>every 8 minutes</schedule>
+    </cron>
+
+    <cron>
+        <url>/gram/fetchusers</url>
+        <description>Get Users from Gram - Instagram</description>
+        <schedule>every 2 minutes</schedule>
+    </cron>
+
+
+
+     <cron>
+         <url>/instagram/followlikers</url>
+         <description>Follow Dogs Lover Pic Likers - Instagram</description>
+         <schedule>every 8 minutes</schedule>
+     </cron>
+
+    <cron>
+        <url>/likestar/selfgainorder</url>
+        <description>LikeStar SelfGainFollowers - Instagram</description>
+        <schedule>every 2 minutes</schedule>
+    </cron>
+
+    <cron>
+        <url>/followforfollow/gainpoints</url>
+        <description>RealFollowersPlus - Instagram</description>
+        <schedule>every 20 minutes</schedule>
+    </cron>
+
+
+
+   <!-- <cron>
+        <url>/likestar/gainpoints</url>
+        <description>LikeStar GainFollowers - Instagram</description>
+        <schedule>every 1 minutes</schedule>
+    </cron>-->
+
+
+
+   <!-- <cron>
+        <url>/instagram/followusers</url>
+        <description>Follow Dog Lovers Followers - Instagram</description>
+        <schedule>every 5 minutes</schedule>
+    </cron>-->
+
 
     <!-- <cron>
          <url>/coincalculator/automate/okexlivecoin</url>

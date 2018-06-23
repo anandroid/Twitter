@@ -26,6 +26,7 @@ public class SwiggyEvent {
     public String id;
     public String lt;
     public String lg;
+    public String device_id;
 
     public String toJSON() {
         return new Gson().toJson(this);

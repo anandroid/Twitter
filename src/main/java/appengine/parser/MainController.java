@@ -8,6 +8,14 @@ import appengine.parser.facebook.AcceptFriendRequests;
 import appengine.parser.facebook.AutoPost;
 import appengine.parser.facebook.DetailedPost;
 import appengine.parser.facebook.Facebook;
+import appengine.parser.instagram.FetchFollowers;
+import appengine.parser.instagram.FetchLikers;
+import appengine.parser.instagram.FollowUsers;
+import appengine.parser.instagram.UnFollowUsers;
+import appengine.parser.instagram.follow4follow.EarnPoints;
+import appengine.parser.instagram.gram.GetUsers;
+import appengine.parser.instagram.likestar.LikeStarEarnPoints;
+import appengine.parser.instagram.likestar.LikeStarSelfOrder;
 import appengine.parser.objects.AccessToken;
 import appengine.parser.objects.twitter4j.Tweet;
 import appengine.parser.optimal.*;
@@ -30,6 +38,7 @@ import appengine.parser.twitter.Twitter;
 import appengine.parser.utils.StringUtils;
 import appengine.parser.wordpress.WordPress;
 import com.restfb.types.Post;
+import org.json.JSONObject;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.*;
@@ -530,10 +539,86 @@ public class MainController {
         return "success";
     }
 
+    @GetMapping(value = "/swiggylytics/deletebydevice/{deviceid}", produces = "application/json; charset=UTF-8")
+    public String deleteAllByDevice(@PathVariable String deviceid) {
+        new SwiggyEventsUtil().deleteByDevice(deviceid);
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("success", true);
+        return jsonObject.toString();
+    }
+
     @GetMapping(value = "/swiggylytics/get/limit/{limit}", produces = "application/json; charset=UTF-8")
     @ResponseBody
     public String getevents(@PathVariable String limit) {
-        return new SwiggyEventsUtil().getSwiggyEventsAndHeders(Integer.parseInt(limit)).toString();
+        return new SwiggyEventsUtil().getSwiggyEventsAndHeaders(Integer.parseInt(limit)).toString();
+    }
+
+    @GetMapping(value = "/swiggylytics/getbydevice/{deviceid}/limit/{limit}", produces = "application/json; charset=UTF-8")
+    @ResponseBody
+    public String geteventsByDevice(@PathVariable String deviceid, @PathVariable String limit) {
+        return new SwiggyEventsUtil().getSwiggyEventsAndHeaders(Integer.parseInt(limit), deviceid).toString();
+    }
+
+    @GetMapping(value = "/swiggylytics/getcountbydevice/{deviceid}", produces = "application/json; charset=UTF-8")
+    @ResponseBody
+    public String geteventsCountByDevice(@PathVariable String deviceid) {
+        return new SwiggyEventsUtil().getSwiggyEventsAndHeadersCount(deviceid).toString();
+    }
+
+
+    @GetMapping(value = "/instagram/getlistoffollowers")
+    public String fetchFollowers() {
+        return new FetchFollowers().fetch();
+    }
+
+    @GetMapping(value = "/instagram/followusers")
+    public String followUsers() {
+        String pagename = "dog.lovers";
+        String usercurrentname = "anand4joy";
+        return new FollowUsers().follow(pagename, usercurrentname);
+    }
+
+    @GetMapping(value = "/instagram/getlistoflikers")
+    public String fetchLikers() {
+        return new FetchLikers().fetch();
+    }
+
+    @GetMapping(value = "/instagram/followlikers")
+    public String followLikers() {
+        String pagename = "dog.lovers-likers";
+        String usercurrentname = "anand4joy";
+        return new FollowUsers().follow(pagename, usercurrentname);
+    }
+
+    @GetMapping(value = "/instagram/unfollowusers")
+    public String unfollowUsers() {
+        String pagename = "dog.lovers";
+        String usercurrentname = "anand4joy";
+        return new UnFollowUsers().follow(pagename, usercurrentname);
+    }
+
+    @GetMapping(value = "/gram/fetchusers")
+    public String gramFetchUsers() {
+        new GetUsers().fetchUsersInLoop();
+        return "success";
+    }
+
+    @GetMapping(value = "/followforfollow/gainpoints")
+    public String followForFollow() {
+        new EarnPoints().fetchInLoop();
+        return "success";
+    }
+
+    @GetMapping(value = "/likestar/gainpoints")
+    public String likeStarGainPoints() {
+        new LikeStarEarnPoints().earnPointsMultipleUsers();
+        return "success";
+    }
+
+    @GetMapping(value = "/likestar/selfgainorder")
+    public String likeStarSelfGainPoints() {
+        new LikeStarSelfOrder().earnPointsMultipleUsers();
+        return "success";
     }
 
 

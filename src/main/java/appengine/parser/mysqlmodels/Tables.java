@@ -9,6 +9,11 @@ import appengine.parser.mysqlmodels.tables.Cointransfer;
 import appengine.parser.mysqlmodels.tables.Fetcher;
 import appengine.parser.mysqlmodels.tables.Fromfbpage;
 import appengine.parser.mysqlmodels.tables.FromfbpageTofbpage;
+import appengine.parser.mysqlmodels.tables.GramUsers;
+import appengine.parser.mysqlmodels.tables.Instagramfollowers;
+import appengine.parser.mysqlmodels.tables.Instagramfollowersupdate;
+import appengine.parser.mysqlmodels.tables.Instagramlastfetch;
+import appengine.parser.mysqlmodels.tables.Instagramunfollowersupdate;
 import appengine.parser.mysqlmodels.tables.Optimal;
 import appengine.parser.mysqlmodels.tables.Optimaljson;
 import appengine.parser.mysqlmodels.tables.Optimalnotify;
@@ -57,6 +62,31 @@ public class Tables {
      * The table <code>parser.fromfbpage_tofbpage</code>.
      */
     public static final FromfbpageTofbpage FROMFBPAGE_TOFBPAGE = appengine.parser.mysqlmodels.tables.FromfbpageTofbpage.FROMFBPAGE_TOFBPAGE;
+
+    /**
+     * The table <code>parser.gram_users</code>.
+     */
+    public static final GramUsers GRAM_USERS = appengine.parser.mysqlmodels.tables.GramUsers.GRAM_USERS;
+
+    /**
+     * The table <code>parser.instagramfollowers</code>.
+     */
+    public static final Instagramfollowers INSTAGRAMFOLLOWERS = appengine.parser.mysqlmodels.tables.Instagramfollowers.INSTAGRAMFOLLOWERS;
+
+    /**
+     * The table <code>parser.instagramfollowersupdate</code>.
+     */
+    public static final Instagramfollowersupdate INSTAGRAMFOLLOWERSUPDATE = appengine.parser.mysqlmodels.tables.Instagramfollowersupdate.INSTAGRAMFOLLOWERSUPDATE;
+
+    /**
+     * The table <code>parser.instagramlastfetch</code>.
+     */
+    public static final Instagramlastfetch INSTAGRAMLASTFETCH = appengine.parser.mysqlmodels.tables.Instagramlastfetch.INSTAGRAMLASTFETCH;
+
+    /**
+     * The table <code>parser.instagramunfollowersupdate</code>.
+     */
+    public static final Instagramunfollowersupdate INSTAGRAMUNFOLLOWERSUPDATE = appengine.parser.mysqlmodels.tables.Instagramunfollowersupdate.INSTAGRAMUNFOLLOWERSUPDATE;
 
     /**
      * The table <code>parser.optimal</code>.

@@ -8,6 +8,10 @@ import appengine.parser.mysqlmodels.tables.Coinstatus;
 import appengine.parser.mysqlmodels.tables.Fetcher;
 import appengine.parser.mysqlmodels.tables.Fromfbpage;
 import appengine.parser.mysqlmodels.tables.FromfbpageTofbpage;
+import appengine.parser.mysqlmodels.tables.Instagramfollowers;
+import appengine.parser.mysqlmodels.tables.Instagramfollowersupdate;
+import appengine.parser.mysqlmodels.tables.Instagramlastfetch;
+import appengine.parser.mysqlmodels.tables.Instagramunfollowersupdate;
 import appengine.parser.mysqlmodels.tables.Optimalupdate;
 import appengine.parser.mysqlmodels.tables.Promotefbpage;
 import appengine.parser.mysqlmodels.tables.Sockettradearbitary;
@@ -16,6 +20,10 @@ import appengine.parser.mysqlmodels.tables.records.CoinstatusRecord;
 import appengine.parser.mysqlmodels.tables.records.FetcherRecord;
 import appengine.parser.mysqlmodels.tables.records.FromfbpageRecord;
 import appengine.parser.mysqlmodels.tables.records.FromfbpageTofbpageRecord;
+import appengine.parser.mysqlmodels.tables.records.InstagramfollowersRecord;
+import appengine.parser.mysqlmodels.tables.records.InstagramfollowersupdateRecord;
+import appengine.parser.mysqlmodels.tables.records.InstagramlastfetchRecord;
+import appengine.parser.mysqlmodels.tables.records.InstagramunfollowersupdateRecord;
 import appengine.parser.mysqlmodels.tables.records.OptimalupdateRecord;
 import appengine.parser.mysqlmodels.tables.records.PromotefbpageRecord;
 import appengine.parser.mysqlmodels.tables.records.SockettradearbitaryRecord;
@@ -46,6 +54,7 @@ public class Keys {
     // IDENTITY definitions
     // -------------------------------------------------------------------------
 
+    public static final Identity<InstagramfollowersRecord, Integer> IDENTITY_INSTAGRAMFOLLOWERS = Identities0.IDENTITY_INSTAGRAMFOLLOWERS;
     public static final Identity<SwiggyeventsRecord, Integer> IDENTITY_SWIGGYEVENTS = Identities0.IDENTITY_SWIGGYEVENTS;
 
     // -------------------------------------------------------------------------
@@ -56,6 +65,10 @@ public class Keys {
     public static final UniqueKey<FetcherRecord> KEY_FETCHER_PRIMARY = UniqueKeys0.KEY_FETCHER_PRIMARY;
     public static final UniqueKey<FromfbpageRecord> KEY_FROMFBPAGE_PRIMARY = UniqueKeys0.KEY_FROMFBPAGE_PRIMARY;
     public static final UniqueKey<FromfbpageTofbpageRecord> KEY_FROMFBPAGE_TOFBPAGE_PRIMARY = UniqueKeys0.KEY_FROMFBPAGE_TOFBPAGE_PRIMARY;
+    public static final UniqueKey<InstagramfollowersRecord> KEY_INSTAGRAMFOLLOWERS_PRIMARY = UniqueKeys0.KEY_INSTAGRAMFOLLOWERS_PRIMARY;
+    public static final UniqueKey<InstagramfollowersupdateRecord> KEY_INSTAGRAMFOLLOWERSUPDATE_PRIMARY = UniqueKeys0.KEY_INSTAGRAMFOLLOWERSUPDATE_PRIMARY;
+    public static final UniqueKey<InstagramlastfetchRecord> KEY_INSTAGRAMLASTFETCH_PRIMARY = UniqueKeys0.KEY_INSTAGRAMLASTFETCH_PRIMARY;
+    public static final UniqueKey<InstagramunfollowersupdateRecord> KEY_INSTAGRAMUNFOLLOWERSUPDATE_INSTAGRAMUNFOLLOWERSUPDATE_PAGENAME_FROM_USER_NAME_PK = UniqueKeys0.KEY_INSTAGRAMUNFOLLOWERSUPDATE_INSTAGRAMUNFOLLOWERSUPDATE_PAGENAME_FROM_USER_NAME_PK;
     public static final UniqueKey<OptimalupdateRecord> KEY_OPTIMALUPDATE_PRIMARY = UniqueKeys0.KEY_OPTIMALUPDATE_PRIMARY;
     public static final UniqueKey<PromotefbpageRecord> KEY_PROMOTEFBPAGE_PRIMARY = UniqueKeys0.KEY_PROMOTEFBPAGE_PRIMARY;
     public static final UniqueKey<SockettradearbitaryRecord> KEY_SOCKETTRADEARBITARY_SOCKETTRADEARBITARY_COINLABEL_MARKET_TRADETYPE_CREATEDTIME_PK = UniqueKeys0.KEY_SOCKETTRADEARBITARY_SOCKETTRADEARBITARY_COINLABEL_MARKET_TRADETYPE_CREATEDTIME_PK;
@@ -71,6 +84,7 @@ public class Keys {
     // -------------------------------------------------------------------------
 
     private static class Identities0 extends AbstractKeys {
+        public static Identity<InstagramfollowersRecord, Integer> IDENTITY_INSTAGRAMFOLLOWERS = createIdentity(Instagramfollowers.INSTAGRAMFOLLOWERS, Instagramfollowers.INSTAGRAMFOLLOWERS.ID);
         public static Identity<SwiggyeventsRecord, Integer> IDENTITY_SWIGGYEVENTS = createIdentity(Swiggyevents.SWIGGYEVENTS, Swiggyevents.SWIGGYEVENTS.ID);
     }
 
@@ -79,6 +93,10 @@ public class Keys {
         public static final UniqueKey<FetcherRecord> KEY_FETCHER_PRIMARY = createUniqueKey(Fetcher.FETCHER, "KEY_fetcher_PRIMARY", Fetcher.FETCHER.COIN, Fetcher.FETCHER.MARKET);
         public static final UniqueKey<FromfbpageRecord> KEY_FROMFBPAGE_PRIMARY = createUniqueKey(Fromfbpage.FROMFBPAGE, "KEY_fromfbpage_PRIMARY", Fromfbpage.FROMFBPAGE.FROM_PAGE_ID);
         public static final UniqueKey<FromfbpageTofbpageRecord> KEY_FROMFBPAGE_TOFBPAGE_PRIMARY = createUniqueKey(FromfbpageTofbpage.FROMFBPAGE_TOFBPAGE, "KEY_fromfbpage_tofbpage_PRIMARY", FromfbpageTofbpage.FROMFBPAGE_TOFBPAGE.FROM_PAGE_ID, FromfbpageTofbpage.FROMFBPAGE_TOFBPAGE.TO_PAGE_ID);
+        public static final UniqueKey<InstagramfollowersRecord> KEY_INSTAGRAMFOLLOWERS_PRIMARY = createUniqueKey(Instagramfollowers.INSTAGRAMFOLLOWERS, "KEY_instagramfollowers_PRIMARY", Instagramfollowers.INSTAGRAMFOLLOWERS.ID);
+        public static final UniqueKey<InstagramfollowersupdateRecord> KEY_INSTAGRAMFOLLOWERSUPDATE_PRIMARY = createUniqueKey(Instagramfollowersupdate.INSTAGRAMFOLLOWERSUPDATE, "KEY_instagramfollowersupdate_PRIMARY", Instagramfollowersupdate.INSTAGRAMFOLLOWERSUPDATE.FROM_USER_NAME, Instagramfollowersupdate.INSTAGRAMFOLLOWERSUPDATE.PAGENAME);
+        public static final UniqueKey<InstagramlastfetchRecord> KEY_INSTAGRAMLASTFETCH_PRIMARY = createUniqueKey(Instagramlastfetch.INSTAGRAMLASTFETCH, "KEY_instagramlastfetch_PRIMARY", Instagramlastfetch.INSTAGRAMLASTFETCH.PAGENAME);
+        public static final UniqueKey<InstagramunfollowersupdateRecord> KEY_INSTAGRAMUNFOLLOWERSUPDATE_INSTAGRAMUNFOLLOWERSUPDATE_PAGENAME_FROM_USER_NAME_PK = createUniqueKey(Instagramunfollowersupdate.INSTAGRAMUNFOLLOWERSUPDATE, "KEY_instagramunfollowersupdate_instagramunfollowersupdate_pagename_from_user_name_pk", Instagramunfollowersupdate.INSTAGRAMUNFOLLOWERSUPDATE.PAGENAME, Instagramunfollowersupdate.INSTAGRAMUNFOLLOWERSUPDATE.FROM_USER_NAME);
         public static final UniqueKey<OptimalupdateRecord> KEY_OPTIMALUPDATE_PRIMARY = createUniqueKey(Optimalupdate.OPTIMALUPDATE, "KEY_optimalupdate_PRIMARY", Optimalupdate.OPTIMALUPDATE.OPERATION);
         public static final UniqueKey<PromotefbpageRecord> KEY_PROMOTEFBPAGE_PRIMARY = createUniqueKey(Promotefbpage.PROMOTEFBPAGE, "KEY_promotefbpage_PRIMARY", Promotefbpage.PROMOTEFBPAGE.FB_PAGE_ID);
         public static final UniqueKey<SockettradearbitaryRecord> KEY_SOCKETTRADEARBITARY_SOCKETTRADEARBITARY_COINLABEL_MARKET_TRADETYPE_CREATEDTIME_PK = createUniqueKey(Sockettradearbitary.SOCKETTRADEARBITARY, "KEY_sockettradearbitary_sockettradearbitary_coinlabel_market_tradetype_createdtime_pk", Sockettradearbitary.SOCKETTRADEARBITARY.COINLABEL, Sockettradearbitary.SOCKETTRADEARBITARY.MARKET, Sockettradearbitary.SOCKETTRADEARBITARY.TRADETYPE, Sockettradearbitary.SOCKETTRADEARBITARY.CREATEDTIME);

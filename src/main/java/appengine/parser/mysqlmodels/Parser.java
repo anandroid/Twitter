@@ -9,6 +9,11 @@ import appengine.parser.mysqlmodels.tables.Cointransfer;
 import appengine.parser.mysqlmodels.tables.Fetcher;
 import appengine.parser.mysqlmodels.tables.Fromfbpage;
 import appengine.parser.mysqlmodels.tables.FromfbpageTofbpage;
+import appengine.parser.mysqlmodels.tables.GramUsers;
+import appengine.parser.mysqlmodels.tables.Instagramfollowers;
+import appengine.parser.mysqlmodels.tables.Instagramfollowersupdate;
+import appengine.parser.mysqlmodels.tables.Instagramlastfetch;
+import appengine.parser.mysqlmodels.tables.Instagramunfollowersupdate;
 import appengine.parser.mysqlmodels.tables.Optimal;
 import appengine.parser.mysqlmodels.tables.Optimaljson;
 import appengine.parser.mysqlmodels.tables.Optimalnotify;
@@ -41,7 +46,7 @@ import org.jooq.impl.SchemaImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Parser extends SchemaImpl {
 
-    private static final long serialVersionUID = 592502112;
+    private static final long serialVersionUID = -735133368;
 
     /**
      * The reference instance of <code>parser</code>
@@ -72,6 +77,31 @@ public class Parser extends SchemaImpl {
      * The table <code>parser.fromfbpage_tofbpage</code>.
      */
     public final FromfbpageTofbpage FROMFBPAGE_TOFBPAGE = appengine.parser.mysqlmodels.tables.FromfbpageTofbpage.FROMFBPAGE_TOFBPAGE;
+
+    /**
+     * The table <code>parser.gram_users</code>.
+     */
+    public final GramUsers GRAM_USERS = appengine.parser.mysqlmodels.tables.GramUsers.GRAM_USERS;
+
+    /**
+     * The table <code>parser.instagramfollowers</code>.
+     */
+    public final Instagramfollowers INSTAGRAMFOLLOWERS = appengine.parser.mysqlmodels.tables.Instagramfollowers.INSTAGRAMFOLLOWERS;
+
+    /**
+     * The table <code>parser.instagramfollowersupdate</code>.
+     */
+    public final Instagramfollowersupdate INSTAGRAMFOLLOWERSUPDATE = appengine.parser.mysqlmodels.tables.Instagramfollowersupdate.INSTAGRAMFOLLOWERSUPDATE;
+
+    /**
+     * The table <code>parser.instagramlastfetch</code>.
+     */
+    public final Instagramlastfetch INSTAGRAMLASTFETCH = appengine.parser.mysqlmodels.tables.Instagramlastfetch.INSTAGRAMLASTFETCH;
+
+    /**
+     * The table <code>parser.instagramunfollowersupdate</code>.
+     */
+    public final Instagramunfollowersupdate INSTAGRAMUNFOLLOWERSUPDATE = appengine.parser.mysqlmodels.tables.Instagramunfollowersupdate.INSTAGRAMUNFOLLOWERSUPDATE;
 
     /**
      * The table <code>parser.optimal</code>.
@@ -138,6 +168,11 @@ public class Parser extends SchemaImpl {
             Fetcher.FETCHER,
             Fromfbpage.FROMFBPAGE,
             FromfbpageTofbpage.FROMFBPAGE_TOFBPAGE,
+            GramUsers.GRAM_USERS,
+            Instagramfollowers.INSTAGRAMFOLLOWERS,
+            Instagramfollowersupdate.INSTAGRAMFOLLOWERSUPDATE,
+            Instagramlastfetch.INSTAGRAMLASTFETCH,
+            Instagramunfollowersupdate.INSTAGRAMUNFOLLOWERSUPDATE,
             Optimal.OPTIMAL,
             Optimaljson.OPTIMALJSON,
             Optimalnotify.OPTIMALNOTIFY,
