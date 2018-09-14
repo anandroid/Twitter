@@ -1,10 +1,14 @@
 package appengine.parser.twitter;
 
-import twitter4j.GeoLocation;
-import twitter4j.Query;
-import twitter4j.QueryResult;
-import twitter4j.TwitterFactory;
+import appengine.parser.mysqlmodels.Tables;
+import appengine.parser.utils.DataBaseConnector;
+import okhttp3.*;
+import org.jooq.DSLContext;
+import org.jooq.Record1;
+import twitter4j.*;
 import twitter4j.conf.ConfigurationBuilder;
+
+import static appengine.parser.mysqlmodels.Tables.WEARESWIGGY;
 
 /**
  * Created by anand.kurapati on 27/06/17.
@@ -48,4 +52,59 @@ public class Twitter {
         }
         return null;
     }
+
+    public static void getTweetsFromTimeLine() {
+        twitter4j.Twitter twitter = getInstance();
+        try {
+
+            Paging paging = new Paging();
+            paging.setSinceId(getLastTweet());
+
+            ResponseList<Status> statuses = twitter.getUserTimeline("WeAreSwiggy", paging);
+
+            for (Status status : statuses) {
+                postTweetOnSlack(status.getText());
+            }
+
+            long lastID = statuses.get(statuses.size() - 1).getId();
+            updateLastTweet(String.valueOf(lastID));
+        } catch (TwitterException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void updateLastTweet(String sinceId) {
+        DSLContext dslContext = DataBaseConnector.getDSLContext();
+        dslContext.insertInto(WEARESWIGGY, WEARESWIGGY.LASTTWEET, WEARESWIGGY.ISUNIQUE)
+                .values(sinceId, (byte) 1).onDuplicateKeyUpdate()
+                .set(WEARESWIGGY.LASTTWEET, sinceId)
+                .execute();
+    }
+
+    private static long getLastTweet() {
+        DSLContext dslContext = DataBaseConnector.getDSLContext();
+        Record1<String> twitterId = dslContext.select(Tables.WEARESWIGGY.LASTTWEET).from(Tables.WEARESWIGGY).fetchOne();
+        return Long.parseLong(twitterId.value1());
+    }
+
+    private static void postTweetOnSlack(String text) {
+        try {
+            OkHttpClient client = new OkHttpClient();
+
+            MediaType mediaType = MediaType.parse("application/octet-stream");
+            RequestBody body = RequestBody.create(mediaType, "{\"text\":\"" + text + "\"}");
+            Request request = new Request.Builder()
+                    .url("https://hooks.slack.com/services/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")
+                    .post(body)
+                    .addHeader("content-type", "application/json")
+                    .addHeader("cache-control", "no-cache")
+                    .addHeader("postman-token", "8fa86be2-d201-9b05-5249-2be48eeb8a59")
+                    .build();
+            Response response = client.newCall(request).execute();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }

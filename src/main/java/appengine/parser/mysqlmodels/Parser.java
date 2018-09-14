@@ -22,6 +22,7 @@ import appengine.parser.mysqlmodels.tables.Promotefbpage;
 import appengine.parser.mysqlmodels.tables.Sockettradearbitary;
 import appengine.parser.mysqlmodels.tables.Swiggyevents;
 import appengine.parser.mysqlmodels.tables.Ubereats;
+import appengine.parser.mysqlmodels.tables.Weareswiggy;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -47,7 +48,7 @@ import org.jooq.impl.SchemaImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Parser extends SchemaImpl {
 
-    private static final long serialVersionUID = 1189099920;
+    private static final long serialVersionUID = 930978996;
 
     /**
      * The reference instance of <code>parser</code>
@@ -145,6 +146,11 @@ public class Parser extends SchemaImpl {
     public final Ubereats UBEREATS = appengine.parser.mysqlmodels.tables.Ubereats.UBEREATS;
 
     /**
+     * The table <code>parser.weareswiggy</code>.
+     */
+    public final Weareswiggy WEARESWIGGY = appengine.parser.mysqlmodels.tables.Weareswiggy.WEARESWIGGY;
+
+    /**
      * No further instances allowed
      */
     private Parser() {
@@ -186,6 +192,7 @@ public class Parser extends SchemaImpl {
             Promotefbpage.PROMOTEFBPAGE,
             Sockettradearbitary.SOCKETTRADEARBITARY,
             Swiggyevents.SWIGGYEVENTS,
-            Ubereats.UBEREATS);
+            Ubereats.UBEREATS,
+            Weareswiggy.WEARESWIGGY);
     }
 }

@@ -621,6 +621,14 @@ public class MainController {
         return "success";
     }
 
+    @GetMapping(value="/tweets/weareswiggy")
+    public String gettweets(){
+        new Twitter().getTweetsFromTimeLine();
+        return "done";
+    }
+
+
+
 
     private Timestamp getTimeStampFromString(String time) {
         Timestamp timestamp = null;

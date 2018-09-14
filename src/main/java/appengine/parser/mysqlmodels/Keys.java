@@ -17,6 +17,7 @@ import appengine.parser.mysqlmodels.tables.Promotefbpage;
 import appengine.parser.mysqlmodels.tables.Sockettradearbitary;
 import appengine.parser.mysqlmodels.tables.Swiggyevents;
 import appengine.parser.mysqlmodels.tables.Ubereats;
+import appengine.parser.mysqlmodels.tables.Weareswiggy;
 import appengine.parser.mysqlmodels.tables.records.CoinstatusRecord;
 import appengine.parser.mysqlmodels.tables.records.FetcherRecord;
 import appengine.parser.mysqlmodels.tables.records.FromfbpageRecord;
@@ -30,6 +31,7 @@ import appengine.parser.mysqlmodels.tables.records.PromotefbpageRecord;
 import appengine.parser.mysqlmodels.tables.records.SockettradearbitaryRecord;
 import appengine.parser.mysqlmodels.tables.records.SwiggyeventsRecord;
 import appengine.parser.mysqlmodels.tables.records.UbereatsRecord;
+import appengine.parser.mysqlmodels.tables.records.WeareswiggyRecord;
 
 import javax.annotation.Generated;
 
@@ -78,6 +80,7 @@ public class Keys {
     public static final UniqueKey<SwiggyeventsRecord> KEY_SWIGGYEVENTS_PRIMARY = UniqueKeys0.KEY_SWIGGYEVENTS_PRIMARY;
     public static final UniqueKey<UbereatsRecord> KEY_UBEREATS_UBEREATS_UUID_PK = UniqueKeys0.KEY_UBEREATS_UBEREATS_UUID_PK;
     public static final UniqueKey<UbereatsRecord> KEY_UBEREATS_PRIMARY = UniqueKeys0.KEY_UBEREATS_PRIMARY;
+    public static final UniqueKey<WeareswiggyRecord> KEY_WEARESWIGGY_WEARESWIGGY_ISUNIQUE_UINDEX = UniqueKeys0.KEY_WEARESWIGGY_WEARESWIGGY_ISUNIQUE_UINDEX;
 
     // -------------------------------------------------------------------------
     // FOREIGN KEY definitions
@@ -109,5 +112,6 @@ public class Keys {
         public static final UniqueKey<SwiggyeventsRecord> KEY_SWIGGYEVENTS_PRIMARY = createUniqueKey(Swiggyevents.SWIGGYEVENTS, "KEY_swiggyevents_PRIMARY", Swiggyevents.SWIGGYEVENTS.ID);
         public static final UniqueKey<UbereatsRecord> KEY_UBEREATS_UBEREATS_UUID_PK = createUniqueKey(Ubereats.UBEREATS, "KEY_ubereats_ubereats_uuid_pk", Ubereats.UBEREATS.UUID);
         public static final UniqueKey<UbereatsRecord> KEY_UBEREATS_PRIMARY = createUniqueKey(Ubereats.UBEREATS, "KEY_ubereats_PRIMARY", Ubereats.UBEREATS.ID);
+        public static final UniqueKey<WeareswiggyRecord> KEY_WEARESWIGGY_WEARESWIGGY_ISUNIQUE_UINDEX = createUniqueKey(Weareswiggy.WEARESWIGGY, "KEY_weareswiggy_weareswiggy_isunique_uindex", Weareswiggy.WEARESWIGGY.ISUNIQUE);
     }
 }

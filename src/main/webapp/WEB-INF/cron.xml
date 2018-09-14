@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <cronentries>
-    <cron>
+   <!-- <cron>
         <url>/getfromfbtofb</url>
         <description>Auto Posts on Page</description>
         <schedule>every 4 hours</schedule>
@@ -14,8 +14,8 @@
         <url>/acceptfriendrequests</url>
         <description>Accepts automatic Friend Requests</description>
         <schedule>every 12 hours</schedule>
-    </cron>
-    <cron>
+    </cron>-->
+   <!-- <cron>
         <url>/coincalculator/all</url>
         <description>Coin Calculator</description>
         <schedule>every 4 minutes</schedule>
@@ -52,7 +52,7 @@
         <url>/coincalculator/appnotifier</url>
         <description>AppNotifier - Coin Calculator</description>
         <schedule>every 15 minutes</schedule>
-    </cron>
+    </cron>-->
 
     <!--<cron>
         <url>/instagram/getlistoffollowers</url>
@@ -66,7 +66,7 @@
         <schedule>every 12 minutes</schedule>
     </cron>-->
 
-    <cron>
+   <!-- <cron>
         <url>/instagram/unfollowusers</url>
         <description>Get Dogs Lover Pic Likers - Instagram</description>
         <schedule>every 8 minutes</schedule>
@@ -96,7 +96,7 @@
         <url>/followforfollow/gainpoints</url>
         <description>RealFollowersPlus - Instagram</description>
         <schedule>every 20 minutes</schedule>
-    </cron>
+    </cron>-->
 
 
 
@@ -120,5 +120,12 @@
          <description>Coin Transfer - okexlivecoin</description>
          <schedule>every 2 minutes</schedule>
      </cron>-->
+
+
+    <cron>
+        <url>/tweets/weareswiggy</url>
+        <description>We Are Swiggy Tweets to Slack</description>
+        <schedule>every 5 minutes</schedule>
+    </cron>
 
 </cronentries>
