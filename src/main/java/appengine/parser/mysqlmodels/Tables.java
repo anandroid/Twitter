@@ -21,6 +21,7 @@ import appengine.parser.mysqlmodels.tables.Optimalupdate;
 import appengine.parser.mysqlmodels.tables.Promotefbpage;
 import appengine.parser.mysqlmodels.tables.Sockettradearbitary;
 import appengine.parser.mysqlmodels.tables.Swiggyevents;
+import appengine.parser.mysqlmodels.tables.Ubereats;
 
 import javax.annotation.Generated;
 
@@ -122,4 +123,9 @@ public class Tables {
      * The table <code>parser.swiggyevents</code>.
      */
     public static final Swiggyevents SWIGGYEVENTS = appengine.parser.mysqlmodels.tables.Swiggyevents.SWIGGYEVENTS;
+
+    /**
+     * The table <code>parser.ubereats</code>.
+     */
+    public static final Ubereats UBEREATS = appengine.parser.mysqlmodels.tables.Ubereats.UBEREATS;
 }

@@ -16,6 +16,7 @@ import appengine.parser.mysqlmodels.tables.Optimalupdate;
 import appengine.parser.mysqlmodels.tables.Promotefbpage;
 import appengine.parser.mysqlmodels.tables.Sockettradearbitary;
 import appengine.parser.mysqlmodels.tables.Swiggyevents;
+import appengine.parser.mysqlmodels.tables.Ubereats;
 import appengine.parser.mysqlmodels.tables.records.CoinstatusRecord;
 import appengine.parser.mysqlmodels.tables.records.FetcherRecord;
 import appengine.parser.mysqlmodels.tables.records.FromfbpageRecord;
@@ -28,6 +29,7 @@ import appengine.parser.mysqlmodels.tables.records.OptimalupdateRecord;
 import appengine.parser.mysqlmodels.tables.records.PromotefbpageRecord;
 import appengine.parser.mysqlmodels.tables.records.SockettradearbitaryRecord;
 import appengine.parser.mysqlmodels.tables.records.SwiggyeventsRecord;
+import appengine.parser.mysqlmodels.tables.records.UbereatsRecord;
 
 import javax.annotation.Generated;
 
@@ -56,6 +58,7 @@ public class Keys {
 
     public static final Identity<InstagramfollowersRecord, Integer> IDENTITY_INSTAGRAMFOLLOWERS = Identities0.IDENTITY_INSTAGRAMFOLLOWERS;
     public static final Identity<SwiggyeventsRecord, Integer> IDENTITY_SWIGGYEVENTS = Identities0.IDENTITY_SWIGGYEVENTS;
+    public static final Identity<UbereatsRecord, Integer> IDENTITY_UBEREATS = Identities0.IDENTITY_UBEREATS;
 
     // -------------------------------------------------------------------------
     // UNIQUE and PRIMARY KEY definitions
@@ -73,6 +76,8 @@ public class Keys {
     public static final UniqueKey<PromotefbpageRecord> KEY_PROMOTEFBPAGE_PRIMARY = UniqueKeys0.KEY_PROMOTEFBPAGE_PRIMARY;
     public static final UniqueKey<SockettradearbitaryRecord> KEY_SOCKETTRADEARBITARY_SOCKETTRADEARBITARY_COINLABEL_MARKET_TRADETYPE_CREATEDTIME_PK = UniqueKeys0.KEY_SOCKETTRADEARBITARY_SOCKETTRADEARBITARY_COINLABEL_MARKET_TRADETYPE_CREATEDTIME_PK;
     public static final UniqueKey<SwiggyeventsRecord> KEY_SWIGGYEVENTS_PRIMARY = UniqueKeys0.KEY_SWIGGYEVENTS_PRIMARY;
+    public static final UniqueKey<UbereatsRecord> KEY_UBEREATS_UBEREATS_UUID_PK = UniqueKeys0.KEY_UBEREATS_UBEREATS_UUID_PK;
+    public static final UniqueKey<UbereatsRecord> KEY_UBEREATS_PRIMARY = UniqueKeys0.KEY_UBEREATS_PRIMARY;
 
     // -------------------------------------------------------------------------
     // FOREIGN KEY definitions
@@ -86,6 +91,7 @@ public class Keys {
     private static class Identities0 extends AbstractKeys {
         public static Identity<InstagramfollowersRecord, Integer> IDENTITY_INSTAGRAMFOLLOWERS = createIdentity(Instagramfollowers.INSTAGRAMFOLLOWERS, Instagramfollowers.INSTAGRAMFOLLOWERS.ID);
         public static Identity<SwiggyeventsRecord, Integer> IDENTITY_SWIGGYEVENTS = createIdentity(Swiggyevents.SWIGGYEVENTS, Swiggyevents.SWIGGYEVENTS.ID);
+        public static Identity<UbereatsRecord, Integer> IDENTITY_UBEREATS = createIdentity(Ubereats.UBEREATS, Ubereats.UBEREATS.ID);
     }
 
     private static class UniqueKeys0 extends AbstractKeys {
@@ -101,5 +107,7 @@ public class Keys {
         public static final UniqueKey<PromotefbpageRecord> KEY_PROMOTEFBPAGE_PRIMARY = createUniqueKey(Promotefbpage.PROMOTEFBPAGE, "KEY_promotefbpage_PRIMARY", Promotefbpage.PROMOTEFBPAGE.FB_PAGE_ID);
         public static final UniqueKey<SockettradearbitaryRecord> KEY_SOCKETTRADEARBITARY_SOCKETTRADEARBITARY_COINLABEL_MARKET_TRADETYPE_CREATEDTIME_PK = createUniqueKey(Sockettradearbitary.SOCKETTRADEARBITARY, "KEY_sockettradearbitary_sockettradearbitary_coinlabel_market_tradetype_createdtime_pk", Sockettradearbitary.SOCKETTRADEARBITARY.COINLABEL, Sockettradearbitary.SOCKETTRADEARBITARY.MARKET, Sockettradearbitary.SOCKETTRADEARBITARY.TRADETYPE, Sockettradearbitary.SOCKETTRADEARBITARY.CREATEDTIME);
         public static final UniqueKey<SwiggyeventsRecord> KEY_SWIGGYEVENTS_PRIMARY = createUniqueKey(Swiggyevents.SWIGGYEVENTS, "KEY_swiggyevents_PRIMARY", Swiggyevents.SWIGGYEVENTS.ID);
+        public static final UniqueKey<UbereatsRecord> KEY_UBEREATS_UBEREATS_UUID_PK = createUniqueKey(Ubereats.UBEREATS, "KEY_ubereats_ubereats_uuid_pk", Ubereats.UBEREATS.UUID);
+        public static final UniqueKey<UbereatsRecord> KEY_UBEREATS_PRIMARY = createUniqueKey(Ubereats.UBEREATS, "KEY_ubereats_PRIMARY", Ubereats.UBEREATS.ID);
     }
 }
