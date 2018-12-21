@@ -21,6 +21,7 @@ import appengine.parser.mysqlmodels.tables.Optimalupdate;
 import appengine.parser.mysqlmodels.tables.Promotefbpage;
 import appengine.parser.mysqlmodels.tables.Sockettradearbitary;
 import appengine.parser.mysqlmodels.tables.Swiggyevents;
+import appengine.parser.mysqlmodels.tables.Twitterfollowers;
 import appengine.parser.mysqlmodels.tables.Ubereats;
 import appengine.parser.mysqlmodels.tables.Weareswiggy;
 
@@ -124,6 +125,11 @@ public class Tables {
      * The table <code>parser.swiggyevents</code>.
      */
     public static final Swiggyevents SWIGGYEVENTS = appengine.parser.mysqlmodels.tables.Swiggyevents.SWIGGYEVENTS;
+
+    /**
+     * The table <code>parser.twitterfollowers</code>.
+     */
+    public static final Twitterfollowers TWITTERFOLLOWERS = appengine.parser.mysqlmodels.tables.Twitterfollowers.TWITTERFOLLOWERS;
 
     /**
      * The table <code>parser.ubereats</code>.

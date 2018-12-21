@@ -32,8 +32,11 @@ import appengine.parser.optimal.utils.OrderBookCalculator;
 import appengine.parser.repository.BaseRepository;
 import appengine.parser.repository.DefaultRepository;
 import appengine.parser.repository.PagesAggregatorRepository;
+import appengine.parser.slack.SlackUtil;
 import appengine.parser.temp.SwiggyEventAndHeader;
 import appengine.parser.temp.SwiggyEventsUtil;
+import appengine.parser.twitter.FollowTwitterUsers;
+import appengine.parser.twitter.GetFollowers;
 import appengine.parser.twitter.Twitter;
 import appengine.parser.utils.StringUtils;
 import appengine.parser.wordpress.WordPress;
@@ -621,13 +624,29 @@ public class MainController {
         return "success";
     }
 
-    @GetMapping(value="/tweets/weareswiggy")
-    public String gettweets(){
+    @GetMapping(value = "/tweets/weareswiggy")
+    public String gettweets() {
         new Twitter().getTweetsFromTimeLine();
-        return "done";
+        return "success";
     }
 
+    @GetMapping(value = "/tweets/getfollowers")
+    public String getFollowers() {
+        new GetFollowers().getFollowers();
+        return "success";
+    }
 
+    @GetMapping(value = "/tweets/sendtwitterfollowrequest")
+    public String sendTwitterFollowRequest() {
+        new FollowTwitterUsers().makeLimitRequest();
+        return "success";
+    }
+
+    @GetMapping(value = "/slack/addmembers")
+    public String addSlackMembers() {
+        new SlackUtil().getChannelMembers();
+        return "success";
+    }
 
 
     private Timestamp getTimeStampFromString(String time) {

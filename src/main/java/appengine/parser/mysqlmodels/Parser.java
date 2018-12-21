@@ -21,6 +21,7 @@ import appengine.parser.mysqlmodels.tables.Optimalupdate;
 import appengine.parser.mysqlmodels.tables.Promotefbpage;
 import appengine.parser.mysqlmodels.tables.Sockettradearbitary;
 import appengine.parser.mysqlmodels.tables.Swiggyevents;
+import appengine.parser.mysqlmodels.tables.Twitterfollowers;
 import appengine.parser.mysqlmodels.tables.Ubereats;
 import appengine.parser.mysqlmodels.tables.Weareswiggy;
 
@@ -48,7 +49,7 @@ import org.jooq.impl.SchemaImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Parser extends SchemaImpl {
 
-    private static final long serialVersionUID = 930978996;
+    private static final long serialVersionUID = -90440086;
 
     /**
      * The reference instance of <code>parser</code>
@@ -141,6 +142,11 @@ public class Parser extends SchemaImpl {
     public final Swiggyevents SWIGGYEVENTS = appengine.parser.mysqlmodels.tables.Swiggyevents.SWIGGYEVENTS;
 
     /**
+     * The table <code>parser.twitterfollowers</code>.
+     */
+    public final Twitterfollowers TWITTERFOLLOWERS = appengine.parser.mysqlmodels.tables.Twitterfollowers.TWITTERFOLLOWERS;
+
+    /**
      * The table <code>parser.ubereats</code>.
      */
     public final Ubereats UBEREATS = appengine.parser.mysqlmodels.tables.Ubereats.UBEREATS;
@@ -192,6 +198,7 @@ public class Parser extends SchemaImpl {
             Promotefbpage.PROMOTEFBPAGE,
             Sockettradearbitary.SOCKETTRADEARBITARY,
             Swiggyevents.SWIGGYEVENTS,
+            Twitterfollowers.TWITTERFOLLOWERS,
             Ubereats.UBEREATS,
             Weareswiggy.WEARESWIGGY);
     }

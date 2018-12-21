@@ -122,10 +122,20 @@
      </cron>-->
 
 
-    <cron>
+   <cron>
         <url>/tweets/weareswiggy</url>
         <description>We Are Swiggy Tweets to Slack</description>
-        <schedule>every 5 minutes</schedule>
+        <schedule>every 30 minutes</schedule>
     </cron>
 
+   <cron>
+      <url>/tweets/getfollowers</url>
+      <description>Getting followers</description>
+      <schedule>every 15 minutes</schedule>
+   </cron>
+   <!--<cron>
+      <url>/tweets/sendtwitterfollowrequest</url>
+      <description>Sending follow request</description>
+      <schedule>every 50 minutes</schedule>
+   </cron>-->
 </cronentries>

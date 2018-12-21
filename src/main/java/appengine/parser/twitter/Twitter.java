@@ -8,6 +8,11 @@ import org.jooq.Record1;
 import twitter4j.*;
 import twitter4j.conf.ConfigurationBuilder;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import static appengine.parser.mysqlmodels.Tables.WEARESWIGGY;
 
 /**
@@ -24,10 +29,10 @@ public class Twitter {
 
             ConfigurationBuilder cb = new ConfigurationBuilder();
             cb.setDebugEnabled(true)
-                    .setOAuthConsumerKey("roAblILFxR4M6zEwM6kW7Q69c")
-                    .setOAuthConsumerSecret("GiZimcBu2KGxD72V67aST31REeHwenKFP6Thg6V1b34IncKFJD")
-                    .setOAuthAccessToken("1042608734-I7rtUyQAqTXeH5LIw3heB0ygdg3zzq84AKR9A2Q")
-                    .setOAuthAccessTokenSecret("KAABt6whlc019jV6c772JIDPuGCl7IIWcyjWNLsXQixB7");
+                    .setOAuthConsumerKey("T7j1YSoO2aZC5Ky0Ikmh9aUJC")
+                    .setOAuthConsumerSecret("5atCu729CzdLansmZWl10Eqo5t3XRVMg7WHBgmqMA0a8TcB0Wj")
+                    .setOAuthAccessToken("1042608734-vZKLuJBu65pR2ZNUI3oyM0dDxJMveQQB15XphLt")
+                    .setOAuthAccessTokenSecret("UM5MxusC1cLkLYIeM1LkpZpMIoiXRzuMb0KpAr2JJ1uQY");
 
             TwitterFactory tf = new TwitterFactory(cb.build());
             mTwitterInstance = tf.getInstance();
@@ -60,17 +65,46 @@ public class Twitter {
             Paging paging = new Paging();
             paging.setSinceId(getLastTweet());
 
-            ResponseList<Status> statuses = twitter.getUserTimeline("WeAreSwiggy", paging);
+            ResponseList<Status> reverseStatus = twitter.getUserTimeline("WeAreSwiggy", paging);
 
-            for (Status status : statuses) {
-                postTweetOnSlack(status.getText());
+            List<Status> statuses = new ArrayList<Status>();
+
+            for(Status status : reverseStatus){
+                statuses.add(0,status);
             }
 
-            long lastID = statuses.get(statuses.size() - 1).getId();
-            updateLastTweet(String.valueOf(lastID));
+
+            for (Status status : statuses) {
+                updateLastTweet(String.valueOf(status.getId()));
+                try {
+                    List<String> urls = extractUrls(status.getText());
+                    if (urls.size() > 0) {
+                        String twitterLink = urls.get(urls.size() - 1);
+                        postTweetOnSlack(twitterLink);
+                        return;
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
         } catch (TwitterException e) {
             e.printStackTrace();
         }
+    }
+
+    public static List<String> extractUrls(String text) {
+        List<String> containedUrls = new ArrayList<String>();
+        String urlRegex = "((https?|ftp|gopher|telnet|file):((//)|(\\\\))+[\\w\\d:#@%/;$()~_?\\+-=\\\\\\.&]*)";
+        Pattern pattern = Pattern.compile(urlRegex, Pattern.CASE_INSENSITIVE);
+        Matcher urlMatcher = pattern.matcher(text);
+
+        while (urlMatcher.find()) {
+            containedUrls.add(text.substring(urlMatcher.start(0),
+                    urlMatcher.end(0)));
+        }
+
+        return containedUrls;
     }
 
     private static void updateLastTweet(String sinceId) {

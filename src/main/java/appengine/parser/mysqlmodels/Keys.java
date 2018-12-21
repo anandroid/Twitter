@@ -16,6 +16,7 @@ import appengine.parser.mysqlmodels.tables.Optimalupdate;
 import appengine.parser.mysqlmodels.tables.Promotefbpage;
 import appengine.parser.mysqlmodels.tables.Sockettradearbitary;
 import appengine.parser.mysqlmodels.tables.Swiggyevents;
+import appengine.parser.mysqlmodels.tables.Twitterfollowers;
 import appengine.parser.mysqlmodels.tables.Ubereats;
 import appengine.parser.mysqlmodels.tables.Weareswiggy;
 import appengine.parser.mysqlmodels.tables.records.CoinstatusRecord;
@@ -30,6 +31,7 @@ import appengine.parser.mysqlmodels.tables.records.OptimalupdateRecord;
 import appengine.parser.mysqlmodels.tables.records.PromotefbpageRecord;
 import appengine.parser.mysqlmodels.tables.records.SockettradearbitaryRecord;
 import appengine.parser.mysqlmodels.tables.records.SwiggyeventsRecord;
+import appengine.parser.mysqlmodels.tables.records.TwitterfollowersRecord;
 import appengine.parser.mysqlmodels.tables.records.UbereatsRecord;
 import appengine.parser.mysqlmodels.tables.records.WeareswiggyRecord;
 
@@ -60,6 +62,7 @@ public class Keys {
 
     public static final Identity<InstagramfollowersRecord, Integer> IDENTITY_INSTAGRAMFOLLOWERS = Identities0.IDENTITY_INSTAGRAMFOLLOWERS;
     public static final Identity<SwiggyeventsRecord, Integer> IDENTITY_SWIGGYEVENTS = Identities0.IDENTITY_SWIGGYEVENTS;
+    public static final Identity<TwitterfollowersRecord, Integer> IDENTITY_TWITTERFOLLOWERS = Identities0.IDENTITY_TWITTERFOLLOWERS;
     public static final Identity<UbereatsRecord, Integer> IDENTITY_UBEREATS = Identities0.IDENTITY_UBEREATS;
 
     // -------------------------------------------------------------------------
@@ -78,6 +81,8 @@ public class Keys {
     public static final UniqueKey<PromotefbpageRecord> KEY_PROMOTEFBPAGE_PRIMARY = UniqueKeys0.KEY_PROMOTEFBPAGE_PRIMARY;
     public static final UniqueKey<SockettradearbitaryRecord> KEY_SOCKETTRADEARBITARY_SOCKETTRADEARBITARY_COINLABEL_MARKET_TRADETYPE_CREATEDTIME_PK = UniqueKeys0.KEY_SOCKETTRADEARBITARY_SOCKETTRADEARBITARY_COINLABEL_MARKET_TRADETYPE_CREATEDTIME_PK;
     public static final UniqueKey<SwiggyeventsRecord> KEY_SWIGGYEVENTS_PRIMARY = UniqueKeys0.KEY_SWIGGYEVENTS_PRIMARY;
+    public static final UniqueKey<TwitterfollowersRecord> KEY_TWITTERFOLLOWERS_PRIMARY = UniqueKeys0.KEY_TWITTERFOLLOWERS_PRIMARY;
+    public static final UniqueKey<TwitterfollowersRecord> KEY_TWITTERFOLLOWERS_TWITTERFOLLOWERS_USER_ID_UINDEX = UniqueKeys0.KEY_TWITTERFOLLOWERS_TWITTERFOLLOWERS_USER_ID_UINDEX;
     public static final UniqueKey<UbereatsRecord> KEY_UBEREATS_UBEREATS_UUID_PK = UniqueKeys0.KEY_UBEREATS_UBEREATS_UUID_PK;
     public static final UniqueKey<UbereatsRecord> KEY_UBEREATS_PRIMARY = UniqueKeys0.KEY_UBEREATS_PRIMARY;
     public static final UniqueKey<WeareswiggyRecord> KEY_WEARESWIGGY_WEARESWIGGY_ISUNIQUE_UINDEX = UniqueKeys0.KEY_WEARESWIGGY_WEARESWIGGY_ISUNIQUE_UINDEX;
@@ -94,6 +99,7 @@ public class Keys {
     private static class Identities0 extends AbstractKeys {
         public static Identity<InstagramfollowersRecord, Integer> IDENTITY_INSTAGRAMFOLLOWERS = createIdentity(Instagramfollowers.INSTAGRAMFOLLOWERS, Instagramfollowers.INSTAGRAMFOLLOWERS.ID);
         public static Identity<SwiggyeventsRecord, Integer> IDENTITY_SWIGGYEVENTS = createIdentity(Swiggyevents.SWIGGYEVENTS, Swiggyevents.SWIGGYEVENTS.ID);
+        public static Identity<TwitterfollowersRecord, Integer> IDENTITY_TWITTERFOLLOWERS = createIdentity(Twitterfollowers.TWITTERFOLLOWERS, Twitterfollowers.TWITTERFOLLOWERS.ID);
         public static Identity<UbereatsRecord, Integer> IDENTITY_UBEREATS = createIdentity(Ubereats.UBEREATS, Ubereats.UBEREATS.ID);
     }
 
@@ -110,6 +116,8 @@ public class Keys {
         public static final UniqueKey<PromotefbpageRecord> KEY_PROMOTEFBPAGE_PRIMARY = createUniqueKey(Promotefbpage.PROMOTEFBPAGE, "KEY_promotefbpage_PRIMARY", Promotefbpage.PROMOTEFBPAGE.FB_PAGE_ID);
         public static final UniqueKey<SockettradearbitaryRecord> KEY_SOCKETTRADEARBITARY_SOCKETTRADEARBITARY_COINLABEL_MARKET_TRADETYPE_CREATEDTIME_PK = createUniqueKey(Sockettradearbitary.SOCKETTRADEARBITARY, "KEY_sockettradearbitary_sockettradearbitary_coinlabel_market_tradetype_createdtime_pk", Sockettradearbitary.SOCKETTRADEARBITARY.COINLABEL, Sockettradearbitary.SOCKETTRADEARBITARY.MARKET, Sockettradearbitary.SOCKETTRADEARBITARY.TRADETYPE, Sockettradearbitary.SOCKETTRADEARBITARY.CREATEDTIME);
         public static final UniqueKey<SwiggyeventsRecord> KEY_SWIGGYEVENTS_PRIMARY = createUniqueKey(Swiggyevents.SWIGGYEVENTS, "KEY_swiggyevents_PRIMARY", Swiggyevents.SWIGGYEVENTS.ID);
+        public static final UniqueKey<TwitterfollowersRecord> KEY_TWITTERFOLLOWERS_PRIMARY = createUniqueKey(Twitterfollowers.TWITTERFOLLOWERS, "KEY_twitterfollowers_PRIMARY", Twitterfollowers.TWITTERFOLLOWERS.ID);
+        public static final UniqueKey<TwitterfollowersRecord> KEY_TWITTERFOLLOWERS_TWITTERFOLLOWERS_USER_ID_UINDEX = createUniqueKey(Twitterfollowers.TWITTERFOLLOWERS, "KEY_twitterfollowers_twitterfollowers_user_id_uindex", Twitterfollowers.TWITTERFOLLOWERS.USER_ID);
         public static final UniqueKey<UbereatsRecord> KEY_UBEREATS_UBEREATS_UUID_PK = createUniqueKey(Ubereats.UBEREATS, "KEY_ubereats_ubereats_uuid_pk", Ubereats.UBEREATS.UUID);
         public static final UniqueKey<UbereatsRecord> KEY_UBEREATS_PRIMARY = createUniqueKey(Ubereats.UBEREATS, "KEY_ubereats_PRIMARY", Ubereats.UBEREATS.ID);
         public static final UniqueKey<WeareswiggyRecord> KEY_WEARESWIGGY_WEARESWIGGY_ISUNIQUE_UINDEX = createUniqueKey(Weareswiggy.WEARESWIGGY, "KEY_weareswiggy_weareswiggy_isunique_uindex", Weareswiggy.WEARESWIGGY.ISUNIQUE);
