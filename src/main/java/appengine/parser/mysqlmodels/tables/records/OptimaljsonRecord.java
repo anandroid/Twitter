@@ -29,45 +29,45 @@ import org.jooq.impl.TableRecordImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class OptimaljsonRecord extends TableRecordImpl<OptimaljsonRecord> implements Record3<Timestamp, String, String> {
 
-    private static final long serialVersionUID = 1789070335;
+    private static final long serialVersionUID = 161600735;
 
     /**
-     * Setter for <code>parser.optimaljson.time</code>.
+     * Setter for <code>6txKRsiwk3.optimaljson.time</code>.
      */
     public void setTime(Timestamp value) {
         set(0, value);
     }
 
     /**
-     * Getter for <code>parser.optimaljson.time</code>.
+     * Getter for <code>6txKRsiwk3.optimaljson.time</code>.
      */
     public Timestamp getTime() {
         return (Timestamp) get(0);
     }
 
     /**
-     * Setter for <code>parser.optimaljson.json</code>.
+     * Setter for <code>6txKRsiwk3.optimaljson.json</code>.
      */
     public void setJson(String value) {
         set(1, value);
     }
 
     /**
-     * Getter for <code>parser.optimaljson.json</code>.
+     * Getter for <code>6txKRsiwk3.optimaljson.json</code>.
      */
     public String getJson() {
         return (String) get(1);
     }
 
     /**
-     * Setter for <code>parser.optimaljson.coinlabel</code>.
+     * Setter for <code>6txKRsiwk3.optimaljson.coinlabel</code>.
      */
     public void setCoinlabel(String value) {
         set(2, value);
     }
 
     /**
-     * Getter for <code>parser.optimaljson.coinlabel</code>.
+     * Getter for <code>6txKRsiwk3.optimaljson.coinlabel</code>.
      */
     public String getCoinlabel() {
         return (String) get(2);

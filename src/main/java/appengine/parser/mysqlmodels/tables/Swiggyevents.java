@@ -5,7 +5,7 @@ package appengine.parser.mysqlmodels.tables;
 
 
 import appengine.parser.mysqlmodels.Keys;
-import appengine.parser.mysqlmodels.Parser;
+import appengine.parser.mysqlmodels._6txkrsiwk3;
 import appengine.parser.mysqlmodels.tables.records.SwiggyeventsRecord;
 
 import java.util.Arrays;
@@ -35,10 +35,10 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Swiggyevents extends TableImpl<SwiggyeventsRecord> {
 
-    private static final long serialVersionUID = 1605503993;
+    private static final long serialVersionUID = -936898749;
 
     /**
-     * The reference instance of <code>parser.swiggyevents</code>
+     * The reference instance of <code>6txKRsiwk3.swiggyevents</code>
      */
     public static final Swiggyevents SWIGGYEVENTS = new Swiggyevents();
 
@@ -51,29 +51,29 @@ public class Swiggyevents extends TableImpl<SwiggyeventsRecord> {
     }
 
     /**
-     * The column <code>parser.swiggyevents.id</code>.
+     * The column <code>6txKRsiwk3.swiggyevents.id</code>.
      */
     public final TableField<SwiggyeventsRecord, Integer> ID = createField("id", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
 
     /**
-     * The column <code>parser.swiggyevents.json</code>.
+     * The column <code>6txKRsiwk3.swiggyevents.json</code>.
      */
     public final TableField<SwiggyeventsRecord, String> JSON = createField("json", org.jooq.impl.SQLDataType.VARCHAR.length(2000), this, "");
 
     /**
-     * The column <code>parser.swiggyevents.device_id</code>.
+     * The column <code>6txKRsiwk3.swiggyevents.device_id</code>.
      */
     public final TableField<SwiggyeventsRecord, String> DEVICE_ID = createField("device_id", org.jooq.impl.SQLDataType.VARCHAR.length(200), this, "");
 
     /**
-     * Create a <code>parser.swiggyevents</code> table reference
+     * Create a <code>6txKRsiwk3.swiggyevents</code> table reference
      */
     public Swiggyevents() {
         this("swiggyevents", null);
     }
 
     /**
-     * Create an aliased <code>parser.swiggyevents</code> table reference
+     * Create an aliased <code>6txKRsiwk3.swiggyevents</code> table reference
      */
     public Swiggyevents(String alias) {
         this(alias, SWIGGYEVENTS);
@@ -92,7 +92,7 @@ public class Swiggyevents extends TableImpl<SwiggyeventsRecord> {
      */
     @Override
     public Schema getSchema() {
-        return Parser.PARSER;
+        return _6txkrsiwk3._6TXKRSIWK3;
     }
 
     /**

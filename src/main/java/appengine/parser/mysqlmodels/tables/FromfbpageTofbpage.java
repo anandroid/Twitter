@@ -5,7 +5,7 @@ package appengine.parser.mysqlmodels.tables;
 
 
 import appengine.parser.mysqlmodels.Keys;
-import appengine.parser.mysqlmodels.Parser;
+import appengine.parser.mysqlmodels._6txkrsiwk3;
 import appengine.parser.mysqlmodels.tables.records.FromfbpageTofbpageRecord;
 
 import java.sql.Timestamp;
@@ -35,10 +35,10 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class FromfbpageTofbpage extends TableImpl<FromfbpageTofbpageRecord> {
 
-    private static final long serialVersionUID = 2095408513;
+    private static final long serialVersionUID = -346680557;
 
     /**
-     * The reference instance of <code>parser.fromfbpage_tofbpage</code>
+     * The reference instance of <code>6txKRsiwk3.fromfbpage_tofbpage</code>
      */
     public static final FromfbpageTofbpage FROMFBPAGE_TOFBPAGE = new FromfbpageTofbpage();
 
@@ -51,29 +51,29 @@ public class FromfbpageTofbpage extends TableImpl<FromfbpageTofbpageRecord> {
     }
 
     /**
-     * The column <code>parser.fromfbpage_tofbpage.from_page_id</code>.
+     * The column <code>6txKRsiwk3.fromfbpage_tofbpage.from_page_id</code>.
      */
     public final TableField<FromfbpageTofbpageRecord, String> FROM_PAGE_ID = createField("from_page_id", org.jooq.impl.SQLDataType.VARCHAR.length(100).nullable(false), this, "");
 
     /**
-     * The column <code>parser.fromfbpage_tofbpage.to_page_id</code>.
+     * The column <code>6txKRsiwk3.fromfbpage_tofbpage.to_page_id</code>.
      */
     public final TableField<FromfbpageTofbpageRecord, String> TO_PAGE_ID = createField("to_page_id", org.jooq.impl.SQLDataType.VARCHAR.length(100).nullable(false), this, "");
 
     /**
-     * The column <code>parser.fromfbpage_tofbpage.updated_time</code>.
+     * The column <code>6txKRsiwk3.fromfbpage_tofbpage.updated_time</code>.
      */
     public final TableField<FromfbpageTofbpageRecord, Timestamp> UPDATED_TIME = createField("updated_time", org.jooq.impl.SQLDataType.TIMESTAMP, this, "");
 
     /**
-     * Create a <code>parser.fromfbpage_tofbpage</code> table reference
+     * Create a <code>6txKRsiwk3.fromfbpage_tofbpage</code> table reference
      */
     public FromfbpageTofbpage() {
         this("fromfbpage_tofbpage", null);
     }
 
     /**
-     * Create an aliased <code>parser.fromfbpage_tofbpage</code> table reference
+     * Create an aliased <code>6txKRsiwk3.fromfbpage_tofbpage</code> table reference
      */
     public FromfbpageTofbpage(String alias) {
         this(alias, FROMFBPAGE_TOFBPAGE);
@@ -92,7 +92,7 @@ public class FromfbpageTofbpage extends TableImpl<FromfbpageTofbpageRecord> {
      */
     @Override
     public Schema getSchema() {
-        return Parser.PARSER;
+        return _6txkrsiwk3._6TXKRSIWK3;
     }
 
     /**

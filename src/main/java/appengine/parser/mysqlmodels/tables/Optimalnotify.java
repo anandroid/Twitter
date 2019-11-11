@@ -4,7 +4,7 @@
 package appengine.parser.mysqlmodels.tables;
 
 
-import appengine.parser.mysqlmodels.Parser;
+import appengine.parser.mysqlmodels._6txkrsiwk3;
 import appengine.parser.mysqlmodels.enums.OptimalnotifyNotifytype;
 import appengine.parser.mysqlmodels.tables.records.OptimalnotifyRecord;
 
@@ -32,10 +32,10 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Optimalnotify extends TableImpl<OptimalnotifyRecord> {
 
-    private static final long serialVersionUID = -2078741398;
+    private static final long serialVersionUID = -294382193;
 
     /**
-     * The reference instance of <code>parser.optimalnotify</code>
+     * The reference instance of <code>6txKRsiwk3.optimalnotify</code>
      */
     public static final Optimalnotify OPTIMALNOTIFY = new Optimalnotify();
 
@@ -48,54 +48,54 @@ public class Optimalnotify extends TableImpl<OptimalnotifyRecord> {
     }
 
     /**
-     * The column <code>parser.optimalnotify.coinlabel</code>.
+     * The column <code>6txKRsiwk3.optimalnotify.coinlabel</code>.
      */
     public final TableField<OptimalnotifyRecord, String> COINLABEL = createField("coinlabel", org.jooq.impl.SQLDataType.VARCHAR.length(10), this, "");
 
     /**
-     * The column <code>parser.optimalnotify.time</code>.
+     * The column <code>6txKRsiwk3.optimalnotify.time</code>.
      */
     public final TableField<OptimalnotifyRecord, Timestamp> TIME = createField("time", org.jooq.impl.SQLDataType.TIMESTAMP.nullable(false).defaultValue(org.jooq.impl.DSL.inline("CURRENT_TIMESTAMP", org.jooq.impl.SQLDataType.TIMESTAMP)), this, "");
 
     /**
-     * The column <code>parser.optimalnotify.profit</code>.
+     * The column <code>6txKRsiwk3.optimalnotify.profit</code>.
      */
     public final TableField<OptimalnotifyRecord, Double> PROFIT = createField("profit", org.jooq.impl.SQLDataType.DOUBLE, this, "");
 
     /**
-     * The column <code>parser.optimalnotify.frommarket</code>.
+     * The column <code>6txKRsiwk3.optimalnotify.frommarket</code>.
      */
     public final TableField<OptimalnotifyRecord, String> FROMMARKET = createField("frommarket", org.jooq.impl.SQLDataType.VARCHAR.length(50), this, "");
 
     /**
-     * The column <code>parser.optimalnotify.tomarket</code>.
+     * The column <code>6txKRsiwk3.optimalnotify.tomarket</code>.
      */
     public final TableField<OptimalnotifyRecord, String> TOMARKET = createField("tomarket", org.jooq.impl.SQLDataType.VARCHAR.length(50), this, "");
 
     /**
-     * The column <code>parser.optimalnotify.notifytype</code>.
+     * The column <code>6txKRsiwk3.optimalnotify.notifytype</code>.
      */
     public final TableField<OptimalnotifyRecord, OptimalnotifyNotifytype> NOTIFYTYPE = createField("notifytype", org.jooq.util.mysql.MySQLDataType.VARCHAR.asEnumDataType(appengine.parser.mysqlmodels.enums.OptimalnotifyNotifytype.class), this, "");
 
     /**
-     * The column <code>parser.optimalnotify.buyprice</code>.
+     * The column <code>6txKRsiwk3.optimalnotify.buyprice</code>.
      */
     public final TableField<OptimalnotifyRecord, Double> BUYPRICE = createField("buyprice", org.jooq.impl.SQLDataType.DOUBLE, this, "");
 
     /**
-     * The column <code>parser.optimalnotify.sellprice</code>.
+     * The column <code>6txKRsiwk3.optimalnotify.sellprice</code>.
      */
     public final TableField<OptimalnotifyRecord, Double> SELLPRICE = createField("sellprice", org.jooq.impl.SQLDataType.DOUBLE, this, "");
 
     /**
-     * Create a <code>parser.optimalnotify</code> table reference
+     * Create a <code>6txKRsiwk3.optimalnotify</code> table reference
      */
     public Optimalnotify() {
         this("optimalnotify", null);
     }
 
     /**
-     * Create an aliased <code>parser.optimalnotify</code> table reference
+     * Create an aliased <code>6txKRsiwk3.optimalnotify</code> table reference
      */
     public Optimalnotify(String alias) {
         this(alias, OPTIMALNOTIFY);
@@ -114,7 +114,7 @@ public class Optimalnotify extends TableImpl<OptimalnotifyRecord> {
      */
     @Override
     public Schema getSchema() {
-        return Parser.PARSER;
+        return _6txkrsiwk3._6TXKRSIWK3;
     }
 
     /**

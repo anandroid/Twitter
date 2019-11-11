@@ -61,4 +61,18 @@ public class StringUtils {
         return url.substring(lastIndex+1,url.length()-1);
     }
 
+    public static String formattingEmojisFromString(String inputString){
+        char[] inputArray = inputString.toCharArray();
+        StringBuilder stringBuilder = new StringBuilder();
+        for(char inputChar : inputArray){
+
+            if(Character.isLetter(inputChar) || Character.isAlphabetic(inputChar)
+                || Character.isWhitespace(inputChar)){
+                stringBuilder.append(inputChar);
+            }
+        }
+
+        return stringBuilder.toString();
+    }
+
 }

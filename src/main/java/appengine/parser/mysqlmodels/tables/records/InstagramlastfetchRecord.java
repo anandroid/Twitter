@@ -28,31 +28,31 @@ import org.jooq.impl.UpdatableRecordImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class InstagramlastfetchRecord extends UpdatableRecordImpl<InstagramlastfetchRecord> implements Record2<String, String> {
 
-    private static final long serialVersionUID = -36141963;
+    private static final long serialVersionUID = -414297227;
 
     /**
-     * Setter for <code>parser.instagramlastfetch.pagename</code>.
+     * Setter for <code>6txKRsiwk3.instagramlastfetch.pagename</code>.
      */
     public void setPagename(String value) {
         set(0, value);
     }
 
     /**
-     * Getter for <code>parser.instagramlastfetch.pagename</code>.
+     * Getter for <code>6txKRsiwk3.instagramlastfetch.pagename</code>.
      */
     public String getPagename() {
         return (String) get(0);
     }
 
     /**
-     * Setter for <code>parser.instagramlastfetch.lastcursor</code>.
+     * Setter for <code>6txKRsiwk3.instagramlastfetch.lastcursor</code>.
      */
     public void setLastcursor(String value) {
         set(1, value);
     }
 
     /**
-     * Getter for <code>parser.instagramlastfetch.lastcursor</code>.
+     * Getter for <code>6txKRsiwk3.instagramlastfetch.lastcursor</code>.
      */
     public String getLastcursor() {
         return (String) get(1);

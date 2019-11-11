@@ -5,7 +5,7 @@ package appengine.parser.mysqlmodels.tables;
 
 
 import appengine.parser.mysqlmodels.Keys;
-import appengine.parser.mysqlmodels.Parser;
+import appengine.parser.mysqlmodels._6txkrsiwk3;
 import appengine.parser.mysqlmodels.enums.OptimalupdateOperation;
 import appengine.parser.mysqlmodels.tables.records.OptimalupdateRecord;
 
@@ -36,10 +36,10 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Optimalupdate extends TableImpl<OptimalupdateRecord> {
 
-    private static final long serialVersionUID = 44044401;
+    private static final long serialVersionUID = 861602201;
 
     /**
-     * The reference instance of <code>parser.optimalupdate</code>
+     * The reference instance of <code>6txKRsiwk3.optimalupdate</code>
      */
     public static final Optimalupdate OPTIMALUPDATE = new Optimalupdate();
 
@@ -52,29 +52,29 @@ public class Optimalupdate extends TableImpl<OptimalupdateRecord> {
     }
 
     /**
-     * The column <code>parser.optimalupdate.operation</code>.
+     * The column <code>6txKRsiwk3.optimalupdate.operation</code>.
      */
     public final TableField<OptimalupdateRecord, OptimalupdateOperation> OPERATION = createField("operation", org.jooq.util.mysql.MySQLDataType.VARCHAR.asEnumDataType(appengine.parser.mysqlmodels.enums.OptimalupdateOperation.class), this, "");
 
     /**
-     * The column <code>parser.optimalupdate.updatedtime</code>.
+     * The column <code>6txKRsiwk3.optimalupdate.updatedtime</code>.
      */
     public final TableField<OptimalupdateRecord, Timestamp> UPDATEDTIME = createField("updatedtime", org.jooq.impl.SQLDataType.TIMESTAMP.nullable(false).defaultValue(org.jooq.impl.DSL.inline("CURRENT_TIMESTAMP", org.jooq.impl.SQLDataType.TIMESTAMP)), this, "");
 
     /**
-     * The column <code>parser.optimalupdate.dummy</code>.
+     * The column <code>6txKRsiwk3.optimalupdate.dummy</code>.
      */
     public final TableField<OptimalupdateRecord, Integer> DUMMY = createField("dummy", org.jooq.impl.SQLDataType.INTEGER.defaultValue(org.jooq.impl.DSL.inline("0", org.jooq.impl.SQLDataType.INTEGER)), this, "");
 
     /**
-     * Create a <code>parser.optimalupdate</code> table reference
+     * Create a <code>6txKRsiwk3.optimalupdate</code> table reference
      */
     public Optimalupdate() {
         this("optimalupdate", null);
     }
 
     /**
-     * Create an aliased <code>parser.optimalupdate</code> table reference
+     * Create an aliased <code>6txKRsiwk3.optimalupdate</code> table reference
      */
     public Optimalupdate(String alias) {
         this(alias, OPTIMALUPDATE);
@@ -93,7 +93,7 @@ public class Optimalupdate extends TableImpl<OptimalupdateRecord> {
      */
     @Override
     public Schema getSchema() {
-        return Parser.PARSER;
+        return _6txkrsiwk3._6TXKRSIWK3;
     }
 
     /**

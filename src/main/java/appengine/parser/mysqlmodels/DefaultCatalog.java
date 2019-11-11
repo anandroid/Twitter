@@ -27,7 +27,7 @@ import org.jooq.impl.CatalogImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class DefaultCatalog extends CatalogImpl {
 
-    private static final long serialVersionUID = -624003057;
+    private static final long serialVersionUID = 658248112;
 
     /**
      * The reference instance of <code></code>
@@ -35,9 +35,9 @@ public class DefaultCatalog extends CatalogImpl {
     public static final DefaultCatalog DEFAULT_CATALOG = new DefaultCatalog();
 
     /**
-     * The schema <code>parser</code>.
+     * The schema <code>6txKRsiwk3</code>.
      */
-    public final Parser PARSER = appengine.parser.mysqlmodels.Parser.PARSER;
+    public final _6txkrsiwk3 _6TXKRSIWK3 = appengine.parser.mysqlmodels._6txkrsiwk3._6TXKRSIWK3;
 
     /**
      * No further instances allowed
@@ -55,6 +55,6 @@ public class DefaultCatalog extends CatalogImpl {
 
     private final List<Schema> getSchemas0() {
         return Arrays.<Schema>asList(
-            Parser.PARSER);
+            _6txkrsiwk3._6TXKRSIWK3);
     }
 }

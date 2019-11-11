@@ -4,7 +4,7 @@
 package appengine.parser.mysqlmodels.tables;
 
 
-import appengine.parser.mysqlmodels.Parser;
+import appengine.parser.mysqlmodels._6txkrsiwk3;
 import appengine.parser.mysqlmodels.tables.records.OptimaljsonRecord;
 
 import java.sql.Timestamp;
@@ -31,10 +31,10 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Optimaljson extends TableImpl<OptimaljsonRecord> {
 
-    private static final long serialVersionUID = -1744250543;
+    private static final long serialVersionUID = 2120264113;
 
     /**
-     * The reference instance of <code>parser.optimaljson</code>
+     * The reference instance of <code>6txKRsiwk3.optimaljson</code>
      */
     public static final Optimaljson OPTIMALJSON = new Optimaljson();
 
@@ -47,29 +47,29 @@ public class Optimaljson extends TableImpl<OptimaljsonRecord> {
     }
 
     /**
-     * The column <code>parser.optimaljson.time</code>.
+     * The column <code>6txKRsiwk3.optimaljson.time</code>.
      */
     public final TableField<OptimaljsonRecord, Timestamp> TIME = createField("time", org.jooq.impl.SQLDataType.TIMESTAMP.nullable(false).defaultValue(org.jooq.impl.DSL.inline("CURRENT_TIMESTAMP", org.jooq.impl.SQLDataType.TIMESTAMP)), this, "");
 
     /**
-     * The column <code>parser.optimaljson.json</code>.
+     * The column <code>6txKRsiwk3.optimaljson.json</code>.
      */
     public final TableField<OptimaljsonRecord, String> JSON = createField("json", org.jooq.impl.SQLDataType.VARCHAR.length(5000), this, "");
 
     /**
-     * The column <code>parser.optimaljson.coinlabel</code>.
+     * The column <code>6txKRsiwk3.optimaljson.coinlabel</code>.
      */
     public final TableField<OptimaljsonRecord, String> COINLABEL = createField("coinlabel", org.jooq.impl.SQLDataType.VARCHAR.length(10), this, "");
 
     /**
-     * Create a <code>parser.optimaljson</code> table reference
+     * Create a <code>6txKRsiwk3.optimaljson</code> table reference
      */
     public Optimaljson() {
         this("optimaljson", null);
     }
 
     /**
-     * Create an aliased <code>parser.optimaljson</code> table reference
+     * Create an aliased <code>6txKRsiwk3.optimaljson</code> table reference
      */
     public Optimaljson(String alias) {
         this(alias, OPTIMALJSON);
@@ -88,7 +88,7 @@ public class Optimaljson extends TableImpl<OptimaljsonRecord> {
      */
     @Override
     public Schema getSchema() {
-        return Parser.PARSER;
+        return _6txkrsiwk3._6TXKRSIWK3;
     }
 
     /**

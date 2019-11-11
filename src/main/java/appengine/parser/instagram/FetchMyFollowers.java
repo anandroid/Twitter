@@ -13,7 +13,7 @@ import org.json.JSONObject;
 import static appengine.parser.mysqlmodels.Tables.INSTAGRAMFOLLOWERS;
 import static appengine.parser.mysqlmodels.Tables.INSTAGRAMLASTFETCH;
 
-public class FetchFollowers {
+public class FetchMyFollowers {
 
     public String fetch() {
 

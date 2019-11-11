@@ -8,10 +8,7 @@ import appengine.parser.facebook.AcceptFriendRequests;
 import appengine.parser.facebook.AutoPost;
 import appengine.parser.facebook.DetailedPost;
 import appengine.parser.facebook.Facebook;
-import appengine.parser.instagram.FetchFollowers;
-import appengine.parser.instagram.FetchLikers;
-import appengine.parser.instagram.FollowUsers;
-import appengine.parser.instagram.UnFollowUsers;
+import appengine.parser.instagram.*;
 import appengine.parser.instagram.follow4follow.EarnPoints;
 import appengine.parser.instagram.gram.GetUsers;
 import appengine.parser.instagram.likestar.LikeStarEarnPoints;
@@ -25,6 +22,7 @@ import appengine.parser.optimal.livecoinokex.OkexLivecoinApi;
 import appengine.parser.optimal.livecoinokex.TransferApi;
 import appengine.parser.optimal.livecoinokex.utils.Transfer;
 import appengine.parser.optimal.livecoinokex.utils.livecoin.LivecoinUtil;
+import appengine.parser.optimal.objects.CoinMarket;
 import appengine.parser.optimal.objects.CoinStatus;
 import appengine.parser.optimal.objects.CoinsStatusUtil;
 import appengine.parser.optimal.objects.Market;
@@ -38,6 +36,7 @@ import appengine.parser.temp.SwiggyEventsUtil;
 import appengine.parser.twitter.FollowTwitterUsers;
 import appengine.parser.twitter.GetFollowers;
 import appengine.parser.twitter.Twitter;
+import appengine.parser.twitter.UnFollowTwitterUsers;
 import appengine.parser.utils.StringUtils;
 import appengine.parser.wordpress.WordPress;
 import com.restfb.types.Post;
@@ -225,6 +224,12 @@ public class MainController {
     public String prefetcherCobinHood() {
         return new Fetcher().fetchCobinHood();
         // return "ok";
+    }
+
+    @GetMapping("/coincalculator/fetch/binance")
+    public String prefetcherBinance() {
+
+        return new Fetcher().fetchBinance();
     }
 
     @GetMapping("/coincalculator/binance")
@@ -574,6 +579,16 @@ public class MainController {
         return new FetchFollowers().fetch();
     }
 
+    @GetMapping(value = "/instagram/getmyfollowers")
+    public String fetchMyFollowers() {
+        return new FetchMyFollowers().fetch();
+    }
+
+    @GetMapping(value = "/instagram/fetchuserinfo")
+    public String fetchInstagramUserInfo() {
+        return new FetchUserInfo().fetch();
+    }
+
     @GetMapping(value = "/instagram/followusers")
     public String followUsers() {
         String pagename = "dog.lovers";
@@ -598,6 +613,11 @@ public class MainController {
         String pagename = "dog.lovers";
         String usercurrentname = "anand4joy";
         return new UnFollowUsers().follow(pagename, usercurrentname);
+    }
+
+    @GetMapping(value = "/instagram/unfollowcurrentusers")
+    public String unfollowCurrentUsers() {
+        return new UnFollowCurrentUsers().fetchUsersIamFollowing();
     }
 
     @GetMapping(value = "/gram/fetchusers")
@@ -642,9 +662,21 @@ public class MainController {
         return "success";
     }
 
+    @GetMapping(value = "/tweets/unfollow")
+    public String unFollowCurrentUsers() {
+        new UnFollowTwitterUsers().unFollow();
+        return "success";
+    }
+
+
     @GetMapping(value = "/slack/addmembers")
     public String addSlackMembers() {
         new SlackUtil().getChannelMembers();
+        return "success";
+    }
+
+    @GetMapping(value = "/mc/uploadserver")
+    public String uploadfile() {
         return "success";
     }
 

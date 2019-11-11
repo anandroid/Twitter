@@ -29,101 +29,101 @@ import org.jooq.impl.TableRecordImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class OptimalRecord extends TableRecordImpl<OptimalRecord> implements Record7<Timestamp, String, String, Double, String, Double, Double> {
 
-    private static final long serialVersionUID = 1313713634;
+    private static final long serialVersionUID = 2145780418;
 
     /**
-     * Setter for <code>parser.optimal.time</code>.
+     * Setter for <code>6txKRsiwk3.optimal.time</code>.
      */
     public void setTime(Timestamp value) {
         set(0, value);
     }
 
     /**
-     * Getter for <code>parser.optimal.time</code>.
+     * Getter for <code>6txKRsiwk3.optimal.time</code>.
      */
     public Timestamp getTime() {
         return (Timestamp) get(0);
     }
 
     /**
-     * Setter for <code>parser.optimal.coin</code>.
+     * Setter for <code>6txKRsiwk3.optimal.coin</code>.
      */
     public void setCoin(String value) {
         set(1, value);
     }
 
     /**
-     * Getter for <code>parser.optimal.coin</code>.
+     * Getter for <code>6txKRsiwk3.optimal.coin</code>.
      */
     public String getCoin() {
         return (String) get(1);
     }
 
     /**
-     * Setter for <code>parser.optimal.buy_from</code>.
+     * Setter for <code>6txKRsiwk3.optimal.buy_from</code>.
      */
     public void setBuyFrom(String value) {
         set(2, value);
     }
 
     /**
-     * Getter for <code>parser.optimal.buy_from</code>.
+     * Getter for <code>6txKRsiwk3.optimal.buy_from</code>.
      */
     public String getBuyFrom() {
         return (String) get(2);
     }
 
     /**
-     * Setter for <code>parser.optimal.buy_for</code>.
+     * Setter for <code>6txKRsiwk3.optimal.buy_for</code>.
      */
     public void setBuyFor(Double value) {
         set(3, value);
     }
 
     /**
-     * Getter for <code>parser.optimal.buy_for</code>.
+     * Getter for <code>6txKRsiwk3.optimal.buy_for</code>.
      */
     public Double getBuyFor() {
         return (Double) get(3);
     }
 
     /**
-     * Setter for <code>parser.optimal.sell_at</code>.
+     * Setter for <code>6txKRsiwk3.optimal.sell_at</code>.
      */
     public void setSellAt(String value) {
         set(4, value);
     }
 
     /**
-     * Getter for <code>parser.optimal.sell_at</code>.
+     * Getter for <code>6txKRsiwk3.optimal.sell_at</code>.
      */
     public String getSellAt() {
         return (String) get(4);
     }
 
     /**
-     * Setter for <code>parser.optimal.sell_for</code>.
+     * Setter for <code>6txKRsiwk3.optimal.sell_for</code>.
      */
     public void setSellFor(Double value) {
         set(5, value);
     }
 
     /**
-     * Getter for <code>parser.optimal.sell_for</code>.
+     * Getter for <code>6txKRsiwk3.optimal.sell_for</code>.
      */
     public Double getSellFor() {
         return (Double) get(5);
     }
 
     /**
-     * Setter for <code>parser.optimal.profit</code>.
+     * Setter for <code>6txKRsiwk3.optimal.profit</code>.
      */
     public void setProfit(Double value) {
         set(6, value);
     }
 
     /**
-     * Getter for <code>parser.optimal.profit</code>.
+     * Getter for <code>6txKRsiwk3.optimal.profit</code>.
      */
     public Double getProfit() {
         return (Double) get(6);

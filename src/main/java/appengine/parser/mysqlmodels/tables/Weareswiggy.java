@@ -5,7 +5,7 @@ package appengine.parser.mysqlmodels.tables;
 
 
 import appengine.parser.mysqlmodels.Keys;
-import appengine.parser.mysqlmodels.Parser;
+import appengine.parser.mysqlmodels._6txkrsiwk3;
 import appengine.parser.mysqlmodels.tables.records.WeareswiggyRecord;
 
 import java.util.Arrays;
@@ -34,10 +34,10 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Weareswiggy extends TableImpl<WeareswiggyRecord> {
 
-    private static final long serialVersionUID = -153122920;
+    private static final long serialVersionUID = -2083387007;
 
     /**
-     * The reference instance of <code>parser.weareswiggy</code>
+     * The reference instance of <code>6txKRsiwk3.weareswiggy</code>
      */
     public static final Weareswiggy WEARESWIGGY = new Weareswiggy();
 
@@ -50,24 +50,24 @@ public class Weareswiggy extends TableImpl<WeareswiggyRecord> {
     }
 
     /**
-     * The column <code>parser.weareswiggy.lasttweet</code>.
+     * The column <code>6txKRsiwk3.weareswiggy.lasttweet</code>.
      */
     public final TableField<WeareswiggyRecord, String> LASTTWEET = createField("lasttweet", org.jooq.impl.SQLDataType.VARCHAR.length(200).nullable(false), this, "");
 
     /**
-     * The column <code>parser.weareswiggy.isunique</code>.
+     * The column <code>6txKRsiwk3.weareswiggy.isunique</code>.
      */
     public final TableField<WeareswiggyRecord, Byte> ISUNIQUE = createField("isunique", org.jooq.impl.SQLDataType.TINYINT.nullable(false).defaultValue(org.jooq.impl.DSL.inline("1", org.jooq.impl.SQLDataType.TINYINT)), this, "");
 
     /**
-     * Create a <code>parser.weareswiggy</code> table reference
+     * Create a <code>6txKRsiwk3.weareswiggy</code> table reference
      */
     public Weareswiggy() {
         this("weareswiggy", null);
     }
 
     /**
-     * Create an aliased <code>parser.weareswiggy</code> table reference
+     * Create an aliased <code>6txKRsiwk3.weareswiggy</code> table reference
      */
     public Weareswiggy(String alias) {
         this(alias, WEARESWIGGY);
@@ -86,7 +86,7 @@ public class Weareswiggy extends TableImpl<WeareswiggyRecord> {
      */
     @Override
     public Schema getSchema() {
-        return Parser.PARSER;
+        return _6txkrsiwk3._6TXKRSIWK3;
     }
 
     /**

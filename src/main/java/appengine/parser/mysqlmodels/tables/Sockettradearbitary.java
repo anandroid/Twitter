@@ -5,7 +5,7 @@ package appengine.parser.mysqlmodels.tables;
 
 
 import appengine.parser.mysqlmodels.Keys;
-import appengine.parser.mysqlmodels.Parser;
+import appengine.parser.mysqlmodels._6txkrsiwk3;
 import appengine.parser.mysqlmodels.enums.SockettradearbitaryTradetype;
 import appengine.parser.mysqlmodels.tables.records.SockettradearbitaryRecord;
 
@@ -36,10 +36,10 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Sockettradearbitary extends TableImpl<SockettradearbitaryRecord> {
 
-    private static final long serialVersionUID = 1744628621;
+    private static final long serialVersionUID = -1500815469;
 
     /**
-     * The reference instance of <code>parser.sockettradearbitary</code>
+     * The reference instance of <code>6txKRsiwk3.sockettradearbitary</code>
      */
     public static final Sockettradearbitary SOCKETTRADEARBITARY = new Sockettradearbitary();
 
@@ -52,79 +52,79 @@ public class Sockettradearbitary extends TableImpl<SockettradearbitaryRecord> {
     }
 
     /**
-     * The column <code>parser.sockettradearbitary.coinlabel</code>.
+     * The column <code>6txKRsiwk3.sockettradearbitary.coinlabel</code>.
      */
     public final TableField<SockettradearbitaryRecord, String> COINLABEL = createField("coinlabel", org.jooq.impl.SQLDataType.VARCHAR.length(10), this, "");
 
     /**
-     * The column <code>parser.sockettradearbitary.tradetype</code>.
+     * The column <code>6txKRsiwk3.sockettradearbitary.tradetype</code>.
      */
     public final TableField<SockettradearbitaryRecord, SockettradearbitaryTradetype> TRADETYPE = createField("tradetype", org.jooq.util.mysql.MySQLDataType.VARCHAR.asEnumDataType(appengine.parser.mysqlmodels.enums.SockettradearbitaryTradetype.class), this, "");
 
     /**
-     * The column <code>parser.sockettradearbitary.buyprice</code>.
+     * The column <code>6txKRsiwk3.sockettradearbitary.buyprice</code>.
      */
     public final TableField<SockettradearbitaryRecord, Double> BUYPRICE = createField("buyprice", org.jooq.impl.SQLDataType.DOUBLE, this, "");
 
     /**
-     * The column <code>parser.sockettradearbitary.sellprice</code>.
+     * The column <code>6txKRsiwk3.sockettradearbitary.sellprice</code>.
      */
     public final TableField<SockettradearbitaryRecord, Double> SELLPRICE = createField("sellprice", org.jooq.impl.SQLDataType.DOUBLE, this, "");
 
     /**
-     * The column <code>parser.sockettradearbitary.createdtime</code>.
+     * The column <code>6txKRsiwk3.sockettradearbitary.createdtime</code>.
      */
     public final TableField<SockettradearbitaryRecord, Timestamp> CREATEDTIME = createField("createdtime", org.jooq.impl.SQLDataType.TIMESTAMP.nullable(false).defaultValue(org.jooq.impl.DSL.inline("CURRENT_TIMESTAMP", org.jooq.impl.SQLDataType.TIMESTAMP)), this, "");
 
     /**
-     * The column <code>parser.sockettradearbitary.market</code>.
+     * The column <code>6txKRsiwk3.sockettradearbitary.market</code>.
      */
     public final TableField<SockettradearbitaryRecord, String> MARKET = createField("market", org.jooq.impl.SQLDataType.VARCHAR.length(20), this, "");
 
     /**
-     * The column <code>parser.sockettradearbitary.amount</code>.
+     * The column <code>6txKRsiwk3.sockettradearbitary.amount</code>.
      */
     public final TableField<SockettradearbitaryRecord, Double> AMOUNT = createField("amount", org.jooq.impl.SQLDataType.DOUBLE, this, "");
 
     /**
-     * The column <code>parser.sockettradearbitary.arbitarysellprice</code>.
+     * The column <code>6txKRsiwk3.sockettradearbitary.arbitarysellprice</code>.
      */
     public final TableField<SockettradearbitaryRecord, Double> ARBITARYSELLPRICE = createField("arbitarysellprice", org.jooq.impl.SQLDataType.DOUBLE, this, "");
 
     /**
-     * The column <code>parser.sockettradearbitary.iscompleted</code>.
+     * The column <code>6txKRsiwk3.sockettradearbitary.iscompleted</code>.
      */
     public final TableField<SockettradearbitaryRecord, Byte> ISCOMPLETED = createField("iscompleted", org.jooq.impl.SQLDataType.TINYINT.defaultValue(org.jooq.impl.DSL.inline("0", org.jooq.impl.SQLDataType.TINYINT)), this, "");
 
     /**
-     * The column <code>parser.sockettradearbitary.updatedarbitarysellprice</code>.
+     * The column <code>6txKRsiwk3.sockettradearbitary.updatedarbitarysellprice</code>.
      */
     public final TableField<SockettradearbitaryRecord, Double> UPDATEDARBITARYSELLPRICE = createField("updatedarbitarysellprice", org.jooq.impl.SQLDataType.DOUBLE, this, "");
 
     /**
-     * The column <code>parser.sockettradearbitary.updatedtime</code>.
+     * The column <code>6txKRsiwk3.sockettradearbitary.updatedtime</code>.
      */
     public final TableField<SockettradearbitaryRecord, Timestamp> UPDATEDTIME = createField("updatedtime", org.jooq.impl.SQLDataType.TIMESTAMP.defaultValue(org.jooq.impl.DSL.inline("CURRENT_TIMESTAMP", org.jooq.impl.SQLDataType.TIMESTAMP)), this, "");
 
     /**
-     * The column <code>parser.sockettradearbitary.updatedsellprice</code>.
+     * The column <code>6txKRsiwk3.sockettradearbitary.updatedsellprice</code>.
      */
     public final TableField<SockettradearbitaryRecord, Double> UPDATEDSELLPRICE = createField("updatedsellprice", org.jooq.impl.SQLDataType.DOUBLE, this, "");
 
     /**
-     * The column <code>parser.sockettradearbitary.order_id</code>.
+     * The column <code>6txKRsiwk3.sockettradearbitary.order_id</code>.
      */
     public final TableField<SockettradearbitaryRecord, String> ORDER_ID = createField("order_id", org.jooq.impl.SQLDataType.CLOB, this, "");
 
     /**
-     * Create a <code>parser.sockettradearbitary</code> table reference
+     * Create a <code>6txKRsiwk3.sockettradearbitary</code> table reference
      */
     public Sockettradearbitary() {
         this("sockettradearbitary", null);
     }
 
     /**
-     * Create an aliased <code>parser.sockettradearbitary</code> table reference
+     * Create an aliased <code>6txKRsiwk3.sockettradearbitary</code> table reference
      */
     public Sockettradearbitary(String alias) {
         this(alias, SOCKETTRADEARBITARY);
@@ -143,7 +143,7 @@ public class Sockettradearbitary extends TableImpl<SockettradearbitaryRecord> {
      */
     @Override
     public Schema getSchema() {
-        return Parser.PARSER;
+        return _6txkrsiwk3._6TXKRSIWK3;
     }
 
     /**

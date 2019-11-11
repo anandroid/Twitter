@@ -30,115 +30,115 @@ import org.jooq.impl.TableRecordImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class OptimalnotifyRecord extends TableRecordImpl<OptimalnotifyRecord> implements Record8<String, Timestamp, Double, String, String, OptimalnotifyNotifytype, Double, Double> {
 
-    private static final long serialVersionUID = -365441916;
+    private static final long serialVersionUID = -2037446396;
 
     /**
-     * Setter for <code>parser.optimalnotify.coinlabel</code>.
+     * Setter for <code>6txKRsiwk3.optimalnotify.coinlabel</code>.
      */
     public void setCoinlabel(String value) {
         set(0, value);
     }
 
     /**
-     * Getter for <code>parser.optimalnotify.coinlabel</code>.
+     * Getter for <code>6txKRsiwk3.optimalnotify.coinlabel</code>.
      */
     public String getCoinlabel() {
         return (String) get(0);
     }
 
     /**
-     * Setter for <code>parser.optimalnotify.time</code>.
+     * Setter for <code>6txKRsiwk3.optimalnotify.time</code>.
      */
     public void setTime(Timestamp value) {
         set(1, value);
     }
 
     /**
-     * Getter for <code>parser.optimalnotify.time</code>.
+     * Getter for <code>6txKRsiwk3.optimalnotify.time</code>.
      */
     public Timestamp getTime() {
         return (Timestamp) get(1);
     }
 
     /**
-     * Setter for <code>parser.optimalnotify.profit</code>.
+     * Setter for <code>6txKRsiwk3.optimalnotify.profit</code>.
      */
     public void setProfit(Double value) {
         set(2, value);
     }
 
     /**
-     * Getter for <code>parser.optimalnotify.profit</code>.
+     * Getter for <code>6txKRsiwk3.optimalnotify.profit</code>.
      */
     public Double getProfit() {
         return (Double) get(2);
     }
 
     /**
-     * Setter for <code>parser.optimalnotify.frommarket</code>.
+     * Setter for <code>6txKRsiwk3.optimalnotify.frommarket</code>.
      */
     public void setFrommarket(String value) {
         set(3, value);
     }
 
     /**
-     * Getter for <code>parser.optimalnotify.frommarket</code>.
+     * Getter for <code>6txKRsiwk3.optimalnotify.frommarket</code>.
      */
     public String getFrommarket() {
         return (String) get(3);
     }
 
     /**
-     * Setter for <code>parser.optimalnotify.tomarket</code>.
+     * Setter for <code>6txKRsiwk3.optimalnotify.tomarket</code>.
      */
     public void setTomarket(String value) {
         set(4, value);
     }
 
     /**
-     * Getter for <code>parser.optimalnotify.tomarket</code>.
+     * Getter for <code>6txKRsiwk3.optimalnotify.tomarket</code>.
      */
     public String getTomarket() {
         return (String) get(4);
     }
 
     /**
-     * Setter for <code>parser.optimalnotify.notifytype</code>.
+     * Setter for <code>6txKRsiwk3.optimalnotify.notifytype</code>.
      */
     public void setNotifytype(OptimalnotifyNotifytype value) {
         set(5, value);
     }
 
     /**
-     * Getter for <code>parser.optimalnotify.notifytype</code>.
+     * Getter for <code>6txKRsiwk3.optimalnotify.notifytype</code>.
      */
     public OptimalnotifyNotifytype getNotifytype() {
         return (OptimalnotifyNotifytype) get(5);
     }
 
     /**
-     * Setter for <code>parser.optimalnotify.buyprice</code>.
+     * Setter for <code>6txKRsiwk3.optimalnotify.buyprice</code>.
      */
     public void setBuyprice(Double value) {
         set(6, value);
     }
 
     /**
-     * Getter for <code>parser.optimalnotify.buyprice</code>.
+     * Getter for <code>6txKRsiwk3.optimalnotify.buyprice</code>.
      */
     public Double getBuyprice() {
         return (Double) get(6);
     }
 
     /**
-     * Setter for <code>parser.optimalnotify.sellprice</code>.
+     * Setter for <code>6txKRsiwk3.optimalnotify.sellprice</code>.
      */
     public void setSellprice(Double value) {
         set(7, value);
     }
 
     /**
-     * Getter for <code>parser.optimalnotify.sellprice</code>.
+     * Getter for <code>6txKRsiwk3.optimalnotify.sellprice</code>.
      */
     public Double getSellprice() {
         return (Double) get(7);

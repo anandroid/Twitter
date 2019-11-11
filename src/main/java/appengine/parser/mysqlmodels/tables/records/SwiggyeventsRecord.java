@@ -28,45 +28,45 @@ import org.jooq.impl.UpdatableRecordImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class SwiggyeventsRecord extends UpdatableRecordImpl<SwiggyeventsRecord> implements Record3<Integer, String, String> {
 
-    private static final long serialVersionUID = -1239367556;
+    private static final long serialVersionUID = -927192612;
 
     /**
-     * Setter for <code>parser.swiggyevents.id</code>.
+     * Setter for <code>6txKRsiwk3.swiggyevents.id</code>.
      */
     public void setId(Integer value) {
         set(0, value);
     }
 
     /**
-     * Getter for <code>parser.swiggyevents.id</code>.
+     * Getter for <code>6txKRsiwk3.swiggyevents.id</code>.
      */
     public Integer getId() {
         return (Integer) get(0);
     }
 
     /**
-     * Setter for <code>parser.swiggyevents.json</code>.
+     * Setter for <code>6txKRsiwk3.swiggyevents.json</code>.
      */
     public void setJson(String value) {
         set(1, value);
     }
 
     /**
-     * Getter for <code>parser.swiggyevents.json</code>.
+     * Getter for <code>6txKRsiwk3.swiggyevents.json</code>.
      */
     public String getJson() {
         return (String) get(1);
     }
 
     /**
-     * Setter for <code>parser.swiggyevents.device_id</code>.
+     * Setter for <code>6txKRsiwk3.swiggyevents.device_id</code>.
      */
     public void setDeviceId(String value) {
         set(2, value);
     }
 
     /**
-     * Getter for <code>parser.swiggyevents.device_id</code>.
+     * Getter for <code>6txKRsiwk3.swiggyevents.device_id</code>.
      */
     public String getDeviceId() {
         return (String) get(2);

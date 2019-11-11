@@ -5,7 +5,7 @@ package appengine.parser.mysqlmodels.tables;
 
 
 import appengine.parser.mysqlmodels.Keys;
-import appengine.parser.mysqlmodels.Parser;
+import appengine.parser.mysqlmodels._6txkrsiwk3;
 import appengine.parser.mysqlmodels.tables.records.UbereatsRecord;
 
 import java.util.Arrays;
@@ -35,10 +35,10 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Ubereats extends TableImpl<UbereatsRecord> {
 
-    private static final long serialVersionUID = 427053555;
+    private static final long serialVersionUID = -977428072;
 
     /**
-     * The reference instance of <code>parser.ubereats</code>
+     * The reference instance of <code>6txKRsiwk3.ubereats</code>
      */
     public static final Ubereats UBEREATS = new Ubereats();
 
@@ -51,54 +51,54 @@ public class Ubereats extends TableImpl<UbereatsRecord> {
     }
 
     /**
-     * The column <code>parser.ubereats.uuid</code>.
+     * The column <code>6txKRsiwk3.ubereats.uuid</code>.
      */
     public final TableField<UbereatsRecord, String> UUID = createField("uuid", org.jooq.impl.SQLDataType.VARCHAR.length(100), this, "");
 
     /**
-     * The column <code>parser.ubereats.title</code>.
+     * The column <code>6txKRsiwk3.ubereats.title</code>.
      */
     public final TableField<UbereatsRecord, String> TITLE = createField("title", org.jooq.impl.SQLDataType.VARCHAR.length(50), this, "");
 
     /**
-     * The column <code>parser.ubereats.item_description</code>.
+     * The column <code>6txKRsiwk3.ubereats.item_description</code>.
      */
     public final TableField<UbereatsRecord, String> ITEM_DESCRIPTION = createField("item_description", org.jooq.impl.SQLDataType.VARCHAR.length(500), this, "");
 
     /**
-     * The column <code>parser.ubereats.image_url</code>.
+     * The column <code>6txKRsiwk3.ubereats.image_url</code>.
      */
     public final TableField<UbereatsRecord, String> IMAGE_URL = createField("image_url", org.jooq.impl.SQLDataType.VARCHAR.length(200), this, "");
 
     /**
-     * The column <code>parser.ubereats.query</code>.
+     * The column <code>6txKRsiwk3.ubereats.query</code>.
      */
     public final TableField<UbereatsRecord, String> QUERY = createField("query", org.jooq.impl.SQLDataType.VARCHAR.length(20), this, "");
 
     /**
-     * The column <code>parser.ubereats.city_id</code>.
+     * The column <code>6txKRsiwk3.ubereats.city_id</code>.
      */
     public final TableField<UbereatsRecord, Integer> CITY_ID = createField("city_id", org.jooq.impl.SQLDataType.INTEGER, this, "");
 
     /**
-     * The column <code>parser.ubereats.store_uuid</code>.
+     * The column <code>6txKRsiwk3.ubereats.store_uuid</code>.
      */
     public final TableField<UbereatsRecord, String> STORE_UUID = createField("store_uuid", org.jooq.impl.SQLDataType.VARCHAR.length(100), this, "");
 
     /**
-     * The column <code>parser.ubereats.id</code>.
+     * The column <code>6txKRsiwk3.ubereats.id</code>.
      */
     public final TableField<UbereatsRecord, Integer> ID = createField("id", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
 
     /**
-     * Create a <code>parser.ubereats</code> table reference
+     * Create a <code>6txKRsiwk3.ubereats</code> table reference
      */
     public Ubereats() {
         this("ubereats", null);
     }
 
     /**
-     * Create an aliased <code>parser.ubereats</code> table reference
+     * Create an aliased <code>6txKRsiwk3.ubereats</code> table reference
      */
     public Ubereats(String alias) {
         this(alias, UBEREATS);
@@ -117,7 +117,7 @@ public class Ubereats extends TableImpl<UbereatsRecord> {
      */
     @Override
     public Schema getSchema() {
-        return Parser.PARSER;
+        return _6txkrsiwk3._6TXKRSIWK3;
     }
 
     /**

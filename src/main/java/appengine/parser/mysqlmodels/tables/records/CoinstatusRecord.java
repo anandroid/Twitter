@@ -29,87 +29,87 @@ import org.jooq.impl.TableRecordImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class CoinstatusRecord extends TableRecordImpl<CoinstatusRecord> implements Record6<String, String, String, Timestamp, Byte, Byte> {
 
-    private static final long serialVersionUID = 1536647099;
+    private static final long serialVersionUID = 165060233;
 
     /**
-     * Setter for <code>parser.coinstatus.name</code>.
+     * Setter for <code>6txKRsiwk3.coinstatus.name</code>.
      */
     public void setName(String value) {
         set(0, value);
     }
 
     /**
-     * Getter for <code>parser.coinstatus.name</code>.
+     * Getter for <code>6txKRsiwk3.coinstatus.name</code>.
      */
     public String getName() {
         return (String) get(0);
     }
 
     /**
-     * Setter for <code>parser.coinstatus.label</code>.
+     * Setter for <code>6txKRsiwk3.coinstatus.label</code>.
      */
     public void setLabel(String value) {
         set(1, value);
     }
 
     /**
-     * Getter for <code>parser.coinstatus.label</code>.
+     * Getter for <code>6txKRsiwk3.coinstatus.label</code>.
      */
     public String getLabel() {
         return (String) get(1);
     }
 
     /**
-     * Setter for <code>parser.coinstatus.market</code>.
+     * Setter for <code>6txKRsiwk3.coinstatus.market</code>.
      */
     public void setMarket(String value) {
         set(2, value);
     }
 
     /**
-     * Getter for <code>parser.coinstatus.market</code>.
+     * Getter for <code>6txKRsiwk3.coinstatus.market</code>.
      */
     public String getMarket() {
         return (String) get(2);
     }
 
     /**
-     * Setter for <code>parser.coinstatus.time</code>.
+     * Setter for <code>6txKRsiwk3.coinstatus.time</code>.
      */
     public void setTime(Timestamp value) {
         set(3, value);
     }
 
     /**
-     * Getter for <code>parser.coinstatus.time</code>.
+     * Getter for <code>6txKRsiwk3.coinstatus.time</code>.
      */
     public Timestamp getTime() {
         return (Timestamp) get(3);
     }
 
     /**
-     * Setter for <code>parser.coinstatus.iswalletactive</code>.
+     * Setter for <code>6txKRsiwk3.coinstatus.iswalletactive</code>.
      */
     public void setIswalletactive(Byte value) {
         set(4, value);
     }
 
     /**
-     * Getter for <code>parser.coinstatus.iswalletactive</code>.
+     * Getter for <code>6txKRsiwk3.coinstatus.iswalletactive</code>.
      */
     public Byte getIswalletactive() {
         return (Byte) get(4);
     }
 
     /**
-     * Setter for <code>parser.coinstatus.islistingactive</code>.
+     * Setter for <code>6txKRsiwk3.coinstatus.islistingactive</code>.
      */
     public void setIslistingactive(Byte value) {
         set(5, value);
     }
 
     /**
-     * Getter for <code>parser.coinstatus.islistingactive</code>.
+     * Getter for <code>6txKRsiwk3.coinstatus.islistingactive</code>.
      */
     public Byte getIslistingactive() {
         return (Byte) get(5);

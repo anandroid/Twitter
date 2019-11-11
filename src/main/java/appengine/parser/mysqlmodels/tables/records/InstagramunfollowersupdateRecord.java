@@ -27,45 +27,45 @@ import org.jooq.impl.TableRecordImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class InstagramunfollowersupdateRecord extends TableRecordImpl<InstagramunfollowersupdateRecord> implements Record3<String, String, Integer> {
 
-    private static final long serialVersionUID = -32095518;
+    private static final long serialVersionUID = 549252418;
 
     /**
-     * Setter for <code>parser.instagramunfollowersupdate.pagename</code>.
+     * Setter for <code>6txKRsiwk3.instagramunfollowersupdate.pagename</code>.
      */
     public void setPagename(String value) {
         set(0, value);
     }
 
     /**
-     * Getter for <code>parser.instagramunfollowersupdate.pagename</code>.
+     * Getter for <code>6txKRsiwk3.instagramunfollowersupdate.pagename</code>.
      */
     public String getPagename() {
         return (String) get(0);
     }
 
     /**
-     * Setter for <code>parser.instagramunfollowersupdate.from_user_name</code>.
+     * Setter for <code>6txKRsiwk3.instagramunfollowersupdate.from_user_name</code>.
      */
     public void setFromUserName(String value) {
         set(1, value);
     }
 
     /**
-     * Getter for <code>parser.instagramunfollowersupdate.from_user_name</code>.
+     * Getter for <code>6txKRsiwk3.instagramunfollowersupdate.from_user_name</code>.
      */
     public String getFromUserName() {
         return (String) get(1);
     }
 
     /**
-     * Setter for <code>parser.instagramunfollowersupdate.followed_till</code>.
+     * Setter for <code>6txKRsiwk3.instagramunfollowersupdate.followed_till</code>.
      */
     public void setFollowedTill(Integer value) {
         set(2, value);
     }
 
     /**
-     * Getter for <code>parser.instagramunfollowersupdate.followed_till</code>.
+     * Getter for <code>6txKRsiwk3.instagramunfollowersupdate.followed_till</code>.
      */
     public Integer getFollowedTill() {
         return (Integer) get(2);

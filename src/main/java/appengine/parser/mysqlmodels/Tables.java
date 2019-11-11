@@ -4,6 +4,7 @@
 package appengine.parser.mysqlmodels;
 
 
+import appengine.parser.mysqlmodels.tables.Coinprices;
 import appengine.parser.mysqlmodels.tables.Coinstatus;
 import appengine.parser.mysqlmodels.tables.Cointransfer;
 import appengine.parser.mysqlmodels.tables.Fetcher;
@@ -29,7 +30,7 @@ import javax.annotation.Generated;
 
 
 /**
- * Convenience access to all tables in parser
+ * Convenience access to all tables in 6txKRsiwk3
  */
 @Generated(
     value = {
@@ -42,102 +43,107 @@ import javax.annotation.Generated;
 public class Tables {
 
     /**
-     * The table <code>parser.coinstatus</code>.
+     * The table <code>6txKRsiwk3.coinprices</code>.
+     */
+    public static final Coinprices COINPRICES = appengine.parser.mysqlmodels.tables.Coinprices.COINPRICES;
+
+    /**
+     * The table <code>6txKRsiwk3.coinstatus</code>.
      */
     public static final Coinstatus COINSTATUS = appengine.parser.mysqlmodels.tables.Coinstatus.COINSTATUS;
 
     /**
-     * The table <code>parser.cointransfer</code>.
+     * The table <code>6txKRsiwk3.cointransfer</code>.
      */
     public static final Cointransfer COINTRANSFER = appengine.parser.mysqlmodels.tables.Cointransfer.COINTRANSFER;
 
     /**
-     * The table <code>parser.fetcher</code>.
+     * The table <code>6txKRsiwk3.fetcher</code>.
      */
     public static final Fetcher FETCHER = appengine.parser.mysqlmodels.tables.Fetcher.FETCHER;
 
     /**
-     * The table <code>parser.fromfbpage</code>.
+     * The table <code>6txKRsiwk3.fromfbpage</code>.
      */
     public static final Fromfbpage FROMFBPAGE = appengine.parser.mysqlmodels.tables.Fromfbpage.FROMFBPAGE;
 
     /**
-     * The table <code>parser.fromfbpage_tofbpage</code>.
+     * The table <code>6txKRsiwk3.fromfbpage_tofbpage</code>.
      */
     public static final FromfbpageTofbpage FROMFBPAGE_TOFBPAGE = appengine.parser.mysqlmodels.tables.FromfbpageTofbpage.FROMFBPAGE_TOFBPAGE;
 
     /**
-     * The table <code>parser.gram_users</code>.
+     * The table <code>6txKRsiwk3.gram_users</code>.
      */
     public static final GramUsers GRAM_USERS = appengine.parser.mysqlmodels.tables.GramUsers.GRAM_USERS;
 
     /**
-     * The table <code>parser.instagramfollowers</code>.
+     * The table <code>6txKRsiwk3.instagramfollowers</code>.
      */
     public static final Instagramfollowers INSTAGRAMFOLLOWERS = appengine.parser.mysqlmodels.tables.Instagramfollowers.INSTAGRAMFOLLOWERS;
 
     /**
-     * The table <code>parser.instagramfollowersupdate</code>.
+     * The table <code>6txKRsiwk3.instagramfollowersupdate</code>.
      */
     public static final Instagramfollowersupdate INSTAGRAMFOLLOWERSUPDATE = appengine.parser.mysqlmodels.tables.Instagramfollowersupdate.INSTAGRAMFOLLOWERSUPDATE;
 
     /**
-     * The table <code>parser.instagramlastfetch</code>.
+     * The table <code>6txKRsiwk3.instagramlastfetch</code>.
      */
     public static final Instagramlastfetch INSTAGRAMLASTFETCH = appengine.parser.mysqlmodels.tables.Instagramlastfetch.INSTAGRAMLASTFETCH;
 
     /**
-     * The table <code>parser.instagramunfollowersupdate</code>.
+     * The table <code>6txKRsiwk3.instagramunfollowersupdate</code>.
      */
     public static final Instagramunfollowersupdate INSTAGRAMUNFOLLOWERSUPDATE = appengine.parser.mysqlmodels.tables.Instagramunfollowersupdate.INSTAGRAMUNFOLLOWERSUPDATE;
 
     /**
-     * The table <code>parser.optimal</code>.
+     * The table <code>6txKRsiwk3.optimal</code>.
      */
     public static final Optimal OPTIMAL = appengine.parser.mysqlmodels.tables.Optimal.OPTIMAL;
 
     /**
-     * The table <code>parser.optimaljson</code>.
+     * The table <code>6txKRsiwk3.optimaljson</code>.
      */
     public static final Optimaljson OPTIMALJSON = appengine.parser.mysqlmodels.tables.Optimaljson.OPTIMALJSON;
 
     /**
-     * The table <code>parser.optimalnotify</code>.
+     * The table <code>6txKRsiwk3.optimalnotify</code>.
      */
     public static final Optimalnotify OPTIMALNOTIFY = appengine.parser.mysqlmodels.tables.Optimalnotify.OPTIMALNOTIFY;
 
     /**
-     * The table <code>parser.optimalupdate</code>.
+     * The table <code>6txKRsiwk3.optimalupdate</code>.
      */
     public static final Optimalupdate OPTIMALUPDATE = appengine.parser.mysqlmodels.tables.Optimalupdate.OPTIMALUPDATE;
 
     /**
-     * The table <code>parser.promotefbpage</code>.
+     * The table <code>6txKRsiwk3.promotefbpage</code>.
      */
     public static final Promotefbpage PROMOTEFBPAGE = appengine.parser.mysqlmodels.tables.Promotefbpage.PROMOTEFBPAGE;
 
     /**
-     * The table <code>parser.sockettradearbitary</code>.
+     * The table <code>6txKRsiwk3.sockettradearbitary</code>.
      */
     public static final Sockettradearbitary SOCKETTRADEARBITARY = appengine.parser.mysqlmodels.tables.Sockettradearbitary.SOCKETTRADEARBITARY;
 
     /**
-     * The table <code>parser.swiggyevents</code>.
+     * The table <code>6txKRsiwk3.swiggyevents</code>.
      */
     public static final Swiggyevents SWIGGYEVENTS = appengine.parser.mysqlmodels.tables.Swiggyevents.SWIGGYEVENTS;
 
     /**
-     * The table <code>parser.twitterfollowers</code>.
+     * The table <code>6txKRsiwk3.twitterfollowers</code>.
      */
     public static final Twitterfollowers TWITTERFOLLOWERS = appengine.parser.mysqlmodels.tables.Twitterfollowers.TWITTERFOLLOWERS;
 
     /**
-     * The table <code>parser.ubereats</code>.
+     * The table <code>6txKRsiwk3.ubereats</code>.
      */
     public static final Ubereats UBEREATS = appengine.parser.mysqlmodels.tables.Ubereats.UBEREATS;
 
     /**
-     * The table <code>parser.weareswiggy</code>.
+     * The table <code>6txKRsiwk3.weareswiggy</code>.
      */
     public static final Weareswiggy WEARESWIGGY = appengine.parser.mysqlmodels.tables.Weareswiggy.WEARESWIGGY;
 }

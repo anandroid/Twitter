@@ -5,7 +5,7 @@ package appengine.parser.mysqlmodels.tables;
 
 
 import appengine.parser.mysqlmodels.Keys;
-import appengine.parser.mysqlmodels.Parser;
+import appengine.parser.mysqlmodels._6txkrsiwk3;
 import appengine.parser.mysqlmodels.tables.records.FetcherRecord;
 
 import java.sql.Timestamp;
@@ -35,10 +35,10 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Fetcher extends TableImpl<FetcherRecord> {
 
-    private static final long serialVersionUID = -180031797;
+    private static final long serialVersionUID = -1539009064;
 
     /**
-     * The reference instance of <code>parser.fetcher</code>
+     * The reference instance of <code>6txKRsiwk3.fetcher</code>
      */
     public static final Fetcher FETCHER = new Fetcher();
 
@@ -51,44 +51,44 @@ public class Fetcher extends TableImpl<FetcherRecord> {
     }
 
     /**
-     * The column <code>parser.fetcher.coin</code>.
+     * The column <code>6txKRsiwk3.fetcher.coin</code>.
      */
     public final TableField<FetcherRecord, String> COIN = createField("coin", org.jooq.impl.SQLDataType.VARCHAR.length(10).nullable(false), this, "");
 
     /**
-     * The column <code>parser.fetcher.market</code>.
+     * The column <code>6txKRsiwk3.fetcher.market</code>.
      */
     public final TableField<FetcherRecord, String> MARKET = createField("market", org.jooq.impl.SQLDataType.VARCHAR.length(20).nullable(false), this, "");
 
     /**
-     * The column <code>parser.fetcher.buy_for</code>.
+     * The column <code>6txKRsiwk3.fetcher.buy_for</code>.
      */
     public final TableField<FetcherRecord, Double> BUY_FOR = createField("buy_for", org.jooq.impl.SQLDataType.DOUBLE, this, "");
 
     /**
-     * The column <code>parser.fetcher.sell_for</code>.
+     * The column <code>6txKRsiwk3.fetcher.sell_for</code>.
      */
     public final TableField<FetcherRecord, Double> SELL_FOR = createField("sell_for", org.jooq.impl.SQLDataType.DOUBLE, this, "");
 
     /**
-     * The column <code>parser.fetcher.volume</code>.
+     * The column <code>6txKRsiwk3.fetcher.volume</code>.
      */
     public final TableField<FetcherRecord, Double> VOLUME = createField("volume", org.jooq.impl.SQLDataType.DOUBLE, this, "");
 
     /**
-     * The column <code>parser.fetcher.time</code>.
+     * The column <code>6txKRsiwk3.fetcher.time</code>.
      */
     public final TableField<FetcherRecord, Timestamp> TIME = createField("time", org.jooq.impl.SQLDataType.TIMESTAMP.nullable(false).defaultValue(org.jooq.impl.DSL.inline("CURRENT_TIMESTAMP", org.jooq.impl.SQLDataType.TIMESTAMP)), this, "");
 
     /**
-     * Create a <code>parser.fetcher</code> table reference
+     * Create a <code>6txKRsiwk3.fetcher</code> table reference
      */
     public Fetcher() {
         this("fetcher", null);
     }
 
     /**
-     * Create an aliased <code>parser.fetcher</code> table reference
+     * Create an aliased <code>6txKRsiwk3.fetcher</code> table reference
      */
     public Fetcher(String alias) {
         this(alias, FETCHER);
@@ -107,7 +107,7 @@ public class Fetcher extends TableImpl<FetcherRecord> {
      */
     @Override
     public Schema getSchema() {
-        return Parser.PARSER;
+        return _6txkrsiwk3._6TXKRSIWK3;
     }
 
     /**

@@ -43,7 +43,7 @@ import org.jooq.impl.AbstractKeys;
 
 
 /**
- * A class modelling foreign key relationships between tables of the <code>parser</code> 
+ * A class modelling foreign key relationships between tables of the <code>6txKRsiwk3</code> 
  * schema
  */
 @Generated(

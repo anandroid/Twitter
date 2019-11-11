@@ -54,13 +54,21 @@
         <schedule>every 15 minutes</schedule>
     </cron>-->
 
+
+
+   <cron>
+      <url>/coincalculator/fetch/binance</url>
+      <description>Fetcher - Binance</description>
+      <schedule>every 5 minutes</schedule>
+   </cron>
+
     <!--<cron>
         <url>/instagram/getlistoffollowers</url>
         <description>Get Dogs Lover Followers - Instagram</description>
         <schedule>every 12 minutes</schedule>
-    </cron>
+    </cron>-->
 
-    <cron>
+    <!--<cron>
         <url>/instagram/getlistoflikers</url>
         <description>Get Dogs Lover Pic Likers - Instagram</description>
         <schedule>every 12 minutes</schedule>
@@ -76,17 +84,17 @@
         <url>/gram/fetchusers</url>
         <description>Get Users from Gram - Instagram</description>
         <schedule>every 2 minutes</schedule>
-    </cron>
+    </cron>-->
 
 
 
-     <cron>
+    <!-- <cron>
          <url>/instagram/followlikers</url>
          <description>Follow Dogs Lover Pic Likers - Instagram</description>
-         <schedule>every 8 minutes</schedule>
-     </cron>
+         <schedule>every 15 minutes</schedule>
+     </cron>-->
 
-    <cron>
+  <!--  <cron>
         <url>/likestar/selfgainorder</url>
         <description>LikeStar SelfGainFollowers - Instagram</description>
         <schedule>every 2 minutes</schedule>
@@ -122,20 +130,46 @@
      </cron>-->
 
 
-   <cron>
+   <!-- <cron>
         <url>/tweets/weareswiggy</url>
         <description>We Are Swiggy Tweets to Slack</description>
         <schedule>every 30 minutes</schedule>
-    </cron>
+    </cron> -->
 
-   <cron>
+   <!-- <cron>
+        <url>/instagram/unfollowcurrentusers</url>
+        <description>Unfollowing curent  users</description>
+        <schedule>every 10 minutes</schedule>
+    </cron>-->
+
+  <!-- <cron>
       <url>/tweets/getfollowers</url>
       <description>Getting followers</description>
       <schedule>every 15 minutes</schedule>
-   </cron>
-   <!--<cron>
+   </cron>-->
+
+  <!-- <cron>
+        <url>/instagram/getmyfollowers</url>
+        <description>Get My Followers - Instagram</description>
+        <schedule>every 12 minutes</schedule>
+    </cron>-->
+
+   <!-- <cron>
+        <url>/instagram/fetchuserinfo</url>
+        <description>Update My Followers information - Instagram</description>
+        <schedule>every 12 minutes</schedule>
+    </cron>-->
+
+   <!-- <cron>
+        <url>/tweets/unfollow</url>
+        <description>UnFollowing Users</description>
+        <schedule>every 3 minutes</schedule>
+    </cron>-->
+
+
+    <!--<cron>
       <url>/tweets/sendtwitterfollowrequest</url>
-      <description>Sending follow request</description>
-      <schedule>every 50 minutes</schedule>
+      <description>Sending follow request - 30 mins is safe</description>
+      <schedule>every 10 minutes</schedule>
    </cron>-->
 </cronentries>

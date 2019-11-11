@@ -30,31 +30,31 @@ import org.jooq.impl.UpdatableRecordImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class FromfbpageRecord extends UpdatableRecordImpl<FromfbpageRecord> implements Record2<String, Timestamp> {
 
-    private static final long serialVersionUID = 188496609;
+    private static final long serialVersionUID = -735197471;
 
     /**
-     * Setter for <code>parser.fromfbpage.from_page_id</code>.
+     * Setter for <code>6txKRsiwk3.fromfbpage.from_page_id</code>.
      */
     public void setFromPageId(String value) {
         set(0, value);
     }
 
     /**
-     * Getter for <code>parser.fromfbpage.from_page_id</code>.
+     * Getter for <code>6txKRsiwk3.fromfbpage.from_page_id</code>.
      */
     public String getFromPageId() {
         return (String) get(0);
     }
 
     /**
-     * Setter for <code>parser.fromfbpage.updated_time</code>.
+     * Setter for <code>6txKRsiwk3.fromfbpage.updated_time</code>.
      */
     public void setUpdatedTime(Timestamp value) {
         set(1, value);
     }
 
     /**
-     * Getter for <code>parser.fromfbpage.updated_time</code>.
+     * Getter for <code>6txKRsiwk3.fromfbpage.updated_time</code>.
      */
     public Timestamp getUpdatedTime() {
         return (Timestamp) get(1);

@@ -28,115 +28,115 @@ import org.jooq.impl.UpdatableRecordImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class UbereatsRecord extends UpdatableRecordImpl<UbereatsRecord> implements Record8<String, String, String, String, String, Integer, String, Integer> {
 
-    private static final long serialVersionUID = 1274469148;
+    private static final long serialVersionUID = -1586109732;
 
     /**
-     * Setter for <code>parser.ubereats.uuid</code>.
+     * Setter for <code>6txKRsiwk3.ubereats.uuid</code>.
      */
     public void setUuid(String value) {
         set(0, value);
     }
 
     /**
-     * Getter for <code>parser.ubereats.uuid</code>.
+     * Getter for <code>6txKRsiwk3.ubereats.uuid</code>.
      */
     public String getUuid() {
         return (String) get(0);
     }
 
     /**
-     * Setter for <code>parser.ubereats.title</code>.
+     * Setter for <code>6txKRsiwk3.ubereats.title</code>.
      */
     public void setTitle(String value) {
         set(1, value);
     }
 
     /**
-     * Getter for <code>parser.ubereats.title</code>.
+     * Getter for <code>6txKRsiwk3.ubereats.title</code>.
      */
     public String getTitle() {
         return (String) get(1);
     }
 
     /**
-     * Setter for <code>parser.ubereats.item_description</code>.
+     * Setter for <code>6txKRsiwk3.ubereats.item_description</code>.
      */
     public void setItemDescription(String value) {
         set(2, value);
     }
 
     /**
-     * Getter for <code>parser.ubereats.item_description</code>.
+     * Getter for <code>6txKRsiwk3.ubereats.item_description</code>.
      */
     public String getItemDescription() {
         return (String) get(2);
     }
 
     /**
-     * Setter for <code>parser.ubereats.image_url</code>.
+     * Setter for <code>6txKRsiwk3.ubereats.image_url</code>.
      */
     public void setImageUrl(String value) {
         set(3, value);
     }
 
     /**
-     * Getter for <code>parser.ubereats.image_url</code>.
+     * Getter for <code>6txKRsiwk3.ubereats.image_url</code>.
      */
     public String getImageUrl() {
         return (String) get(3);
     }
 
     /**
-     * Setter for <code>parser.ubereats.query</code>.
+     * Setter for <code>6txKRsiwk3.ubereats.query</code>.
      */
     public void setQuery(String value) {
         set(4, value);
     }
 
     /**
-     * Getter for <code>parser.ubereats.query</code>.
+     * Getter for <code>6txKRsiwk3.ubereats.query</code>.
      */
     public String getQuery() {
         return (String) get(4);
     }
 
     /**
-     * Setter for <code>parser.ubereats.city_id</code>.
+     * Setter for <code>6txKRsiwk3.ubereats.city_id</code>.
      */
     public void setCityId(Integer value) {
         set(5, value);
     }
 
     /**
-     * Getter for <code>parser.ubereats.city_id</code>.
+     * Getter for <code>6txKRsiwk3.ubereats.city_id</code>.
      */
     public Integer getCityId() {
         return (Integer) get(5);
     }
 
     /**
-     * Setter for <code>parser.ubereats.store_uuid</code>.
+     * Setter for <code>6txKRsiwk3.ubereats.store_uuid</code>.
      */
     public void setStoreUuid(String value) {
         set(6, value);
     }
 
     /**
-     * Getter for <code>parser.ubereats.store_uuid</code>.
+     * Getter for <code>6txKRsiwk3.ubereats.store_uuid</code>.
      */
     public String getStoreUuid() {
         return (String) get(6);
     }
 
     /**
-     * Setter for <code>parser.ubereats.id</code>.
+     * Setter for <code>6txKRsiwk3.ubereats.id</code>.
      */
     public void setId(Integer value) {
         set(7, value);
     }
 
     /**
-     * Getter for <code>parser.ubereats.id</code>.
+     * Getter for <code>6txKRsiwk3.ubereats.id</code>.
      */
     public Integer getId() {
         return (Integer) get(7);

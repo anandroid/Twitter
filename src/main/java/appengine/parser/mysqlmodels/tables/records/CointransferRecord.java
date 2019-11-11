@@ -30,199 +30,199 @@ import org.jooq.impl.TableRecordImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class CointransferRecord extends TableRecordImpl<CointransferRecord> implements Record14<String, Double, Double, Double, String, String, Double, Double, CointransferCurrentstate, Timestamp, String, String, Double, Double> {
 
-    private static final long serialVersionUID = 821442139;
+    private static final long serialVersionUID = 1372099341;
 
     /**
-     * Setter for <code>parser.cointransfer.coin</code>.
+     * Setter for <code>6txKRsiwk3.cointransfer.coin</code>.
      */
     public void setCoin(String value) {
         set(0, value);
     }
 
     /**
-     * Getter for <code>parser.cointransfer.coin</code>.
+     * Getter for <code>6txKRsiwk3.cointransfer.coin</code>.
      */
     public String getCoin() {
         return (String) get(0);
     }
 
     /**
-     * Setter for <code>parser.cointransfer.amount</code>.
+     * Setter for <code>6txKRsiwk3.cointransfer.amount</code>.
      */
     public void setAmount(Double value) {
         set(1, value);
     }
 
     /**
-     * Getter for <code>parser.cointransfer.amount</code>.
+     * Getter for <code>6txKRsiwk3.cointransfer.amount</code>.
      */
     public Double getAmount() {
         return (Double) get(1);
     }
 
     /**
-     * Setter for <code>parser.cointransfer.pricetobespentinbtc</code>.
+     * Setter for <code>6txKRsiwk3.cointransfer.pricetobespentinbtc</code>.
      */
     public void setPricetobespentinbtc(Double value) {
         set(2, value);
     }
 
     /**
-     * Getter for <code>parser.cointransfer.pricetobespentinbtc</code>.
+     * Getter for <code>6txKRsiwk3.cointransfer.pricetobespentinbtc</code>.
      */
     public Double getPricetobespentinbtc() {
         return (Double) get(2);
     }
 
     /**
-     * Setter for <code>parser.cointransfer.profitestimatedinbtc</code>.
+     * Setter for <code>6txKRsiwk3.cointransfer.profitestimatedinbtc</code>.
      */
     public void setProfitestimatedinbtc(Double value) {
         set(3, value);
     }
 
     /**
-     * Getter for <code>parser.cointransfer.profitestimatedinbtc</code>.
+     * Getter for <code>6txKRsiwk3.cointransfer.profitestimatedinbtc</code>.
      */
     public Double getProfitestimatedinbtc() {
         return (Double) get(3);
     }
 
     /**
-     * Setter for <code>parser.cointransfer.buymarket</code>.
+     * Setter for <code>6txKRsiwk3.cointransfer.buymarket</code>.
      */
     public void setBuymarket(String value) {
         set(4, value);
     }
 
     /**
-     * Getter for <code>parser.cointransfer.buymarket</code>.
+     * Getter for <code>6txKRsiwk3.cointransfer.buymarket</code>.
      */
     public String getBuymarket() {
         return (String) get(4);
     }
 
     /**
-     * Setter for <code>parser.cointransfer.sellmarket</code>.
+     * Setter for <code>6txKRsiwk3.cointransfer.sellmarket</code>.
      */
     public void setSellmarket(String value) {
         set(5, value);
     }
 
     /**
-     * Getter for <code>parser.cointransfer.sellmarket</code>.
+     * Getter for <code>6txKRsiwk3.cointransfer.sellmarket</code>.
      */
     public String getSellmarket() {
         return (String) get(5);
     }
 
     /**
-     * Setter for <code>parser.cointransfer.maxbuyprice</code>.
+     * Setter for <code>6txKRsiwk3.cointransfer.maxbuyprice</code>.
      */
     public void setMaxbuyprice(Double value) {
         set(6, value);
     }
 
     /**
-     * Getter for <code>parser.cointransfer.maxbuyprice</code>.
+     * Getter for <code>6txKRsiwk3.cointransfer.maxbuyprice</code>.
      */
     public Double getMaxbuyprice() {
         return (Double) get(6);
     }
 
     /**
-     * Setter for <code>parser.cointransfer.minsellprice</code>.
+     * Setter for <code>6txKRsiwk3.cointransfer.minsellprice</code>.
      */
     public void setMinsellprice(Double value) {
         set(7, value);
     }
 
     /**
-     * Getter for <code>parser.cointransfer.minsellprice</code>.
+     * Getter for <code>6txKRsiwk3.cointransfer.minsellprice</code>.
      */
     public Double getMinsellprice() {
         return (Double) get(7);
     }
 
     /**
-     * Setter for <code>parser.cointransfer.currentstate</code>.
+     * Setter for <code>6txKRsiwk3.cointransfer.currentstate</code>.
      */
     public void setCurrentstate(CointransferCurrentstate value) {
         set(8, value);
     }
 
     /**
-     * Getter for <code>parser.cointransfer.currentstate</code>.
+     * Getter for <code>6txKRsiwk3.cointransfer.currentstate</code>.
      */
     public CointransferCurrentstate getCurrentstate() {
         return (CointransferCurrentstate) get(8);
     }
 
     /**
-     * Setter for <code>parser.cointransfer.updatedtime</code>.
+     * Setter for <code>6txKRsiwk3.cointransfer.updatedtime</code>.
      */
     public void setUpdatedtime(Timestamp value) {
         set(9, value);
     }
 
     /**
-     * Getter for <code>parser.cointransfer.updatedtime</code>.
+     * Getter for <code>6txKRsiwk3.cointransfer.updatedtime</code>.
      */
     public Timestamp getUpdatedtime() {
         return (Timestamp) get(9);
     }
 
     /**
-     * Setter for <code>parser.cointransfer.buyorderid</code>.
+     * Setter for <code>6txKRsiwk3.cointransfer.buyorderid</code>.
      */
     public void setBuyorderid(String value) {
         set(10, value);
     }
 
     /**
-     * Getter for <code>parser.cointransfer.buyorderid</code>.
+     * Getter for <code>6txKRsiwk3.cointransfer.buyorderid</code>.
      */
     public String getBuyorderid() {
         return (String) get(10);
     }
 
     /**
-     * Setter for <code>parser.cointransfer.sellorderid</code>.
+     * Setter for <code>6txKRsiwk3.cointransfer.sellorderid</code>.
      */
     public void setSellorderid(String value) {
         set(11, value);
     }
 
     /**
-     * Getter for <code>parser.cointransfer.sellorderid</code>.
+     * Getter for <code>6txKRsiwk3.cointransfer.sellorderid</code>.
      */
     public String getSellorderid() {
         return (String) get(11);
     }
 
     /**
-     * Setter for <code>parser.cointransfer.buyfilledamount</code>.
+     * Setter for <code>6txKRsiwk3.cointransfer.buyfilledamount</code>.
      */
     public void setBuyfilledamount(Double value) {
         set(12, value);
     }
 
     /**
-     * Getter for <code>parser.cointransfer.buyfilledamount</code>.
+     * Getter for <code>6txKRsiwk3.cointransfer.buyfilledamount</code>.
      */
     public Double getBuyfilledamount() {
         return (Double) get(12);
     }
 
     /**
-     * Setter for <code>parser.cointransfer.sellfilledamount</code>.
+     * Setter for <code>6txKRsiwk3.cointransfer.sellfilledamount</code>.
      */
     public void setSellfilledamount(Double value) {
         set(13, value);
     }
 
     /**
-     * Getter for <code>parser.cointransfer.sellfilledamount</code>.
+     * Getter for <code>6txKRsiwk3.cointransfer.sellfilledamount</code>.
      */
     public Double getSellfilledamount() {
         return (Double) get(13);

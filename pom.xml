@@ -111,7 +111,7 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>6.0.3</version>
+			<version>8.0.11</version>
 		</dependency>
 		<dependency>
 			<groupId>org.jooq</groupId>
@@ -169,6 +169,11 @@
 			<artifactId>appengine-api-1.0-sdk</artifactId>
 			<version>1.9.63</version>
 		</dependency>
+		<dependency>
+			<groupId>org.brunocvcunha.instagram4j</groupId>
+			<artifactId>instagram4j</artifactId>
+			<version>1.8</version>
+		</dependency>
 
 	</dependencies>
 
@@ -215,7 +220,7 @@
 							<name>org.jooq.util.mysql.MySQLDatabase</name>
 							<includes>.*</includes>
 							<excludes></excludes>
-							<inputSchema>parser</inputSchema>
+							<inputSchema>6txKRsiwk3</inputSchema>
 						</database>
 						<target>
 							<packageName>appengine.parser.mysqlmodels</packageName>
@@ -268,9 +273,9 @@
 				<activeByDefault>true</activeByDefault>
 			</activation>
 			<properties>
-				<jdbc.user>user</jdbc.user>
-				<jdbc.password></jdbc.password>
-				<jdbc.url>jdbc:mysql://35.184.102.21:3306/parser?serverTimezone=UTC</jdbc.url>
+				<jdbc.user>6txKRsiwk3</jdbc.user>
+				<jdbc.password>nPoqT54q3m</jdbc.password>
+				<jdbc.url>jdbc:mysql://remotemysql.com:3306/6txKRsiwk3?useSSL=false</jdbc.url>
 				<jdbc.driver>com.mysql.cj.jdbc.Driver</jdbc.driver>
 			</properties>
 		</profile>

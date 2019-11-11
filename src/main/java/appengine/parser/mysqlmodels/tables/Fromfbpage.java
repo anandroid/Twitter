@@ -5,7 +5,7 @@ package appengine.parser.mysqlmodels.tables;
 
 
 import appengine.parser.mysqlmodels.Keys;
-import appengine.parser.mysqlmodels.Parser;
+import appengine.parser.mysqlmodels._6txkrsiwk3;
 import appengine.parser.mysqlmodels.tables.records.FromfbpageRecord;
 
 import java.sql.Timestamp;
@@ -35,10 +35,10 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Fromfbpage extends TableImpl<FromfbpageRecord> {
 
-    private static final long serialVersionUID = 487395281;
+    private static final long serialVersionUID = -1963033080;
 
     /**
-     * The reference instance of <code>parser.fromfbpage</code>
+     * The reference instance of <code>6txKRsiwk3.fromfbpage</code>
      */
     public static final Fromfbpage FROMFBPAGE = new Fromfbpage();
 
@@ -51,24 +51,24 @@ public class Fromfbpage extends TableImpl<FromfbpageRecord> {
     }
 
     /**
-     * The column <code>parser.fromfbpage.from_page_id</code>.
+     * The column <code>6txKRsiwk3.fromfbpage.from_page_id</code>.
      */
     public final TableField<FromfbpageRecord, String> FROM_PAGE_ID = createField("from_page_id", org.jooq.impl.SQLDataType.VARCHAR.length(100).nullable(false), this, "");
 
     /**
-     * The column <code>parser.fromfbpage.updated_time</code>.
+     * The column <code>6txKRsiwk3.fromfbpage.updated_time</code>.
      */
     public final TableField<FromfbpageRecord, Timestamp> UPDATED_TIME = createField("updated_time", org.jooq.impl.SQLDataType.TIMESTAMP, this, "");
 
     /**
-     * Create a <code>parser.fromfbpage</code> table reference
+     * Create a <code>6txKRsiwk3.fromfbpage</code> table reference
      */
     public Fromfbpage() {
         this("fromfbpage", null);
     }
 
     /**
-     * Create an aliased <code>parser.fromfbpage</code> table reference
+     * Create an aliased <code>6txKRsiwk3.fromfbpage</code> table reference
      */
     public Fromfbpage(String alias) {
         this(alias, FROMFBPAGE);
@@ -87,7 +87,7 @@ public class Fromfbpage extends TableImpl<FromfbpageRecord> {
      */
     @Override
     public Schema getSchema() {
-        return Parser.PARSER;
+        return _6txkrsiwk3._6TXKRSIWK3;
     }
 
     /**

@@ -5,7 +5,7 @@ package appengine.parser.mysqlmodels.tables;
 
 
 import appengine.parser.mysqlmodels.Keys;
-import appengine.parser.mysqlmodels.Parser;
+import appengine.parser.mysqlmodels._6txkrsiwk3;
 import appengine.parser.mysqlmodels.tables.records.InstagramlastfetchRecord;
 
 import java.util.Arrays;
@@ -34,10 +34,10 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Instagramlastfetch extends TableImpl<InstagramlastfetchRecord> {
 
-    private static final long serialVersionUID = -1640600440;
+    private static final long serialVersionUID = 427309561;
 
     /**
-     * The reference instance of <code>parser.instagramlastfetch</code>
+     * The reference instance of <code>6txKRsiwk3.instagramlastfetch</code>
      */
     public static final Instagramlastfetch INSTAGRAMLASTFETCH = new Instagramlastfetch();
 
@@ -50,24 +50,24 @@ public class Instagramlastfetch extends TableImpl<InstagramlastfetchRecord> {
     }
 
     /**
-     * The column <code>parser.instagramlastfetch.pagename</code>.
+     * The column <code>6txKRsiwk3.instagramlastfetch.pagename</code>.
      */
     public final TableField<InstagramlastfetchRecord, String> PAGENAME = createField("pagename", org.jooq.impl.SQLDataType.VARCHAR.length(30).nullable(false), this, "");
 
     /**
-     * The column <code>parser.instagramlastfetch.lastcursor</code>.
+     * The column <code>6txKRsiwk3.instagramlastfetch.lastcursor</code>.
      */
     public final TableField<InstagramlastfetchRecord, String> LASTCURSOR = createField("lastcursor", org.jooq.impl.SQLDataType.VARCHAR.length(300), this, "");
 
     /**
-     * Create a <code>parser.instagramlastfetch</code> table reference
+     * Create a <code>6txKRsiwk3.instagramlastfetch</code> table reference
      */
     public Instagramlastfetch() {
         this("instagramlastfetch", null);
     }
 
     /**
-     * Create an aliased <code>parser.instagramlastfetch</code> table reference
+     * Create an aliased <code>6txKRsiwk3.instagramlastfetch</code> table reference
      */
     public Instagramlastfetch(String alias) {
         this(alias, INSTAGRAMLASTFETCH);
@@ -86,7 +86,7 @@ public class Instagramlastfetch extends TableImpl<InstagramlastfetchRecord> {
      */
     @Override
     public Schema getSchema() {
-        return Parser.PARSER;
+        return _6txkrsiwk3._6TXKRSIWK3;
     }
 
     /**

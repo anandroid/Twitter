@@ -5,9 +5,10 @@ package appengine.parser.mysqlmodels.tables;
 
 
 import appengine.parser.mysqlmodels.Keys;
-import appengine.parser.mysqlmodels.Parser;
+import appengine.parser.mysqlmodels._6txkrsiwk3;
 import appengine.parser.mysqlmodels.tables.records.TwitterfollowersRecord;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.Arrays;
 import java.util.List;
@@ -36,10 +37,10 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Twitterfollowers extends TableImpl<TwitterfollowersRecord> {
 
-    private static final long serialVersionUID = 1607280032;
+    private static final long serialVersionUID = 45272585;
 
     /**
-     * The reference instance of <code>parser.twitterfollowers</code>
+     * The reference instance of <code>6txKRsiwk3.twitterfollowers</code>
      */
     public static final Twitterfollowers TWITTERFOLLOWERS = new Twitterfollowers();
 
@@ -52,49 +53,69 @@ public class Twitterfollowers extends TableImpl<TwitterfollowersRecord> {
     }
 
     /**
-     * The column <code>parser.twitterfollowers.id</code>.
+     * The column <code>6txKRsiwk3.twitterfollowers.id</code>.
      */
     public final TableField<TwitterfollowersRecord, Integer> ID = createField("id", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
 
     /**
-     * The column <code>parser.twitterfollowers.user_id</code>.
+     * The column <code>6txKRsiwk3.twitterfollowers.user_id</code>.
      */
     public final TableField<TwitterfollowersRecord, String> USER_ID = createField("user_id", org.jooq.impl.SQLDataType.VARCHAR.length(50).nullable(false), this, "");
 
     /**
-     * The column <code>parser.twitterfollowers.user_json</code>.
+     * The column <code>6txKRsiwk3.twitterfollowers.user_json</code>.
      */
     public final TableField<TwitterfollowersRecord, String> USER_JSON = createField("user_json", org.jooq.impl.SQLDataType.CLOB, this, "");
 
     /**
-     * The column <code>parser.twitterfollowers.follower_of</code>.
+     * The column <code>6txKRsiwk3.twitterfollowers.follower_of</code>.
      */
     public final TableField<TwitterfollowersRecord, String> FOLLOWER_OF = createField("follower_of", org.jooq.impl.SQLDataType.CLOB, this, "");
 
     /**
-     * The column <code>parser.twitterfollowers.is_follow_request_sent</code>.
+     * The column <code>6txKRsiwk3.twitterfollowers.is_follow_request_sent</code>.
      */
     public final TableField<TwitterfollowersRecord, Byte> IS_FOLLOW_REQUEST_SENT = createField("is_follow_request_sent", org.jooq.impl.SQLDataType.TINYINT.defaultValue(org.jooq.impl.DSL.inline("0", org.jooq.impl.SQLDataType.TINYINT)), this, "");
 
     /**
-     * The column <code>parser.twitterfollowers.followedtime</code>.
+     * The column <code>6txKRsiwk3.twitterfollowers.followedtime</code>.
      */
     public final TableField<TwitterfollowersRecord, Timestamp> FOLLOWEDTIME = createField("followedtime", org.jooq.impl.SQLDataType.TIMESTAMP, this, "");
 
     /**
-     * The column <code>parser.twitterfollowers.cursor</code>.
+     * The column <code>6txKRsiwk3.twitterfollowers.cursor</code>.
      */
     public final TableField<TwitterfollowersRecord, String> CURSOR = createField("cursor", org.jooq.impl.SQLDataType.VARCHAR.length(50), this, "");
 
     /**
-     * Create a <code>parser.twitterfollowers</code> table reference
+     * The column <code>6txKRsiwk3.twitterfollowers.followersCount</code>.
+     */
+    public final TableField<TwitterfollowersRecord, Integer> FOLLOWERSCOUNT = createField("followersCount", org.jooq.impl.SQLDataType.INTEGER, this, "");
+
+    /**
+     * The column <code>6txKRsiwk3.twitterfollowers.followingCount</code>.
+     */
+    public final TableField<TwitterfollowersRecord, Integer> FOLLOWINGCOUNT = createField("followingCount", org.jooq.impl.SQLDataType.INTEGER, this, "");
+
+    /**
+     * The column <code>6txKRsiwk3.twitterfollowers.account_created_time</code>.
+     */
+    public final TableField<TwitterfollowersRecord, Date> ACCOUNT_CREATED_TIME = createField("account_created_time", org.jooq.impl.SQLDataType.DATE, this, "");
+
+    /**
+     * The column <code>6txKRsiwk3.twitterfollowers.statusesCount</code>.
+     */
+    public final TableField<TwitterfollowersRecord, Integer> STATUSESCOUNT = createField("statusesCount", org.jooq.impl.SQLDataType.INTEGER, this, "");
+
+    /**
+     * Create a <code>6txKRsiwk3.twitterfollowers</code> table reference
      */
     public Twitterfollowers() {
         this("twitterfollowers", null);
     }
 
     /**
-     * Create an aliased <code>parser.twitterfollowers</code> table reference
+     * Create an aliased <code>6txKRsiwk3.twitterfollowers</code> table reference
      */
     public Twitterfollowers(String alias) {
         this(alias, TWITTERFOLLOWERS);
@@ -113,7 +134,7 @@ public class Twitterfollowers extends TableImpl<TwitterfollowersRecord> {
      */
     @Override
     public Schema getSchema() {
-        return Parser.PARSER;
+        return _6txkrsiwk3._6TXKRSIWK3;
     }
 
     /**

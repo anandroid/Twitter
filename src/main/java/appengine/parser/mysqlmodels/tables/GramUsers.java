@@ -4,7 +4,7 @@
 package appengine.parser.mysqlmodels.tables;
 
 
-import appengine.parser.mysqlmodels.Parser;
+import appengine.parser.mysqlmodels._6txkrsiwk3;
 import appengine.parser.mysqlmodels.tables.records.GramUsersRecord;
 
 import javax.annotation.Generated;
@@ -29,10 +29,10 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class GramUsers extends TableImpl<GramUsersRecord> {
 
-    private static final long serialVersionUID = 1631589971;
+    private static final long serialVersionUID = -1194012100;
 
     /**
-     * The reference instance of <code>parser.gram_users</code>
+     * The reference instance of <code>6txKRsiwk3.gram_users</code>
      */
     public static final GramUsers GRAM_USERS = new GramUsers();
 
@@ -45,44 +45,44 @@ public class GramUsers extends TableImpl<GramUsersRecord> {
     }
 
     /**
-     * The column <code>parser.gram_users.id</code>.
+     * The column <code>6txKRsiwk3.gram_users.id</code>.
      */
     public final TableField<GramUsersRecord, String> ID = createField("id", org.jooq.impl.SQLDataType.VARCHAR.length(30), this, "");
 
     /**
-     * The column <code>parser.gram_users.username</code>.
+     * The column <code>6txKRsiwk3.gram_users.username</code>.
      */
     public final TableField<GramUsersRecord, String> USERNAME = createField("username", org.jooq.impl.SQLDataType.VARCHAR.length(50), this, "");
 
     /**
-     * The column <code>parser.gram_users.mediacount</code>.
+     * The column <code>6txKRsiwk3.gram_users.mediacount</code>.
      */
     public final TableField<GramUsersRecord, Integer> MEDIACOUNT = createField("mediacount", org.jooq.impl.SQLDataType.INTEGER, this, "");
 
     /**
-     * The column <code>parser.gram_users.followercount</code>.
+     * The column <code>6txKRsiwk3.gram_users.followercount</code>.
      */
     public final TableField<GramUsersRecord, Integer> FOLLOWERCOUNT = createField("followercount", org.jooq.impl.SQLDataType.INTEGER, this, "");
 
     /**
-     * The column <code>parser.gram_users.followingcount</code>.
+     * The column <code>6txKRsiwk3.gram_users.followingcount</code>.
      */
     public final TableField<GramUsersRecord, Integer> FOLLOWINGCOUNT = createField("followingcount", org.jooq.impl.SQLDataType.INTEGER, this, "");
 
     /**
-     * The column <code>parser.gram_users.credittake</code>.
+     * The column <code>6txKRsiwk3.gram_users.credittake</code>.
      */
     public final TableField<GramUsersRecord, Integer> CREDITTAKE = createField("credittake", org.jooq.impl.SQLDataType.INTEGER, this, "");
 
     /**
-     * Create a <code>parser.gram_users</code> table reference
+     * Create a <code>6txKRsiwk3.gram_users</code> table reference
      */
     public GramUsers() {
         this("gram_users", null);
     }
 
     /**
-     * Create an aliased <code>parser.gram_users</code> table reference
+     * Create an aliased <code>6txKRsiwk3.gram_users</code> table reference
      */
     public GramUsers(String alias) {
         this(alias, GRAM_USERS);
@@ -101,7 +101,7 @@ public class GramUsers extends TableImpl<GramUsersRecord> {
      */
     @Override
     public Schema getSchema() {
-        return Parser.PARSER;
+        return _6txkrsiwk3._6TXKRSIWK3;
     }
 
     /**

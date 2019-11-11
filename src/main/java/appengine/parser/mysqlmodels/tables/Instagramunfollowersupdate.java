@@ -5,7 +5,7 @@ package appengine.parser.mysqlmodels.tables;
 
 
 import appengine.parser.mysqlmodels.Keys;
-import appengine.parser.mysqlmodels.Parser;
+import appengine.parser.mysqlmodels._6txkrsiwk3;
 import appengine.parser.mysqlmodels.tables.records.InstagramunfollowersupdateRecord;
 
 import java.util.Arrays;
@@ -34,10 +34,10 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Instagramunfollowersupdate extends TableImpl<InstagramunfollowersupdateRecord> {
 
-    private static final long serialVersionUID = 955707906;
+    private static final long serialVersionUID = -932155544;
 
     /**
-     * The reference instance of <code>parser.instagramunfollowersupdate</code>
+     * The reference instance of <code>6txKRsiwk3.instagramunfollowersupdate</code>
      */
     public static final Instagramunfollowersupdate INSTAGRAMUNFOLLOWERSUPDATE = new Instagramunfollowersupdate();
 
@@ -50,29 +50,29 @@ public class Instagramunfollowersupdate extends TableImpl<Instagramunfollowersup
     }
 
     /**
-     * The column <code>parser.instagramunfollowersupdate.pagename</code>.
+     * The column <code>6txKRsiwk3.instagramunfollowersupdate.pagename</code>.
      */
     public final TableField<InstagramunfollowersupdateRecord, String> PAGENAME = createField("pagename", org.jooq.impl.SQLDataType.VARCHAR.length(50), this, "");
 
     /**
-     * The column <code>parser.instagramunfollowersupdate.from_user_name</code>.
+     * The column <code>6txKRsiwk3.instagramunfollowersupdate.from_user_name</code>.
      */
     public final TableField<InstagramunfollowersupdateRecord, String> FROM_USER_NAME = createField("from_user_name", org.jooq.impl.SQLDataType.VARCHAR.length(30), this, "");
 
     /**
-     * The column <code>parser.instagramunfollowersupdate.followed_till</code>.
+     * The column <code>6txKRsiwk3.instagramunfollowersupdate.followed_till</code>.
      */
     public final TableField<InstagramunfollowersupdateRecord, Integer> FOLLOWED_TILL = createField("followed_till", org.jooq.impl.SQLDataType.INTEGER, this, "");
 
     /**
-     * Create a <code>parser.instagramunfollowersupdate</code> table reference
+     * Create a <code>6txKRsiwk3.instagramunfollowersupdate</code> table reference
      */
     public Instagramunfollowersupdate() {
         this("instagramunfollowersupdate", null);
     }
 
     /**
-     * Create an aliased <code>parser.instagramunfollowersupdate</code> table reference
+     * Create an aliased <code>6txKRsiwk3.instagramunfollowersupdate</code> table reference
      */
     public Instagramunfollowersupdate(String alias) {
         this(alias, INSTAGRAMUNFOLLOWERSUPDATE);
@@ -91,7 +91,7 @@ public class Instagramunfollowersupdate extends TableImpl<Instagramunfollowersup
      */
     @Override
     public Schema getSchema() {
-        return Parser.PARSER;
+        return _6txkrsiwk3._6TXKRSIWK3;
     }
 
     /**

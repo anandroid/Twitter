@@ -31,45 +31,45 @@ import org.jooq.impl.UpdatableRecordImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class OptimalupdateRecord extends UpdatableRecordImpl<OptimalupdateRecord> implements Record3<OptimalupdateOperation, Timestamp, Integer> {
 
-    private static final long serialVersionUID = -852305698;
+    private static final long serialVersionUID = -576158452;
 
     /**
-     * Setter for <code>parser.optimalupdate.operation</code>.
+     * Setter for <code>6txKRsiwk3.optimalupdate.operation</code>.
      */
     public void setOperation(OptimalupdateOperation value) {
         set(0, value);
     }
 
     /**
-     * Getter for <code>parser.optimalupdate.operation</code>.
+     * Getter for <code>6txKRsiwk3.optimalupdate.operation</code>.
      */
     public OptimalupdateOperation getOperation() {
         return (OptimalupdateOperation) get(0);
     }
 
     /**
-     * Setter for <code>parser.optimalupdate.updatedtime</code>.
+     * Setter for <code>6txKRsiwk3.optimalupdate.updatedtime</code>.
      */
     public void setUpdatedtime(Timestamp value) {
         set(1, value);
     }
 
     /**
-     * Getter for <code>parser.optimalupdate.updatedtime</code>.
+     * Getter for <code>6txKRsiwk3.optimalupdate.updatedtime</code>.
      */
     public Timestamp getUpdatedtime() {
         return (Timestamp) get(1);
     }
 
     /**
-     * Setter for <code>parser.optimalupdate.dummy</code>.
+     * Setter for <code>6txKRsiwk3.optimalupdate.dummy</code>.
      */
     public void setDummy(Integer value) {
         set(2, value);
     }
 
     /**
-     * Getter for <code>parser.optimalupdate.dummy</code>.
+     * Getter for <code>6txKRsiwk3.optimalupdate.dummy</code>.
      */
     public Integer getDummy() {
         return (Integer) get(2);

@@ -27,31 +27,31 @@ import org.jooq.impl.TableRecordImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class WeareswiggyRecord extends TableRecordImpl<WeareswiggyRecord> implements Record2<String, Byte> {
 
-    private static final long serialVersionUID = -462717262;
+    private static final long serialVersionUID = -860177550;
 
     /**
-     * Setter for <code>parser.weareswiggy.lasttweet</code>.
+     * Setter for <code>6txKRsiwk3.weareswiggy.lasttweet</code>.
      */
     public void setLasttweet(String value) {
         set(0, value);
     }
 
     /**
-     * Getter for <code>parser.weareswiggy.lasttweet</code>.
+     * Getter for <code>6txKRsiwk3.weareswiggy.lasttweet</code>.
      */
     public String getLasttweet() {
         return (String) get(0);
     }
 
     /**
-     * Setter for <code>parser.weareswiggy.isunique</code>.
+     * Setter for <code>6txKRsiwk3.weareswiggy.isunique</code>.
      */
     public void setIsunique(Byte value) {
         set(1, value);
     }
 
     /**
-     * Getter for <code>parser.weareswiggy.isunique</code>.
+     * Getter for <code>6txKRsiwk3.weareswiggy.isunique</code>.
      */
     public Byte getIsunique() {
         return (Byte) get(1);

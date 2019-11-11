@@ -1,9 +1,11 @@
 package appengine.parser.optimal;
 
 import appengine.parser.mysqlmodels.enums.OptimalupdateOperation;
+import appengine.parser.optimal.exchangeutils.BinanceUtil;
 import appengine.parser.optimal.fetchers.CobinHoodFetcher;
 import appengine.parser.optimal.fetchers.OkexFetcher;
 import appengine.parser.optimal.objects.CoinMarket;
+import appengine.parser.optimal.objects.MarketUtil;
 import appengine.parser.utils.DataBaseConnector;
 import appengine.parser.utils.TimeUtils;
 import org.jooq.DSLContext;
@@ -31,6 +33,15 @@ public class Fetcher {
 
         CobinHoodFetcher cobinHoodFetcher = new CobinHoodFetcher();
         List<CoinMarket> coinMarketList = cobinHoodFetcher.getCoinList();
+        updateTickerInDB(coinMarketList);
+
+        return returnArrayResults(coinMarketList);
+    }
+
+    public String fetchBinance() {
+
+        MarketUtil binanceUtil = new BinanceUtil();
+        List<CoinMarket> coinMarketList =  binanceUtil.getCoinList();
         updateTickerInDB(coinMarketList);
 
         return returnArrayResults(coinMarketList);

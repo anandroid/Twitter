@@ -5,7 +5,7 @@ package appengine.parser.mysqlmodels.tables;
 
 
 import appengine.parser.mysqlmodels.Keys;
-import appengine.parser.mysqlmodels.Parser;
+import appengine.parser.mysqlmodels._6txkrsiwk3;
 import appengine.parser.mysqlmodels.tables.records.CoinstatusRecord;
 
 import java.sql.Timestamp;
@@ -35,10 +35,10 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Coinstatus extends TableImpl<CoinstatusRecord> {
 
-    private static final long serialVersionUID = 270722512;
+    private static final long serialVersionUID = 1030769799;
 
     /**
-     * The reference instance of <code>parser.coinstatus</code>
+     * The reference instance of <code>6txKRsiwk3.coinstatus</code>
      */
     public static final Coinstatus COINSTATUS = new Coinstatus();
 
@@ -51,44 +51,44 @@ public class Coinstatus extends TableImpl<CoinstatusRecord> {
     }
 
     /**
-     * The column <code>parser.coinstatus.name</code>.
+     * The column <code>6txKRsiwk3.coinstatus.name</code>.
      */
     public final TableField<CoinstatusRecord, String> NAME = createField("name", org.jooq.impl.SQLDataType.VARCHAR.length(30), this, "");
 
     /**
-     * The column <code>parser.coinstatus.label</code>.
+     * The column <code>6txKRsiwk3.coinstatus.label</code>.
      */
     public final TableField<CoinstatusRecord, String> LABEL = createField("label", org.jooq.impl.SQLDataType.VARCHAR.length(10), this, "");
 
     /**
-     * The column <code>parser.coinstatus.market</code>.
+     * The column <code>6txKRsiwk3.coinstatus.market</code>.
      */
     public final TableField<CoinstatusRecord, String> MARKET = createField("market", org.jooq.impl.SQLDataType.VARCHAR.length(30), this, "");
 
     /**
-     * The column <code>parser.coinstatus.time</code>.
+     * The column <code>6txKRsiwk3.coinstatus.time</code>.
      */
     public final TableField<CoinstatusRecord, Timestamp> TIME = createField("time", org.jooq.impl.SQLDataType.TIMESTAMP.defaultValue(org.jooq.impl.DSL.inline("CURRENT_TIMESTAMP", org.jooq.impl.SQLDataType.TIMESTAMP)), this, "");
 
     /**
-     * The column <code>parser.coinstatus.iswalletactive</code>.
+     * The column <code>6txKRsiwk3.coinstatus.iswalletactive</code>.
      */
     public final TableField<CoinstatusRecord, Byte> ISWALLETACTIVE = createField("iswalletactive", org.jooq.impl.SQLDataType.TINYINT, this, "");
 
     /**
-     * The column <code>parser.coinstatus.islistingactive</code>.
+     * The column <code>6txKRsiwk3.coinstatus.islistingactive</code>.
      */
     public final TableField<CoinstatusRecord, Byte> ISLISTINGACTIVE = createField("islistingactive", org.jooq.impl.SQLDataType.TINYINT, this, "");
 
     /**
-     * Create a <code>parser.coinstatus</code> table reference
+     * Create a <code>6txKRsiwk3.coinstatus</code> table reference
      */
     public Coinstatus() {
         this("coinstatus", null);
     }
 
     /**
-     * Create an aliased <code>parser.coinstatus</code> table reference
+     * Create an aliased <code>6txKRsiwk3.coinstatus</code> table reference
      */
     public Coinstatus(String alias) {
         this(alias, COINSTATUS);
@@ -107,7 +107,7 @@ public class Coinstatus extends TableImpl<CoinstatusRecord> {
      */
     @Override
     public Schema getSchema() {
-        return Parser.PARSER;
+        return _6txkrsiwk3._6TXKRSIWK3;
     }
 
     /**

@@ -30,87 +30,87 @@ import org.jooq.impl.UpdatableRecordImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class FetcherRecord extends UpdatableRecordImpl<FetcherRecord> implements Record6<String, String, Double, Double, Double, Timestamp> {
 
-    private static final long serialVersionUID = 399120976;
+    private static final long serialVersionUID = 436715358;
 
     /**
-     * Setter for <code>parser.fetcher.coin</code>.
+     * Setter for <code>6txKRsiwk3.fetcher.coin</code>.
      */
     public void setCoin(String value) {
         set(0, value);
     }
 
     /**
-     * Getter for <code>parser.fetcher.coin</code>.
+     * Getter for <code>6txKRsiwk3.fetcher.coin</code>.
      */
     public String getCoin() {
         return (String) get(0);
     }
 
     /**
-     * Setter for <code>parser.fetcher.market</code>.
+     * Setter for <code>6txKRsiwk3.fetcher.market</code>.
      */
     public void setMarket(String value) {
         set(1, value);
     }
 
     /**
-     * Getter for <code>parser.fetcher.market</code>.
+     * Getter for <code>6txKRsiwk3.fetcher.market</code>.
      */
     public String getMarket() {
         return (String) get(1);
     }
 
     /**
-     * Setter for <code>parser.fetcher.buy_for</code>.
+     * Setter for <code>6txKRsiwk3.fetcher.buy_for</code>.
      */
     public void setBuyFor(Double value) {
         set(2, value);
     }
 
     /**
-     * Getter for <code>parser.fetcher.buy_for</code>.
+     * Getter for <code>6txKRsiwk3.fetcher.buy_for</code>.
      */
     public Double getBuyFor() {
         return (Double) get(2);
     }
 
     /**
-     * Setter for <code>parser.fetcher.sell_for</code>.
+     * Setter for <code>6txKRsiwk3.fetcher.sell_for</code>.
      */
     public void setSellFor(Double value) {
         set(3, value);
     }
 
     /**
-     * Getter for <code>parser.fetcher.sell_for</code>.
+     * Getter for <code>6txKRsiwk3.fetcher.sell_for</code>.
      */
     public Double getSellFor() {
         return (Double) get(3);
     }
 
     /**
-     * Setter for <code>parser.fetcher.volume</code>.
+     * Setter for <code>6txKRsiwk3.fetcher.volume</code>.
      */
     public void setVolume(Double value) {
         set(4, value);
     }
 
     /**
-     * Getter for <code>parser.fetcher.volume</code>.
+     * Getter for <code>6txKRsiwk3.fetcher.volume</code>.
      */
     public Double getVolume() {
         return (Double) get(4);
     }
 
     /**
-     * Setter for <code>parser.fetcher.time</code>.
+     * Setter for <code>6txKRsiwk3.fetcher.time</code>.
      */
     public void setTime(Timestamp value) {
         set(5, value);
     }
 
     /**
-     * Getter for <code>parser.fetcher.time</code>.
+     * Getter for <code>6txKRsiwk3.fetcher.time</code>.
      */
     public Timestamp getTime() {
         return (Timestamp) get(5);

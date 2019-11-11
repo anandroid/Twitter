@@ -1,8 +1,10 @@
 package appengine.parser.twitter;
 
 import appengine.parser.mysqlmodels.Tables;
+import appengine.parser.optimal.livecoinokex.utils.StringUtil;
 import appengine.parser.utils.DataBaseConnector;
 import appengine.parser.utils.OtherUtils;
+import appengine.parser.utils.StringUtils;
 import org.jooq.DSLContext;
 import org.jooq.Record1;
 import twitter4j.PagableResponseList;
@@ -22,7 +24,7 @@ public class GetFollowers {
             mTwitterInstance = Twitter.getInstance();
         }
 
-        String followerOf = "xdadevelopers";
+        String followerOf = "ASU";
 
         long cursor = getCursor(followerOf);
         PagableResponseList<User> usersList;
@@ -32,14 +34,15 @@ public class GetFollowers {
                 System.out.println(mTwitterInstance.getScreenName());
                 usersList = mTwitterInstance.getFollowersList(followerOf, cursor);
                 for (User user : usersList) {
-                    if (!user.isFollowRequestSent()) {
+                   // if (!user.isFollowRequestSent()) {
                         //mTwitterInstance.createFriendship(user.getId());
                         System.out.println("Follow request sent to " + user.getName());
                         insertFollowers(user, followerOf, cursor);
-                    }
+                  //  }
                 }
                 Thread.sleep(10000);
                 cursor = usersList.getNextCursor();
+                //cursor = getCursorForUpdate(followerOf);
             } while (usersList.hasNext());
         } catch (Exception e) {
             e.printStackTrace();
@@ -65,16 +68,22 @@ public class GetFollowers {
 
     public void insertFollowers(User user, String followerOf, long cursor) {
         try {
-            String userJson = user.getName();
+            String userJson = StringUtils.formattingEmojisFromString(user.getName());
             System.out.println(userJson);
             DSLContext dslContext = DataBaseConnector.getDSLContext();
             dslContext.insertInto(TWITTERFOLLOWERS, TWITTERFOLLOWERS.USER_ID, TWITTERFOLLOWERS.USER_JSON,
-                    TWITTERFOLLOWERS.FOLLOWER_OF, TWITTERFOLLOWERS.IS_FOLLOW_REQUEST_SENT, TWITTERFOLLOWERS.CURSOR)
+                    TWITTERFOLLOWERS.FOLLOWER_OF, TWITTERFOLLOWERS.IS_FOLLOW_REQUEST_SENT, TWITTERFOLLOWERS.CURSOR,
+                    TWITTERFOLLOWERS.FOLLOWERSCOUNT, TWITTERFOLLOWERS.FOLLOWINGCOUNT, TWITTERFOLLOWERS.STATUSESCOUNT, TWITTERFOLLOWERS.ACCOUNT_CREATED_TIME)
                     .values(String.valueOf(user.getId()), userJson, followerOf, OtherUtils.boolToByte(user.isFollowRequestSent()),
-                            String.valueOf(cursor)).
+                            String.valueOf(cursor), user.getFollowersCount(), user.getFriendsCount(),
+                            user.getStatusesCount(), new java.sql.Date(user.getCreatedAt().getTime())).
                     onDuplicateKeyUpdate()
                     .set(TWITTERFOLLOWERS.USER_JSON, userJson)
                     .set(TWITTERFOLLOWERS.CURSOR, String.valueOf(cursor))
+                    .set(TWITTERFOLLOWERS.FOLLOWERSCOUNT, user.getFollowersCount())
+                    .set(TWITTERFOLLOWERS.FOLLOWERSCOUNT, user.getFriendsCount())
+                    .set(TWITTERFOLLOWERS.STATUSESCOUNT, user.getStatusesCount())
+                    .set(TWITTERFOLLOWERS.ACCOUNT_CREATED_TIME, new java.sql.Date(user.getCreatedAt().getTime()))
                     .execute();
         } catch (Exception e) {
             e.printStackTrace();

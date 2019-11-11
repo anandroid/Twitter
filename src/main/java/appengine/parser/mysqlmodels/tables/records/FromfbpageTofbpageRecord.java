@@ -30,45 +30,45 @@ import org.jooq.impl.UpdatableRecordImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class FromfbpageTofbpageRecord extends UpdatableRecordImpl<FromfbpageTofbpageRecord> implements Record3<String, String, Timestamp> {
 
-    private static final long serialVersionUID = -1084496205;
+    private static final long serialVersionUID = -579775647;
 
     /**
-     * Setter for <code>parser.fromfbpage_tofbpage.from_page_id</code>.
+     * Setter for <code>6txKRsiwk3.fromfbpage_tofbpage.from_page_id</code>.
      */
     public void setFromPageId(String value) {
         set(0, value);
     }
 
     /**
-     * Getter for <code>parser.fromfbpage_tofbpage.from_page_id</code>.
+     * Getter for <code>6txKRsiwk3.fromfbpage_tofbpage.from_page_id</code>.
      */
     public String getFromPageId() {
         return (String) get(0);
     }
 
     /**
-     * Setter for <code>parser.fromfbpage_tofbpage.to_page_id</code>.
+     * Setter for <code>6txKRsiwk3.fromfbpage_tofbpage.to_page_id</code>.
      */
     public void setToPageId(String value) {
         set(1, value);
     }
 
     /**
-     * Getter for <code>parser.fromfbpage_tofbpage.to_page_id</code>.
+     * Getter for <code>6txKRsiwk3.fromfbpage_tofbpage.to_page_id</code>.
      */
     public String getToPageId() {
         return (String) get(1);
     }
 
     /**
-     * Setter for <code>parser.fromfbpage_tofbpage.updated_time</code>.
+     * Setter for <code>6txKRsiwk3.fromfbpage_tofbpage.updated_time</code>.
      */
     public void setUpdatedTime(Timestamp value) {
         set(2, value);
     }
 
     /**
-     * Getter for <code>parser.fromfbpage_tofbpage.updated_time</code>.
+     * Getter for <code>6txKRsiwk3.fromfbpage_tofbpage.updated_time</code>.
      */
     public Timestamp getUpdatedTime() {
         return (Timestamp) get(2);

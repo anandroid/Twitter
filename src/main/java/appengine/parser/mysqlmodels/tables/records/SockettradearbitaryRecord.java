@@ -30,185 +30,185 @@ import org.jooq.impl.TableRecordImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class SockettradearbitaryRecord extends TableRecordImpl<SockettradearbitaryRecord> implements Record13<String, SockettradearbitaryTradetype, Double, Double, Timestamp, String, Double, Double, Byte, Double, Timestamp, Double, String> {
 
-    private static final long serialVersionUID = 412978507;
+    private static final long serialVersionUID = -100848355;
 
     /**
-     * Setter for <code>parser.sockettradearbitary.coinlabel</code>.
+     * Setter for <code>6txKRsiwk3.sockettradearbitary.coinlabel</code>.
      */
     public void setCoinlabel(String value) {
         set(0, value);
     }
 
     /**
-     * Getter for <code>parser.sockettradearbitary.coinlabel</code>.
+     * Getter for <code>6txKRsiwk3.sockettradearbitary.coinlabel</code>.
      */
     public String getCoinlabel() {
         return (String) get(0);
     }
 
     /**
-     * Setter for <code>parser.sockettradearbitary.tradetype</code>.
+     * Setter for <code>6txKRsiwk3.sockettradearbitary.tradetype</code>.
      */
     public void setTradetype(SockettradearbitaryTradetype value) {
         set(1, value);
     }
 
     /**
-     * Getter for <code>parser.sockettradearbitary.tradetype</code>.
+     * Getter for <code>6txKRsiwk3.sockettradearbitary.tradetype</code>.
      */
     public SockettradearbitaryTradetype getTradetype() {
         return (SockettradearbitaryTradetype) get(1);
     }
 
     /**
-     * Setter for <code>parser.sockettradearbitary.buyprice</code>.
+     * Setter for <code>6txKRsiwk3.sockettradearbitary.buyprice</code>.
      */
     public void setBuyprice(Double value) {
         set(2, value);
     }
 
     /**
-     * Getter for <code>parser.sockettradearbitary.buyprice</code>.
+     * Getter for <code>6txKRsiwk3.sockettradearbitary.buyprice</code>.
      */
     public Double getBuyprice() {
         return (Double) get(2);
     }
 
     /**
-     * Setter for <code>parser.sockettradearbitary.sellprice</code>.
+     * Setter for <code>6txKRsiwk3.sockettradearbitary.sellprice</code>.
      */
     public void setSellprice(Double value) {
         set(3, value);
     }
 
     /**
-     * Getter for <code>parser.sockettradearbitary.sellprice</code>.
+     * Getter for <code>6txKRsiwk3.sockettradearbitary.sellprice</code>.
      */
     public Double getSellprice() {
         return (Double) get(3);
     }
 
     /**
-     * Setter for <code>parser.sockettradearbitary.createdtime</code>.
+     * Setter for <code>6txKRsiwk3.sockettradearbitary.createdtime</code>.
      */
     public void setCreatedtime(Timestamp value) {
         set(4, value);
     }
 
     /**
-     * Getter for <code>parser.sockettradearbitary.createdtime</code>.
+     * Getter for <code>6txKRsiwk3.sockettradearbitary.createdtime</code>.
      */
     public Timestamp getCreatedtime() {
         return (Timestamp) get(4);
     }
 
     /**
-     * Setter for <code>parser.sockettradearbitary.market</code>.
+     * Setter for <code>6txKRsiwk3.sockettradearbitary.market</code>.
      */
     public void setMarket(String value) {
         set(5, value);
     }
 
     /**
-     * Getter for <code>parser.sockettradearbitary.market</code>.
+     * Getter for <code>6txKRsiwk3.sockettradearbitary.market</code>.
      */
     public String getMarket() {
         return (String) get(5);
     }
 
     /**
-     * Setter for <code>parser.sockettradearbitary.amount</code>.
+     * Setter for <code>6txKRsiwk3.sockettradearbitary.amount</code>.
      */
     public void setAmount(Double value) {
         set(6, value);
     }
 
     /**
-     * Getter for <code>parser.sockettradearbitary.amount</code>.
+     * Getter for <code>6txKRsiwk3.sockettradearbitary.amount</code>.
      */
     public Double getAmount() {
         return (Double) get(6);
     }
 
     /**
-     * Setter for <code>parser.sockettradearbitary.arbitarysellprice</code>.
+     * Setter for <code>6txKRsiwk3.sockettradearbitary.arbitarysellprice</code>.
      */
     public void setArbitarysellprice(Double value) {
         set(7, value);
     }
 
     /**
-     * Getter for <code>parser.sockettradearbitary.arbitarysellprice</code>.
+     * Getter for <code>6txKRsiwk3.sockettradearbitary.arbitarysellprice</code>.
      */
     public Double getArbitarysellprice() {
         return (Double) get(7);
     }
 
     /**
-     * Setter for <code>parser.sockettradearbitary.iscompleted</code>.
+     * Setter for <code>6txKRsiwk3.sockettradearbitary.iscompleted</code>.
      */
     public void setIscompleted(Byte value) {
         set(8, value);
     }
 
     /**
-     * Getter for <code>parser.sockettradearbitary.iscompleted</code>.
+     * Getter for <code>6txKRsiwk3.sockettradearbitary.iscompleted</code>.
      */
     public Byte getIscompleted() {
         return (Byte) get(8);
     }
 
     /**
-     * Setter for <code>parser.sockettradearbitary.updatedarbitarysellprice</code>.
+     * Setter for <code>6txKRsiwk3.sockettradearbitary.updatedarbitarysellprice</code>.
      */
     public void setUpdatedarbitarysellprice(Double value) {
         set(9, value);
     }
 
     /**
-     * Getter for <code>parser.sockettradearbitary.updatedarbitarysellprice</code>.
+     * Getter for <code>6txKRsiwk3.sockettradearbitary.updatedarbitarysellprice</code>.
      */
     public Double getUpdatedarbitarysellprice() {
         return (Double) get(9);
     }
 
     /**
-     * Setter for <code>parser.sockettradearbitary.updatedtime</code>.
+     * Setter for <code>6txKRsiwk3.sockettradearbitary.updatedtime</code>.
      */
     public void setUpdatedtime(Timestamp value) {
         set(10, value);
     }
 
     /**
-     * Getter for <code>parser.sockettradearbitary.updatedtime</code>.
+     * Getter for <code>6txKRsiwk3.sockettradearbitary.updatedtime</code>.
      */
     public Timestamp getUpdatedtime() {
         return (Timestamp) get(10);
     }
 
     /**
-     * Setter for <code>parser.sockettradearbitary.updatedsellprice</code>.
+     * Setter for <code>6txKRsiwk3.sockettradearbitary.updatedsellprice</code>.
      */
     public void setUpdatedsellprice(Double value) {
         set(11, value);
     }
 
     /**
-     * Getter for <code>parser.sockettradearbitary.updatedsellprice</code>.
+     * Getter for <code>6txKRsiwk3.sockettradearbitary.updatedsellprice</code>.
      */
     public Double getUpdatedsellprice() {
         return (Double) get(11);
     }
 
     /**
-     * Setter for <code>parser.sockettradearbitary.order_id</code>.
+     * Setter for <code>6txKRsiwk3.sockettradearbitary.order_id</code>.
      */
     public void setOrderId(String value) {
         set(12, value);
     }
 
     /**
-     * Getter for <code>parser.sockettradearbitary.order_id</code>.
+     * Getter for <code>6txKRsiwk3.sockettradearbitary.order_id</code>.
      */
     public String getOrderId() {
         return (String) get(12);

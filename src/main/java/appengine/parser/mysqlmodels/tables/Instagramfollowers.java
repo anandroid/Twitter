@@ -5,7 +5,7 @@ package appengine.parser.mysqlmodels.tables;
 
 
 import appengine.parser.mysqlmodels.Keys;
-import appengine.parser.mysqlmodels.Parser;
+import appengine.parser.mysqlmodels._6txkrsiwk3;
 import appengine.parser.mysqlmodels.tables.records.InstagramfollowersRecord;
 
 import java.sql.Timestamp;
@@ -36,10 +36,10 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Instagramfollowers extends TableImpl<InstagramfollowersRecord> {
 
-    private static final long serialVersionUID = 566516045;
+    private static final long serialVersionUID = 1080448019;
 
     /**
-     * The reference instance of <code>parser.instagramfollowers</code>
+     * The reference instance of <code>6txKRsiwk3.instagramfollowers</code>
      */
     public static final Instagramfollowers INSTAGRAMFOLLOWERS = new Instagramfollowers();
 
@@ -52,59 +52,89 @@ public class Instagramfollowers extends TableImpl<InstagramfollowersRecord> {
     }
 
     /**
-     * The column <code>parser.instagramfollowers.pagename</code>.
+     * The column <code>6txKRsiwk3.instagramfollowers.pagename</code>.
      */
     public final TableField<InstagramfollowersRecord, String> PAGENAME = createField("pagename", org.jooq.impl.SQLDataType.VARCHAR.length(30), this, "");
 
     /**
-     * The column <code>parser.instagramfollowers.user_id</code>.
+     * The column <code>6txKRsiwk3.instagramfollowers.user_id</code>.
      */
     public final TableField<InstagramfollowersRecord, String> USER_ID = createField("user_id", org.jooq.impl.SQLDataType.VARCHAR.length(30), this, "");
 
     /**
-     * The column <code>parser.instagramfollowers.user_name</code>.
+     * The column <code>6txKRsiwk3.instagramfollowers.user_name</code>.
      */
     public final TableField<InstagramfollowersRecord, String> USER_NAME = createField("user_name", org.jooq.impl.SQLDataType.VARCHAR.length(100), this, "");
 
     /**
-     * The column <code>parser.instagramfollowers.is_verified</code>.
+     * The column <code>6txKRsiwk3.instagramfollowers.is_verified</code>.
      */
     public final TableField<InstagramfollowersRecord, Byte> IS_VERIFIED = createField("is_verified", org.jooq.impl.SQLDataType.TINYINT, this, "");
 
     /**
-     * The column <code>parser.instagramfollowers.followed_by_viewer</code>.
+     * The column <code>6txKRsiwk3.instagramfollowers.followed_by_viewer</code>.
      */
     public final TableField<InstagramfollowersRecord, Byte> FOLLOWED_BY_VIEWER = createField("followed_by_viewer", org.jooq.impl.SQLDataType.TINYINT, this, "");
 
     /**
-     * The column <code>parser.instagramfollowers.requested_by_viewer</code>.
+     * The column <code>6txKRsiwk3.instagramfollowers.requested_by_viewer</code>.
      */
     public final TableField<InstagramfollowersRecord, Byte> REQUESTED_BY_VIEWER = createField("requested_by_viewer", org.jooq.impl.SQLDataType.TINYINT, this, "");
 
     /**
-     * The column <code>parser.instagramfollowers.from_user_name</code>.
+     * The column <code>6txKRsiwk3.instagramfollowers.from_user_name</code>.
      */
     public final TableField<InstagramfollowersRecord, String> FROM_USER_NAME = createField("from_user_name", org.jooq.impl.SQLDataType.VARCHAR.length(30), this, "");
 
     /**
-     * The column <code>parser.instagramfollowers.id</code>.
+     * The column <code>6txKRsiwk3.instagramfollowers.id</code>.
      */
     public final TableField<InstagramfollowersRecord, Integer> ID = createField("id", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
 
     /**
-     * The column <code>parser.instagramfollowers.requested_on</code>.
+     * The column <code>6txKRsiwk3.instagramfollowers.requested_on</code>.
      */
     public final TableField<InstagramfollowersRecord, Timestamp> REQUESTED_ON = createField("requested_on", org.jooq.impl.SQLDataType.TIMESTAMP, this, "");
 
     /**
-     * Create a <code>parser.instagramfollowers</code> table reference
+     * The column <code>6txKRsiwk3.instagramfollowers.is_private</code>.
+     */
+    public final TableField<InstagramfollowersRecord, Byte> IS_PRIVATE = createField("is_private", org.jooq.impl.SQLDataType.TINYINT.defaultValue(org.jooq.impl.DSL.inline("0", org.jooq.impl.SQLDataType.TINYINT)), this, "");
+
+    /**
+     * The column <code>6txKRsiwk3.instagramfollowers.follower_count</code>.
+     */
+    public final TableField<InstagramfollowersRecord, Integer> FOLLOWER_COUNT = createField("follower_count", org.jooq.impl.SQLDataType.INTEGER.defaultValue(org.jooq.impl.DSL.inline("0", org.jooq.impl.SQLDataType.INTEGER)), this, "");
+
+    /**
+     * The column <code>6txKRsiwk3.instagramfollowers.following_count</code>.
+     */
+    public final TableField<InstagramfollowersRecord, Integer> FOLLOWING_COUNT = createField("following_count", org.jooq.impl.SQLDataType.INTEGER.defaultValue(org.jooq.impl.DSL.inline("0", org.jooq.impl.SQLDataType.INTEGER)), this, "");
+
+    /**
+     * The column <code>6txKRsiwk3.instagramfollowers.media_count</code>.
+     */
+    public final TableField<InstagramfollowersRecord, Integer> MEDIA_COUNT = createField("media_count", org.jooq.impl.SQLDataType.INTEGER, this, "");
+
+    /**
+     * The column <code>6txKRsiwk3.instagramfollowers.city_name</code>.
+     */
+    public final TableField<InstagramfollowersRecord, String> CITY_NAME = createField("city_name", org.jooq.impl.SQLDataType.VARCHAR.length(50), this, "");
+
+    /**
+     * The column <code>6txKRsiwk3.instagramfollowers.is_updated</code>.
+     */
+    public final TableField<InstagramfollowersRecord, Byte> IS_UPDATED = createField("is_updated", org.jooq.impl.SQLDataType.TINYINT.defaultValue(org.jooq.impl.DSL.inline("0", org.jooq.impl.SQLDataType.TINYINT)), this, "");
+
+    /**
+     * Create a <code>6txKRsiwk3.instagramfollowers</code> table reference
      */
     public Instagramfollowers() {
         this("instagramfollowers", null);
     }
 
     /**
-     * Create an aliased <code>parser.instagramfollowers</code> table reference
+     * Create an aliased <code>6txKRsiwk3.instagramfollowers</code> table reference
      */
     public Instagramfollowers(String alias) {
         this(alias, INSTAGRAMFOLLOWERS);
@@ -123,7 +153,7 @@ public class Instagramfollowers extends TableImpl<InstagramfollowersRecord> {
      */
     @Override
     public Schema getSchema() {
-        return Parser.PARSER;
+        return _6txkrsiwk3._6TXKRSIWK3;
     }
 
     /**

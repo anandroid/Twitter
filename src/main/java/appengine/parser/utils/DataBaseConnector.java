@@ -19,9 +19,9 @@ public class DataBaseConnector {
         if (create == null) {
             Connection conn = null;
 
-            String userName = "user";
-            String password = " ";
-            String url = "jdbc:mysql://35.184.102.21:3306/parser?useSSL=false&useUnicode=true&characterEncoding=UTF-8";
+            String userName = "6txKRsiwk3";
+            String password = "nPoqT54q3m";
+            String url = "jdbc:mysql://remotemysql.com:3306/6txKRsiwk3?useSSL=false&useUnicode=true&characterEncoding=UTF-8";
             try {
                 Class.forName("com.mysql.jdbc.Driver").newInstance();
                 conn = DriverManager.getConnection(url, userName, password);

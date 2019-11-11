@@ -27,87 +27,87 @@ import org.jooq.impl.TableRecordImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class GramUsersRecord extends TableRecordImpl<GramUsersRecord> implements Record6<String, String, Integer, Integer, Integer, Integer> {
 
-    private static final long serialVersionUID = 1611789586;
+    private static final long serialVersionUID = -844818918;
 
     /**
-     * Setter for <code>parser.gram_users.id</code>.
+     * Setter for <code>6txKRsiwk3.gram_users.id</code>.
      */
     public void setId(String value) {
         set(0, value);
     }
 
     /**
-     * Getter for <code>parser.gram_users.id</code>.
+     * Getter for <code>6txKRsiwk3.gram_users.id</code>.
      */
     public String getId() {
         return (String) get(0);
     }
 
     /**
-     * Setter for <code>parser.gram_users.username</code>.
+     * Setter for <code>6txKRsiwk3.gram_users.username</code>.
      */
     public void setUsername(String value) {
         set(1, value);
     }
 
     /**
-     * Getter for <code>parser.gram_users.username</code>.
+     * Getter for <code>6txKRsiwk3.gram_users.username</code>.
      */
     public String getUsername() {
         return (String) get(1);
     }
 
     /**
-     * Setter for <code>parser.gram_users.mediacount</code>.
+     * Setter for <code>6txKRsiwk3.gram_users.mediacount</code>.
      */
     public void setMediacount(Integer value) {
         set(2, value);
     }
 
     /**
-     * Getter for <code>parser.gram_users.mediacount</code>.
+     * Getter for <code>6txKRsiwk3.gram_users.mediacount</code>.
      */
     public Integer getMediacount() {
         return (Integer) get(2);
     }
 
     /**
-     * Setter for <code>parser.gram_users.followercount</code>.
+     * Setter for <code>6txKRsiwk3.gram_users.followercount</code>.
      */
     public void setFollowercount(Integer value) {
         set(3, value);
     }
 
     /**
-     * Getter for <code>parser.gram_users.followercount</code>.
+     * Getter for <code>6txKRsiwk3.gram_users.followercount</code>.
      */
     public Integer getFollowercount() {
         return (Integer) get(3);
     }
 
     /**
-     * Setter for <code>parser.gram_users.followingcount</code>.
+     * Setter for <code>6txKRsiwk3.gram_users.followingcount</code>.
      */
     public void setFollowingcount(Integer value) {
         set(4, value);
     }
 
     /**
-     * Getter for <code>parser.gram_users.followingcount</code>.
+     * Getter for <code>6txKRsiwk3.gram_users.followingcount</code>.
      */
     public Integer getFollowingcount() {
         return (Integer) get(4);
     }
 
     /**
-     * Setter for <code>parser.gram_users.credittake</code>.
+     * Setter for <code>6txKRsiwk3.gram_users.credittake</code>.
      */
     public void setCredittake(Integer value) {
         set(5, value);
     }
 
     /**
-     * Getter for <code>parser.gram_users.credittake</code>.
+     * Getter for <code>6txKRsiwk3.gram_users.credittake</code>.
      */
     public Integer getCredittake() {
         return (Integer) get(5);

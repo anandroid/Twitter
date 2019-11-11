@@ -4,7 +4,7 @@
 package appengine.parser.mysqlmodels.tables;
 
 
-import appengine.parser.mysqlmodels.Parser;
+import appengine.parser.mysqlmodels._6txkrsiwk3;
 import appengine.parser.mysqlmodels.enums.CointransferCurrentstate;
 import appengine.parser.mysqlmodels.tables.records.CointransferRecord;
 
@@ -32,10 +32,10 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Cointransfer extends TableImpl<CointransferRecord> {
 
-    private static final long serialVersionUID = -1804982989;
+    private static final long serialVersionUID = 810850168;
 
     /**
-     * The reference instance of <code>parser.cointransfer</code>
+     * The reference instance of <code>6txKRsiwk3.cointransfer</code>
      */
     public static final Cointransfer COINTRANSFER = new Cointransfer();
 
@@ -48,84 +48,84 @@ public class Cointransfer extends TableImpl<CointransferRecord> {
     }
 
     /**
-     * The column <code>parser.cointransfer.coin</code>.
+     * The column <code>6txKRsiwk3.cointransfer.coin</code>.
      */
     public final TableField<CointransferRecord, String> COIN = createField("coin", org.jooq.impl.SQLDataType.VARCHAR.length(10), this, "");
 
     /**
-     * The column <code>parser.cointransfer.amount</code>.
+     * The column <code>6txKRsiwk3.cointransfer.amount</code>.
      */
     public final TableField<CointransferRecord, Double> AMOUNT = createField("amount", org.jooq.impl.SQLDataType.DOUBLE, this, "");
 
     /**
-     * The column <code>parser.cointransfer.pricetobespentinbtc</code>.
+     * The column <code>6txKRsiwk3.cointransfer.pricetobespentinbtc</code>.
      */
     public final TableField<CointransferRecord, Double> PRICETOBESPENTINBTC = createField("pricetobespentinbtc", org.jooq.impl.SQLDataType.DOUBLE, this, "");
 
     /**
-     * The column <code>parser.cointransfer.profitestimatedinbtc</code>.
+     * The column <code>6txKRsiwk3.cointransfer.profitestimatedinbtc</code>.
      */
     public final TableField<CointransferRecord, Double> PROFITESTIMATEDINBTC = createField("profitestimatedinbtc", org.jooq.impl.SQLDataType.DOUBLE, this, "");
 
     /**
-     * The column <code>parser.cointransfer.buymarket</code>.
+     * The column <code>6txKRsiwk3.cointransfer.buymarket</code>.
      */
     public final TableField<CointransferRecord, String> BUYMARKET = createField("buymarket", org.jooq.impl.SQLDataType.VARCHAR.length(10), this, "");
 
     /**
-     * The column <code>parser.cointransfer.sellmarket</code>.
+     * The column <code>6txKRsiwk3.cointransfer.sellmarket</code>.
      */
     public final TableField<CointransferRecord, String> SELLMARKET = createField("sellmarket", org.jooq.impl.SQLDataType.VARCHAR.length(10), this, "");
 
     /**
-     * The column <code>parser.cointransfer.maxbuyprice</code>.
+     * The column <code>6txKRsiwk3.cointransfer.maxbuyprice</code>.
      */
     public final TableField<CointransferRecord, Double> MAXBUYPRICE = createField("maxbuyprice", org.jooq.impl.SQLDataType.DOUBLE, this, "");
 
     /**
-     * The column <code>parser.cointransfer.minsellprice</code>.
+     * The column <code>6txKRsiwk3.cointransfer.minsellprice</code>.
      */
     public final TableField<CointransferRecord, Double> MINSELLPRICE = createField("minsellprice", org.jooq.impl.SQLDataType.DOUBLE, this, "");
 
     /**
-     * The column <code>parser.cointransfer.currentstate</code>.
+     * The column <code>6txKRsiwk3.cointransfer.currentstate</code>.
      */
     public final TableField<CointransferRecord, CointransferCurrentstate> CURRENTSTATE = createField("currentstate", org.jooq.util.mysql.MySQLDataType.VARCHAR.asEnumDataType(appengine.parser.mysqlmodels.enums.CointransferCurrentstate.class), this, "");
 
     /**
-     * The column <code>parser.cointransfer.updatedtime</code>.
+     * The column <code>6txKRsiwk3.cointransfer.updatedtime</code>.
      */
     public final TableField<CointransferRecord, Timestamp> UPDATEDTIME = createField("updatedtime", org.jooq.impl.SQLDataType.TIMESTAMP.nullable(false).defaultValue(org.jooq.impl.DSL.inline("CURRENT_TIMESTAMP", org.jooq.impl.SQLDataType.TIMESTAMP)), this, "");
 
     /**
-     * The column <code>parser.cointransfer.buyorderid</code>.
+     * The column <code>6txKRsiwk3.cointransfer.buyorderid</code>.
      */
     public final TableField<CointransferRecord, String> BUYORDERID = createField("buyorderid", org.jooq.impl.SQLDataType.VARCHAR.length(20), this, "");
 
     /**
-     * The column <code>parser.cointransfer.sellorderid</code>.
+     * The column <code>6txKRsiwk3.cointransfer.sellorderid</code>.
      */
     public final TableField<CointransferRecord, String> SELLORDERID = createField("sellorderid", org.jooq.impl.SQLDataType.VARCHAR.length(20), this, "");
 
     /**
-     * The column <code>parser.cointransfer.buyfilledamount</code>.
+     * The column <code>6txKRsiwk3.cointransfer.buyfilledamount</code>.
      */
     public final TableField<CointransferRecord, Double> BUYFILLEDAMOUNT = createField("buyfilledamount", org.jooq.impl.SQLDataType.DOUBLE, this, "");
 
     /**
-     * The column <code>parser.cointransfer.sellfilledamount</code>.
+     * The column <code>6txKRsiwk3.cointransfer.sellfilledamount</code>.
      */
     public final TableField<CointransferRecord, Double> SELLFILLEDAMOUNT = createField("sellfilledamount", org.jooq.impl.SQLDataType.DOUBLE, this, "");
 
     /**
-     * Create a <code>parser.cointransfer</code> table reference
+     * Create a <code>6txKRsiwk3.cointransfer</code> table reference
      */
     public Cointransfer() {
         this("cointransfer", null);
     }
 
     /**
-     * Create an aliased <code>parser.cointransfer</code> table reference
+     * Create an aliased <code>6txKRsiwk3.cointransfer</code> table reference
      */
     public Cointransfer(String alias) {
         this(alias, COINTRANSFER);
@@ -144,7 +144,7 @@ public class Cointransfer extends TableImpl<CointransferRecord> {
      */
     @Override
     public Schema getSchema() {
-        return Parser.PARSER;
+        return _6txkrsiwk3._6TXKRSIWK3;
     }
 
     /**
