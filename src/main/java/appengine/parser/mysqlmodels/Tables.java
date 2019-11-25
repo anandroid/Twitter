@@ -8,6 +8,7 @@ import appengine.parser.mysqlmodels.tables.Coinprices;
 import appengine.parser.mysqlmodels.tables.Coinstatus;
 import appengine.parser.mysqlmodels.tables.Cointransfer;
 import appengine.parser.mysqlmodels.tables.Fetcher;
+import appengine.parser.mysqlmodels.tables.Fetcherhistory;
 import appengine.parser.mysqlmodels.tables.Fromfbpage;
 import appengine.parser.mysqlmodels.tables.FromfbpageTofbpage;
 import appengine.parser.mysqlmodels.tables.GramUsers;
@@ -61,6 +62,11 @@ public class Tables {
      * The table <code>6txKRsiwk3.fetcher</code>.
      */
     public static final Fetcher FETCHER = appengine.parser.mysqlmodels.tables.Fetcher.FETCHER;
+
+    /**
+     * The table <code>6txKRsiwk3.fetcherhistory</code>.
+     */
+    public static final Fetcherhistory FETCHERHISTORY = appengine.parser.mysqlmodels.tables.Fetcherhistory.FETCHERHISTORY;
 
     /**
      * The table <code>6txKRsiwk3.fromfbpage</code>.

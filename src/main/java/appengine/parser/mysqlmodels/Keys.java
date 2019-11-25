@@ -6,6 +6,7 @@ package appengine.parser.mysqlmodels;
 
 import appengine.parser.mysqlmodels.tables.Coinstatus;
 import appengine.parser.mysqlmodels.tables.Fetcher;
+import appengine.parser.mysqlmodels.tables.Fetcherhistory;
 import appengine.parser.mysqlmodels.tables.Fromfbpage;
 import appengine.parser.mysqlmodels.tables.FromfbpageTofbpage;
 import appengine.parser.mysqlmodels.tables.Instagramfollowers;
@@ -21,6 +22,7 @@ import appengine.parser.mysqlmodels.tables.Ubereats;
 import appengine.parser.mysqlmodels.tables.Weareswiggy;
 import appengine.parser.mysqlmodels.tables.records.CoinstatusRecord;
 import appengine.parser.mysqlmodels.tables.records.FetcherRecord;
+import appengine.parser.mysqlmodels.tables.records.FetcherhistoryRecord;
 import appengine.parser.mysqlmodels.tables.records.FromfbpageRecord;
 import appengine.parser.mysqlmodels.tables.records.FromfbpageTofbpageRecord;
 import appengine.parser.mysqlmodels.tables.records.InstagramfollowersRecord;
@@ -71,6 +73,7 @@ public class Keys {
 
     public static final UniqueKey<CoinstatusRecord> KEY_COINSTATUS_COINSTATUS_LABEL_MARKET_PK = UniqueKeys0.KEY_COINSTATUS_COINSTATUS_LABEL_MARKET_PK;
     public static final UniqueKey<FetcherRecord> KEY_FETCHER_PRIMARY = UniqueKeys0.KEY_FETCHER_PRIMARY;
+    public static final UniqueKey<FetcherhistoryRecord> KEY_FETCHERHISTORY_PRIMARY = UniqueKeys0.KEY_FETCHERHISTORY_PRIMARY;
     public static final UniqueKey<FromfbpageRecord> KEY_FROMFBPAGE_PRIMARY = UniqueKeys0.KEY_FROMFBPAGE_PRIMARY;
     public static final UniqueKey<FromfbpageTofbpageRecord> KEY_FROMFBPAGE_TOFBPAGE_PRIMARY = UniqueKeys0.KEY_FROMFBPAGE_TOFBPAGE_PRIMARY;
     public static final UniqueKey<InstagramfollowersRecord> KEY_INSTAGRAMFOLLOWERS_PRIMARY = UniqueKeys0.KEY_INSTAGRAMFOLLOWERS_PRIMARY;
@@ -106,6 +109,7 @@ public class Keys {
     private static class UniqueKeys0 extends AbstractKeys {
         public static final UniqueKey<CoinstatusRecord> KEY_COINSTATUS_COINSTATUS_LABEL_MARKET_PK = createUniqueKey(Coinstatus.COINSTATUS, "KEY_coinstatus_coinstatus_label_market_pk", Coinstatus.COINSTATUS.LABEL, Coinstatus.COINSTATUS.MARKET);
         public static final UniqueKey<FetcherRecord> KEY_FETCHER_PRIMARY = createUniqueKey(Fetcher.FETCHER, "KEY_fetcher_PRIMARY", Fetcher.FETCHER.COIN, Fetcher.FETCHER.MARKET);
+        public static final UniqueKey<FetcherhistoryRecord> KEY_FETCHERHISTORY_PRIMARY = createUniqueKey(Fetcherhistory.FETCHERHISTORY, "KEY_fetcherhistory_PRIMARY", Fetcherhistory.FETCHERHISTORY.COIN, Fetcherhistory.FETCHERHISTORY.MARKET, Fetcherhistory.FETCHERHISTORY.TIME);
         public static final UniqueKey<FromfbpageRecord> KEY_FROMFBPAGE_PRIMARY = createUniqueKey(Fromfbpage.FROMFBPAGE, "KEY_fromfbpage_PRIMARY", Fromfbpage.FROMFBPAGE.FROM_PAGE_ID);
         public static final UniqueKey<FromfbpageTofbpageRecord> KEY_FROMFBPAGE_TOFBPAGE_PRIMARY = createUniqueKey(FromfbpageTofbpage.FROMFBPAGE_TOFBPAGE, "KEY_fromfbpage_tofbpage_PRIMARY", FromfbpageTofbpage.FROMFBPAGE_TOFBPAGE.FROM_PAGE_ID, FromfbpageTofbpage.FROMFBPAGE_TOFBPAGE.TO_PAGE_ID);
         public static final UniqueKey<InstagramfollowersRecord> KEY_INSTAGRAMFOLLOWERS_PRIMARY = createUniqueKey(Instagramfollowers.INSTAGRAMFOLLOWERS, "KEY_instagramfollowers_PRIMARY", Instagramfollowers.INSTAGRAMFOLLOWERS.ID);

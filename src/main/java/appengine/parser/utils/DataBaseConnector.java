@@ -21,9 +21,10 @@ public class DataBaseConnector {
 
             String userName = "6txKRsiwk3";
             String password = "nPoqT54q3m";
-            String url = "jdbc:mysql://remotemysql.com:3306/6txKRsiwk3?useSSL=false&useUnicode=true&characterEncoding=UTF-8";
+            String url = "jdbc:mysql://remotemysql.com:3306/6txKRsiwk3?useSSL=false&useUnicode=true&characterEncoding=UTF-8&autoReconnect=true";
             try {
                 Class.forName("com.mysql.jdbc.Driver").newInstance();
+                DriverManager.setLoginTimeout(10000);
                 conn = DriverManager.getConnection(url, userName, password);
                 create = DSL.using(conn, SQLDialect.MYSQL);
             } catch (Exception e) {

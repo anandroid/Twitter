@@ -275,7 +275,7 @@
 			<properties>
 				<jdbc.user>6txKRsiwk3</jdbc.user>
 				<jdbc.password>nPoqT54q3m</jdbc.password>
-				<jdbc.url>jdbc:mysql://remotemysql.com:3306/6txKRsiwk3?useSSL=false</jdbc.url>
+				<jdbc.url>jdbc:mysql://remotemysql.com:3306/6txKRsiwk3?useSSL=false&amp;autoReconnect=true</jdbc.url>
 				<jdbc.driver>com.mysql.cj.jdbc.Driver</jdbc.driver>
 			</properties>
 		</profile>

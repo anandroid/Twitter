@@ -18,13 +18,13 @@ public class GetFollowers {
     private static twitter4j.Twitter mTwitterInstance;
 
 
-    public void getFollowers() {
+    public void getFollowers(String pageName) {
 
         if (mTwitterInstance == null) {
             mTwitterInstance = Twitter.getInstance();
         }
 
-        String followerOf = "ASU";
+        String followerOf = pageName;
 
         long cursor = getCursor(followerOf);
         PagableResponseList<User> usersList;
@@ -36,12 +36,13 @@ public class GetFollowers {
                 for (User user : usersList) {
                    // if (!user.isFollowRequestSent()) {
                         //mTwitterInstance.createFriendship(user.getId());
-                        System.out.println("Follow request sent to " + user.getName());
+                       // System.out.println("Follow request sent to " + user.getName());
                         insertFollowers(user, followerOf, cursor);
                   //  }
                 }
-                Thread.sleep(10000);
+                Thread.sleep(1000);
                 cursor = usersList.getNextCursor();
+                break;
                 //cursor = getCursorForUpdate(followerOf);
             } while (usersList.hasNext());
         } catch (Exception e) {

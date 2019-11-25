@@ -226,10 +226,17 @@ public class MainController {
         // return "ok";
     }
 
-    @GetMapping("/coincalculator/fetch/binance")
+    @GetMapping("/coincalculator/fetchhistory/okex")
+    public String prefetcherHistoryOkex() {
+        return new Fetcher().fetchHistoryOkex();
+        // return "ok";
+    }
+
+
+    @GetMapping("/coincalculator/fetchhistory/binance")
     public String prefetcherBinance() {
 
-        return new Fetcher().fetchBinance();
+        return new Fetcher().fetchHistoryBinance();
     }
 
     @GetMapping("/coincalculator/binance")
@@ -650,9 +657,9 @@ public class MainController {
         return "success";
     }
 
-    @GetMapping(value = "/tweets/getfollowers")
-    public String getFollowers() {
-        new GetFollowers().getFollowers();
+    @GetMapping(value = "/tweets/getfollowers/{page}")
+    public String getFollowers(@PathVariable String page) {
+        new GetFollowers().getFollowers(page);
         return "success";
     }
 

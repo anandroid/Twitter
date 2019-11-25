@@ -14,6 +14,7 @@ import java.sql.Timestamp;
 import java.util.List;
 
 import static appengine.parser.mysqlmodels.Tables.FETCHER;
+import static appengine.parser.mysqlmodels.Tables.FETCHERHISTORY;
 import static appengine.parser.mysqlmodels.Tables.OPTIMALUPDATE;
 
 public class Fetcher {
@@ -38,11 +39,23 @@ public class Fetcher {
         return returnArrayResults(coinMarketList);
     }
 
-    public String fetchBinance() {
+    public String fetchHistoryOkex() {
+
+        OkexFetcher okexFetcher = new OkexFetcher();
+        List<CoinMarket> coinMarketList = okexFetcher.getCoinList();
+        insertTickerInDB(coinMarketList);
+
+        return returnArrayResults(coinMarketList);
+    }
+
+    public String fetchHistoryBinance() {
+
+        System.setProperty("java.net.preferIPv4Stack" , "true");
+        System.setProperty("java.net.preferIPv6Addresses" , "false");
 
         MarketUtil binanceUtil = new BinanceUtil();
         List<CoinMarket> coinMarketList =  binanceUtil.getCoinList();
-        updateTickerInDB(coinMarketList);
+        insertTickerInDB(coinMarketList);
 
         return returnArrayResults(coinMarketList);
     }
@@ -64,18 +77,47 @@ public class Fetcher {
         DSLContext dslContext = DataBaseConnector.getDSLContext();
 
         for (CoinMarket coinMarket : coinMarketList) {
-            dslContext.insertInto(FETCHER, FETCHER.COIN,
-                    FETCHER.MARKET, FETCHER.BUY_FOR, FETCHER.SELL_FOR,
-                    FETCHER.VOLUME)
-                    .values(coinMarket.getCoinName(), coinMarket.getMarket().name(),
-                            coinMarket.getOurBuyPrice(), coinMarket.getOurSellPrice(),
-                            coinMarket.getTotalVolume()).onDuplicateKeyUpdate()
-                    .set(FETCHER.BUY_FOR, coinMarket.getOurBuyPrice())
-                    .set(FETCHER.SELL_FOR, coinMarket.getOurSellPrice())
-                    .set(FETCHER.VOLUME, coinMarket.getTotalVolume())
-                    .set(FETCHER.TIME, TimeUtils.getCurrentTime())
-                    .execute();
+            try {
+                dslContext.insertInto(FETCHER, FETCHER.COIN,
+                        FETCHER.MARKET, FETCHER.BUY_FOR, FETCHER.SELL_FOR,
+                        FETCHER.VOLUME)
+                        .values(coinMarket.getCoinName(), coinMarket.getMarket().name(),
+                                coinMarket.getOurBuyPrice(), coinMarket.getOurSellPrice(),
+                                coinMarket.getTotalVolume()).onDuplicateKeyUpdate()
+                        .set(FETCHER.BUY_FOR, coinMarket.getOurBuyPrice())
+                        .set(FETCHER.SELL_FOR, coinMarket.getOurSellPrice())
+                        .set(FETCHER.VOLUME, coinMarket.getTotalVolume())
+                        .set(FETCHER.TIME, TimeUtils.getCurrentTime())
+                        .execute();
+            }catch (Exception e ){
+                e.printStackTrace();
+            }
         }
+
+    }
+
+    private void insertTickerInDB(List<CoinMarket> coinMarketList) {
+
+        DSLContext dslContext = DataBaseConnector.getDSLContext();
+
+        for (CoinMarket coinMarket : coinMarketList) {
+            try {
+                dslContext.insertInto(FETCHERHISTORY, FETCHERHISTORY.COIN,
+                        FETCHERHISTORY.MARKET, FETCHERHISTORY.BUY_FOR, FETCHERHISTORY.SELL_FOR,
+                        FETCHERHISTORY.VOLUME)
+                        .values(coinMarket.getCoinName(), coinMarket.getMarket().name(),
+                                coinMarket.getOurBuyPrice(), coinMarket.getOurSellPrice(),
+                                coinMarket.getTotalVolume()).onDuplicateKeyUpdate()
+                        .set(FETCHERHISTORY.BUY_FOR, coinMarket.getOurBuyPrice())
+                        .set(FETCHERHISTORY.SELL_FOR, coinMarket.getOurSellPrice())
+                        .set(FETCHERHISTORY.VOLUME, coinMarket.getTotalVolume())
+                        .set(FETCHERHISTORY.TIME, TimeUtils.getCurrentTime())
+                        .execute();
+            }catch (Exception e ){
+                e.printStackTrace();
+            }
+        }
+
     }
 
     private void updateCalculationTimeInDB(Timestamp timestamp) {

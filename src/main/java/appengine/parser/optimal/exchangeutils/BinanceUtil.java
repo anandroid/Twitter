@@ -18,7 +18,10 @@ import org.knowm.xchange.dto.marketdata.OrderBook;
 import org.knowm.xchange.dto.trade.LimitOrder;
 import org.knowm.xchange.service.marketdata.MarketDataService;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,17 +37,31 @@ public class BinanceUtil implements MarketUtil {
     public void fetch() {
 
         try {
-                OkHttpClient client = new OkHttpClient();
+
+            URL url = new URL("https://api.binance.com/api/v1/ticker/24hr");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream()));
+            StringBuffer json = new StringBuffer();
+            String line;
+
+            while ((line = reader.readLine()) != null) {
+                json.append(line);
+            }
+            reader.close();
+
+
+                /*OkHttpClient client = new OkHttpClient();
 
                 Request request = new Request.Builder()
                         .url("https://api.binance.com/api/v1/ticker/24hr")
                         .get()
                         .addHeader("cache-control", "no-cache")
                         .addHeader("postman-token", "489fa3d1-a999-6b98-d60d-3cd6533ab7e3")
-                        .build();
+                        .build();*/
 
-                Response response = client.newCall(request).execute();
-                String jsonString = response.body().string();
+               // Response response = client.newCall(request).execute();
+                //String jsonString = response.body().string();
+
+                String jsonString = json.toString();
 
                 JSONArray jsonArray = new JSONArray(jsonString);
 
